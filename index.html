@@ -148,7 +148,13 @@ nav {
 .qual-card .issuer { font-size: 12px; color: var(--text-muted); }
 
 /* ════════════ Category header ════════════ */
-.cat-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-light); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--accent); }
+.cat-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-light); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--accent); cursor: pointer; user-select: none; }
+.cat-header .cat-icon { font-size: 22px; }
+.cat-header .toggle-arrow { margin-left: auto; font-size: 14px; transition: transform 0.3s; color: var(--text-muted); }
+.cat-header.collapsed .toggle-arrow { transform: rotate(-90deg); }
+.cat-header.collapsed { margin-bottom: 0; }
+.collapse-body { transition: opacity 0.3s; }
+.collapse-body.hidden { display: none; }
 .cat-header .cat-icon { font-size: 22px; }
 
 /* ════════════ Appointment card ════════════ */
@@ -305,29 +311,29 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">专业背景</h2><p class="section-subtitle">教育经历 · 执业资质 · 工作履历</p></div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">🎓</span> 教育经历</div>
+      <div class="cat-header"><span class="cat-icon">🎓</span> 教育经历<span class="toggle-arrow">▾</span></div>
       <div class="edu-card">
         <div class="edu-badge">硕士</div>
-        <div class="edu-info"><h4>深圳大学</h4><div class="degree">法律硕士 · 宪法与行政法学</div><div class="year">2012年9月 — 2015年6月</div></div>
+        <div class="edu-info"><h4>深圳大学</h4><div class="degree">法律硕士 · 经济法学</div></div>
       </div>
       <div class="edu-card">
         <div class="edu-badge">学士</div>
-        <div class="edu-info"><h4>南昌大学</h4><div class="degree">法学学士</div><div class="year">1997年9月 — 2001年7月</div></div>
+        <div class="edu-info"><h4>南昌大学</h4><div class="degree">法学学士 · 经济法学</div></div>
       </div>
     </div>
 
     <div class="pub-section" style="margin-top:40px;">
-      <div class="cat-header"><span class="cat-icon">⚖️</span> 执业资质</div>
+      <div class="cat-header"><span class="cat-icon">⚖️</span> 执业资质<span class="toggle-arrow">▾</span></div>
       <div class="qual-grid">
         <div class="qual-card"><div class="qual-icon">📜</div><div><h4>律师执业证</h4><div class="issuer">广东省司法厅</div></div></div>
         <div class="qual-card"><div class="qual-icon">🔬</div><div><h4>专利代理师</h4><div class="issuer">国家知识产权局</div></div></div>
         <div class="qual-card"><div class="qual-icon">🛡</div><div><h4>企业合规师</h4><div class="issuer">中国信通院专业技术能力评审</div></div></div>
-        <div class="qual-card"><div class="qual-icon">📐</div><div><h4>深圳标准专家库专家</h4><div class="issuer">深圳市市场监督管理局</div></div></div>
+        
       </div>
     </div>
 
     <div class="pub-section" style="margin-top:40px;">
-      <div class="cat-header"><span class="cat-icon">💼</span> 工作履历</div>
+      <div class="cat-header"><span class="cat-icon">💼</span> 工作履历<span class="toggle-arrow">▾</span></div>
       <div class="timeline">
         <div class="timeline-item"><div class="year">2021 — 至今</div><h4>合伙人律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>执业于中银深圳，专注反垄断与反不正当竞争、企业合规与数字经济领域。同期牵头成立反垄断与竞争政策研究中心并担任主任，兼任投资与并购专业委员会主任、破产与重组专业委员会副主任、党总支组织委员。</p></div>
         <div class="timeline-item"><div class="year">2015 — 2021</div><h4>执业律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>加入中银深圳，从事民商事诉讼、企业法律顾问及合规业务，逐步聚焦竞争法与数字经济交叉领域。</p></div>
@@ -342,7 +348,7 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">社会兼职</h2><p class="section-subtitle">专家聘任 · 律师协会 · 法学会 · 行业智库</p></div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">🏅</span> 专家聘任</div>
+      <div class="cat-header"><span class="cat-icon">🏅</span> 专家聘任<span class="toggle-arrow">▾</span></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳市公平竞争审查专家库 · 专家成员</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳标准专家库第五批 · 专家成员</h4><div class="appt-date">2022年11月 — 2025年11月</div></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>信息通信及互联网行业企业合规师专业技术能力评审组 · 专家成员</h4></div></div>
@@ -354,14 +360,14 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">⚖️</span> 律师协会任职</div>
+      <div class="cat-header"><span class="cat-icon">⚖️</span> 律师协会任职<span class="toggle-arrow">▾</span></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字经济法律专业委员会 · 副主任</h4><div class="appt-date">第十一届，任期四年</div></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字创意产业法律服务团 · 副团长</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省律师协会</div><h4>数字经济法律专业委员会 · 委员</h4></div></div>
     </div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">📚</span> 法学会任职</div>
+      <div class="cat-header"><span class="cat-icon">📚</span> 法学会任职<span class="toggle-arrow">▾</span></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>理事</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>经济法学研究会 · 理事</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>反垄断与反不正当竞争法学研究会 · 理事</h4></div></div>
@@ -370,7 +376,7 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">🏛</span> 机构职务</div>
+      <div class="cat-header"><span class="cat-icon">🏛</span> 机构职务<span class="toggle-arrow">▾</span></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>反垄断与竞争政策研究中心 · 主任</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>投资与并购专业委员会 · 主任</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>破产与重组专业委员会 · 副主任</h4></div></div>
@@ -387,7 +393,7 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">学术成果</h2><p class="section-subtitle">专著编著 · 标准制定</p></div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">📖</span> 专著与编著</div>
+      <div class="cat-header"><span class="cat-icon">📖</span> 专著与编著<span class="toggle-arrow">▾</span></div>
       <ul class="pub-list">
         <li><span class="pub-num">1</span><div class="pub-content"><h4>《元宇宙法律实务》</h4><p class="pub-meta">法律出版社 · 2023年3月 · ISBN 9787519775711</p><span class="pub-role">副主编之一 · 撰写第十一章（算法合规）</span></div></li>
         <li><span class="pub-num">2</span><div class="pub-content"><h4>《现代企业合规指引》</h4><p class="pub-meta">中国政法大学出版社 · 2023年4月</p><span class="pub-role">作者之一 · 负责第四章《反垄断合规》</span></div></li>
@@ -396,7 +402,7 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">📋</span> 团体标准制定</div>
+      <div class="cat-header"><span class="cat-icon">📋</span> 团体标准制定<span class="toggle-arrow">▾</span></div>
       <ul class="pub-list">
         <li><span class="pub-num">1</span><div class="pub-content"><h4>《平台经营者反垄断合规管理规则》</h4><p class="pub-meta">中国标准化协会 · 团体标准 · 2021年</p><span class="pub-role">参与起草</span></div></li>
         <li><span class="pub-num">2</span><div class="pub-content"><h4>《经营者公平竞争合规管理体系建设规范》</h4><p class="pub-meta">团体标准 · 2022年</p><span class="pub-role">参与起草</span></div></li>
@@ -413,7 +419,7 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">获奖情况</h2><p class="section-subtitle">行业荣誉 · 专业表彰</p></div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">🏆</span> 荣誉与表彰</div>
+      <div class="cat-header"><span class="cat-icon">🏆</span> 荣誉与表彰<span class="toggle-arrow">▾</span></div>
 
       <div class="award-card"><div class="award-icon">🥇</div><div class="award-info"><h4>深圳市律师协会 · 专业委优秀委员</h4><div class="award-issuer">深圳市律师协会</div><div class="award-date">2022年度、2023年度（连续两年）</div></div></div>
 
@@ -450,6 +456,27 @@ function switchTab(tabId, el) {
   el.classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
+// ════════════ Collapsible sections ════════════
+(function() {
+  document.querySelectorAll('.cat-header').forEach(function(header) {
+    // Wrap all next siblings until another cat-header into a collapse-body
+    var wrapper = document.createElement('div');
+    wrapper.className = 'collapse-body';
+    var next = header.nextElementSibling;
+    while (next && !next.classList.contains('cat-header')) {
+      var toMove = next;
+      next = next.nextElementSibling;
+      wrapper.appendChild(toMove);
+    }
+    header.parentNode.insertBefore(wrapper, header.nextElementSibling);
+    // Click to toggle
+    header.addEventListener('click', function() {
+      header.classList.toggle('collapsed');
+      wrapper.classList.toggle('hidden');
+    });
+  });
+})();
 </script>
 
 </body>
