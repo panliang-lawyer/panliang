@@ -275,7 +275,7 @@ footer span { color: var(--accent); }
   .map-container { margin-left: 16px; margin-right: 16px; }
 }
 </style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -554,7 +554,7 @@ function switchTab(tabId, el) {
 })();
 </script>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function() {
   var mapEl = document.getElementById('map');
@@ -565,9 +565,10 @@ function switchTab(tabId, el) {
     zoomControl: true,
     scrollWheelZoom: true
   });
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    maxZoom: 19
+  L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
+    subdomains: ['1', '2', '3', '4'],
+    attribution: '&copy; 高德地图',
+    maxZoom: 18
   }).addTo(map);
   var marker = L.marker([22.5432, 114.0580]).addTo(map);
   marker.bindPopup('<b>北京中银（深圳）律师事务所</b><br>福田区益田路6003号<br>荣超商务中心A座5楼').openPopup();
