@@ -95,7 +95,7 @@ nav {
 .container { max-width: 920px; margin: 0 auto; padding: 0 28px; }
 
 /* ════════════ Section visibility ════════════ */
-.section { display: none; padding: 44px 0 80px; animation: fadeIn 0.35s ease; scroll-margin-top: 80px; }
+.section { display: none; padding: calc(var(--nav-height) + 32px) 0 80px; animation: fadeIn 0.35s ease; scroll-margin-top: calc(var(--nav-height) + 16px); }
 .section.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
