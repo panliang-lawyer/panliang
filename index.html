@@ -157,10 +157,25 @@ nav {
 
 /* Hide inline content — only shown in modal */
 .pub-section > :not(.cat-header),
-.appt-block > :not(.cat-header),
-.article-content { display: none; }
+.appt-block > :not(.cat-header)
 .cat-header .toggle-arrow { margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
 .cat-header:hover .toggle-arrow { background: var(--accent); color: #fff; }
+
+/* ════════════ Article cards ════════════ */
+.article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 16px; transition: all 0.2s; cursor: default; }
+.article-card:hover { box-shadow: var(--shadow-md); }
+.article-card .art-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
+.article-card .art-date { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.04em; }
+.article-card .art-excerpt { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 14px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.article-card .art-link { display: inline-block; font-size: 13px; color: var(--accent); font-weight: 600; cursor: pointer; letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+.article-card .art-link:hover { border-bottom-color: var(--accent); }
+.art-full { display: none; }
+.article-card .art-full { display: none; }
+@media (max-width: 768px) {
+  .article-card { padding: 18px 20px; }
+  .article-card .art-title { font-size: 15px; }
+}
+
 /* Modal */
 .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9998; background: rgba(0,0,0,0.35); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 24px; animation: modalFadeIn 0.25s ease; }
 .modal-dialog { background: var(--card); border-radius: 16px; box-shadow: 0 24px 80px rgba(0,0,0,0.2); max-width: 440px; overflow: hidden; width: 100%; max-height: 68vh; overflow-y: auto; position: relative; animation: modalIn 0.25s ease; }
@@ -185,8 +200,7 @@ nav {
 
 /* Hide inline content — only shown in modal */
 .pub-section > :not(.cat-header),
-.appt-block > :not(.cat-header),
-.article-content { display: none; }
+.appt-block > :not(.cat-header)
 
 /* ════════════ Appointment card ════════════ */
 .appt-block { margin-bottom: 44px; }
@@ -607,10 +621,12 @@ footer span { color: var(--accent); }
 <section id="news" class="section">
   <div class="container">
     <div class="section-header"><h2 class="section-title">相关动态</h2><p class="section-subtitle">最新资讯 · 行业关注</p></div>
-    <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">📰</span> 中银律师受聘为企业合规师专业技术能力评审组专家<span class="toggle-arrow">→</span></div>
-      <div class="article-content" style="padding: 20px; font-size: 14px; line-height: 2; color: var(--text-secondary);">
-        <p>近日，由中国互联网协会主办、中国信息通信研究院知识产权与创新发展中心承办的“合规治理和知识产权保护论坛”在京成功举办。作为2022(第八届)中国互联网法治大会的分论坛之一，会议由中国知识产权法学研究会副会长、中国互联网协会知识产权工作委员会执行主任金克胜教授、中国信通院知识产权与创新发展中心主任李文宇主持，来自政府部门、高校、互联网企业、律师事务所等单位的数百位专家与代表，围绕企业合规治理和知识产权保护问题进行了深入探讨。
+    <div class="article-card">
+      <div class="art-title">中银律师受聘为企业合规师专业技术能力评审组专家</div>
+      <div class="art-date">2022年9月21日 · 中银（深圳）律师事务所</div>
+      <div class="art-excerpt">近日，由中国互联网协会主办、中国信息通信研究院知识产权与创新发展中心承办的“合规治理和知识产权保护论坛”在京成功举办。作为2022(第八届)中国互联网法治大会的分论坛之一，会议由中国知识产权法学研究会副会长、中国互联网协会知识产权工作委员会执行主任金克胜教授、中国信通院知识产权与创新发展中心主任李文……</div>
+      <span class="art-link" onclick="openArticleModal(this)">阅读全文 →</span>
+      <div class="art-full">近日，由中国互联网协会主办、中国信息通信研究院知识产权与创新发展中心承办的“合规治理和知识产权保护论坛”在京成功举办。作为2022(第八届)中国互联网法治大会的分论坛之一，会议由中国知识产权法学研究会副会长、中国互联网协会知识产权工作委员会执行主任金克胜教授、中国信通院知识产权与创新发展中心主任李文宇主持，来自政府部门、高校、互联网企业、律师事务所等单位的数百位专家与代表，围绕企业合规治理和知识产权保护问题进行了深入探讨。
 
 会议期间举行了新书《数字经济合规管理与案例解析》刊印启动仪式，新书作为信息通信及互联网行业企业合规师教材，自2022年3月启动以来，由来自反腐败合规、知识产权合规、反垄断合规、数据合规、算法合规、广告合规、刑事合规等领域的十余位专家学者参与编写。
 
@@ -622,18 +638,20 @@ footer span { color: var(--accent); }
 
 中银深圳现为全国两化融合标委会数字经济标准工作组（TC573/WG9）第一批成员单位、中国互联网协会与中国信通院“电信和互联网行业数据安全人才强基计划”“个人信息保护合规审计领航计划”“数据安全推进计划”“企业合规推进计划”首批参与单位。中银律师不仅在传统业务领域保持优势，针对反垄断、数字经济、企业合规等法律服务也展现了深厚专业能力。
 
-其中，潘良律师及其团队成员参与完成《中小企业合规管理体系有效性评价》团体标准起草，正参与《经营者公平竞争合规管理体系建设规范》《数字经济 术语》《数字经济 评估规范》等团体标准起草。潘良律师现为深圳大学创新发展法治研究院特邀研究员、深圳市律师协会数字经济委副主任、广东省律师协会数字经济委委员、广东省法学会经济法学研究会第三届理事会理事、中国信通院“个人信息保护合规审计领航计划”“数据安全推进计划”“企业合规推进计划”等项目专家成员。</p>
-      </div>
+其中，潘良律师及其团队成员参与完成《中小企业合规管理体系有效性评价》团体标准起草，正参与《经营者公平竞争合规管理体系建设规范》《数字经济 术语》《数字经济 评估规范》等团体标准起草。潘良律师现为深圳大学创新发展法治研究院特邀研究员、深圳市律师协会数字经济委副主任、广东省律师协会数字经济委委员、广东省法学会经济法学研究会第三届理事会理事、中国信通院“个人信息保护合规审计领航计划”“数据安全推进计划”“企业合规推进计划”等项目专家成员。</div>
     </div>
-    <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">📰</span> 中银律师团队代理重大商事仲裁案全面获胜<span class="toggle-arrow">→</span></div>
-      <div class="article-content" style="padding: 20px; font-size: 14px; line-height: 2; color: var(--text-secondary);">
-        <p>近日，北京中银（深圳）律师事务所潘良律师带领团队代理的两起金融借款纠纷商事仲裁案，经北京仲裁委员会/北京国际仲裁中心组庭审理，两案均取得全面胜诉裁决，涉案标的金额超过一亿元。
+    <div class="article-card">
+      <div class="art-title">中银律师团队代理重大商事仲裁案全面获胜</div>
+      <div class="art-date">2022年1月11日 · 中银（深圳）律师事务所</div>
+      <div class="art-excerpt">近日，北京中银（深圳）律师事务所潘良律师带领团队代理的两起金融借款纠纷商事仲裁案，经北京仲裁委员会/北京国际仲裁中心组庭审理，两案均取得全面胜诉裁决，涉案标的金额超过一亿元。
+
+本案由合伙人潘良、刘康力、廖烨明、朱方涛、邱忠森律师及杨继奇实习律师等人共同组成法律服务团队。两个案件涉及主体众多，需要处……</div>
+      <span class="art-link" onclick="openArticleModal(this)">阅读全文 →</span>
+      <div class="art-full">近日，北京中银（深圳）律师事务所潘良律师带领团队代理的两起金融借款纠纷商事仲裁案，经北京仲裁委员会/北京国际仲裁中心组庭审理，两案均取得全面胜诉裁决，涉案标的金额超过一亿元。
 
 本案由合伙人潘良、刘康力、廖烨明、朱方涛、邱忠森律师及杨继奇实习律师等人共同组成法律服务团队。两个案件涉及主体众多，需要处理金融借款、保证担保、抵押担保、上市公司违规担保、上市公司破产重整、债权申报、当事人内地身份变为香港身份、国内/国际仲裁程序的变更与选择、多次确仲之诉导致仲裁程序的中止与恢复等多重法律关系及法律事项，涉及刑民交叉等复杂法律程序，法律关系、事务和程序错综复杂。
 
-中银律师充分发挥在金融与资本法律领域的专业特长，充分了解案情，全面收集并认真研究证据，依法提出有力证据和观点，从事实认定及法律适用等方面进行了充分论证，使仲裁庭最终依法采纳并裁决支持我方仲裁请求，有力维护了当事人合法权益。中银律师在两案中展现了精湛的专业能力和勤勉、高效的工作态度，得到了客户的高度评价与认可。</p>
-      </div>
+中银律师充分发挥在金融与资本法律领域的专业特长，充分了解案情，全面收集并认真研究证据，依法提出有力证据和观点，从事实认定及法律适用等方面进行了充分论证，使仲裁庭最终依法采纳并裁决支持我方仲裁请求，有力维护了当事人合法权益。中银律师在两案中展现了精湛的专业能力和勤勉、高效的工作态度，得到了客户的高度评价与认可。</div>
     </div>
   </div>
 </section>
@@ -719,7 +737,49 @@ function switchTab(tabId, el) {
     });
   });
 })();
-</script>
 
+// ════════════ Article modal ════════════
+function openArticleModal(linkEl) {
+  var card = linkEl.closest('.article-card');
+  var title = card.querySelector('.art-title').textContent;
+  var fullContent = card.querySelector('.art-full').innerHTML;
+  var origOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  var overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  var dialog = document.createElement('div');
+  dialog.className = 'modal-dialog';
+  var closeBtn = document.createElement('button');
+  closeBtn.className = 'modal-close';
+  closeBtn.innerHTML = '&#x2715;';
+  var header = document.createElement('div');
+  header.className = 'modal-header';
+  header.innerHTML = '<span class="cat-icon">📄</span> ' + title;
+  var body = document.createElement('div');
+  body.className = 'modal-body';
+  body.style.fontSize = '14px';
+  body.style.lineHeight = '2';
+  body.style.color = 'var(--text-secondary)';
+  body.innerHTML = fullContent;
+  dialog.appendChild(closeBtn);
+  dialog.appendChild(header);
+  dialog.appendChild(body);
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+  function closeModal() {
+    overlay.remove();
+    document.body.style.overflow = origOverflow;
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e) {
+    if (e.key === 'Escape') closeModal();
+  }
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', onKey);
+}
+</script>
 </body>
 </html>
