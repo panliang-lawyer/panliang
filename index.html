@@ -148,7 +148,7 @@ nav {
 .qual-card .issuer { font-size: 12px; color: var(--text-muted); }
 
 /* ════════════ Category header ════════════ */
-.cat-header { font-size: 16px; font-weight: 600; padding: 16px 22px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--text); cursor: pointer; user-select: none; transition: all 0.2s; margin-bottom: 10px; }
+.cat-header { font-size: 14px; font-weight: 600; padding: 10px 16px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; color: var(--text); cursor: pointer; user-select: none; transition: all 0.2s; margin-bottom: 8px; }
 .cat-header:hover { border-color: var(--accent); color: var(--accent); box-shadow: var(--shadow-sm); }
 .cat-header .cat-icon { font-size: 20px; flex-shrink: 0; }
 
@@ -518,6 +518,7 @@ function switchTab(tabId, el) {
       // Close handlers
       function closeModal() {
         overlay.remove();
+        document.body.style.overflow = origOverflow;
         document.removeEventListener('keydown', onKey);
       }
       function onKey(e) {
@@ -529,15 +530,9 @@ function switchTab(tabId, el) {
       closeBtn.addEventListener('click', closeModal);
       document.addEventListener('keydown', onKey);
       // Prevent body scroll
-      document.body.style.overflow = 'hidden';
       var origOverflow = document.body.style.overflow;
-      var observer = new MutationObserver(function() {
-        if (!document.contains(overlay)) {
-          document.body.style.overflow = origOverflow;
-          observer.disconnect();
-        }
-      });
-      observer.observe(document.body, { childList: true });
+      document.body.style.overflow = 'hidden';
+      
     });
   });
 })();
