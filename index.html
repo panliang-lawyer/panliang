@@ -157,7 +157,8 @@ nav {
 
 /* Hide inline content — only shown in modal */
 .pub-section > :not(.cat-header),
-.appt-block > :not(.cat-header) { display: none; }
+.appt-block > :not(.cat-header),
+.article-content { display: none; }
 .cat-header .toggle-arrow { margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
 .cat-header:hover .toggle-arrow { background: var(--accent); color: #fff; }
 /* Modal */
@@ -184,7 +185,8 @@ nav {
 
 /* Hide inline content — only shown in modal */
 .pub-section > :not(.cat-header),
-.appt-block > :not(.cat-header) { display: none; }
+.appt-block > :not(.cat-header),
+.article-content { display: none; }
 
 /* ════════════ Appointment card ════════════ */
 .appt-block { margin-bottom: 44px; }
@@ -294,6 +296,8 @@ footer span { color: var(--accent); }
     <a href="#appointments" onclick="switchTab('appointments', this)">社会兼职</a>
     <a href="#publications" onclick="switchTab('publications', this)">学术成果</a>
     <a href="#awards" onclick="switchTab('awards', this)">获奖情况</a>
+    <a href="#articles" onclick="switchTab('articles', this)">专业文章</a>
+    <a href="#news" onclick="switchTab('news', this)">相关动态</a>
   </div>
 </nav>
 
@@ -324,8 +328,8 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="about-block" style="margin-top:36px;">
-      <p>潘良，北京中银（深圳）律师事务所合伙人，反垄断与竞争政策研究中心主任，同时担任投资与并购专业委员会主任、破产与重组专业委员会副主任，以及党总支组织委员。</p>
-      <p style="margin-top:16px;">现任深圳市律师协会数字经济法律专业委员会副主任、数字创意产业法律服务团副团长，广东省律师协会数字经济法律专业委员会委员；深圳市法学会理事、数字法学研究会秘书长，广东省法学会理事、经济法学研究会理事、反垄断与反不正当竞争法学研究会理事；深圳大学创新发展法治研究院特邀研究员。</p>
+      <p>潘良，中共党员，经济学学士、经济法学硕士，中国法学会会员，北京中银（深圳）律师事务所合伙人，反垄断与竞争政策研究中心主任，同时担任投资与并购专业委员会主任、破产与重组专业委员会副主任，以及党总支组织委员。同时拥有证券从业资格、深交所上市公司独立董事资格。</p>
+      <p style="margin-top:16px;">深圳市福田区人民法院特邀调解员。现任深圳市律师协会数字经济法律专业委员会副主任、数字创意产业法律服务团副团长，广东省律师协会数字经济法律专业委员会委员；深圳市法学会理事、数字法学研究会秘书长，广东省法学会理事、经济法学研究会理事、反垄断与反不正当竞争法学研究会理事；深圳大学创新发展法治研究院特邀研究员。</p>
       <p style="margin-top:16px;">受聘为深圳市公平竞争审查专家库专家成员、深圳市市场监督管理局深圳标准专家库第五批专家成员；中国互联网协会数据安全与治理工作委员会副主任委员、专家成员；中国信息通信研究院信息通信及互联网行业企业合规师专业技术能力评审组专家成员，"数据安全推进计划"数安智库专家成员（2022—2024年，续聘一次），"数据安全共同体计划"专家（聘期三年），"个人信息保护合规审计领航计划"专家，"企业合规推进计划"专家；全国两化融合管理标委会数字经济标准工作组（TC573/WG9）专家成员。</p>
       <p style="margin-top:16px;">2021年牵头成立中银深圳反垄断与竞争政策研究中心，系深圳律师行业率先聚焦反垄断与竞争政策的专业研究平台，致力于为企业提供反垄断合规咨询、公平竞争审查第三方评估、竞争政策研究及行业培训等专业服务。</p>
     </div>
@@ -352,7 +356,7 @@ footer span { color: var(--accent); }
       </div>
       <div class="edu-card">
         <div class="edu-badge">学士</div>
-        <div class="edu-info"><h4>南昌大学</h4><div class="degree">法学学士 · 经济法学</div></div>
+        <div class="edu-info"><h4>南昌大学</h4><div class="degree">经济学学士</div></div>
       </div>
     </div>
 
@@ -362,15 +366,15 @@ footer span { color: var(--accent); }
         <div class="qual-card"><div class="qual-icon">📜</div><div><h4>律师执业证</h4><div class="issuer">广东省司法厅</div></div></div>
         
         <div class="qual-card"><div class="qual-icon">📋</div><div><h4>企业合规师</h4><div class="issuer">中国信通院专业技术能力评审</div></div></div>
-        
+        <div class="qual-card"><div class="qual-icon">📈</div><div><h4>证券从业资格</h4><div class="issuer">中国证券业协会</div></div></div>
+        <div class="qual-card"><div class="qual-icon">🏛</div><div><h4>上市公司独立董事资格</h4><div class="issuer">深圳证券交易所</div></div></div>
       </div>
     </div>
-
     <div class="pub-section" style="margin-top:40px;">
       <div class="cat-header"><span class="cat-icon">💼</span> 工作履历<span class="toggle-arrow">→</span></div>
       <div class="timeline">
-        <div class="timeline-item"><div class="year">2021 — 至今</div><h4>合伙人律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>执业于中银深圳，专注反垄断与反不正当竞争、企业合规与数字经济领域。同期牵头成立反垄断与竞争政策研究中心并担任主任，兼任投资与并购专业委员会主任、破产与重组专业委员会副主任、党总支组织委员。</p></div>
-        <div class="timeline-item"><div class="year">2015 — 2021</div><h4>执业律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>加入中银深圳，从事民商事诉讼、企业法律顾问及合规业务，逐步聚焦竞争法与数字经济交叉领域。</p></div>
+        <div class="timeline-item"><div class="year">2021 — 至今</div>
+        <div class="timeline-item"><div class="year">2012 — 2015</div><h4>执业律师</h4><div class="org-name">广东信达律师事务所 · 广东深兴律师事务所</div><p>先后在广东信达律师事务所、广东深兴律师事务所工作，积累民商事诉讼与企业法律顾问经验。</p></div>
       </div>
     </div>
   </div>
@@ -408,8 +412,12 @@ footer span { color: var(--accent); }
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>反垄断与反不正当竞争法学研究会 · 理事</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市法学会</div><h4>第八届理事会 · 理事</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市法学会</div><h4>数字法学研究会 · 秘书长</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国法学会</div><h4>会员</h4></div></div>
     </div>
-
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">⚡</span> 其他社会职务<span class="toggle-arrow">→</span></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市福田区人民法院</div><h4>特邀调解员</h4></div></div>
+    </div>
     <div class="appt-block">
       <div class="cat-header"><span class="cat-icon">🏢</span> 机构职务<span class="toggle-arrow">→</span></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳大学创新发展法治研究院</div><h4>特邀研究员</h4></div></div>
@@ -465,7 +473,44 @@ footer span { color: var(--accent); }
     </div>
   </div>
 </section>
-
+<!-- ════════════ 专业文章 ════════════ -->
+<section id="articles" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">专业文章</h2><p class="section-subtitle">研究成果 · 专业洞见</p></div>
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📄</span> 《反垄断合规问题研究——基于行政诉讼案件统计分析与应对策略》<span class="toggle-arrow">→</span></div>
+      <div class="article-content" style="padding: 20px; font-size: 14px; line-height: 2; color: var(--text-secondary);">
+        <p>本文基于对反垄断行政诉讼案件的系统统计与分析，深入探讨企业在反垄断合规管理中面临的关键问题与挑战，并结合实务经验提出应对策略，为企业完善反垄断合规体系提供参考。</p>
+        <p>欢迎联系获取全文。</p>
+      </div>
+    </div>
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📄</span> 《从经营者集中处罚案例看反垄断执法常态化》<span class="toggle-arrow">→</span></div>
+      <div class="article-content" style="padding: 20px; font-size: 14px; line-height: 2; color: var(--text-secondary);">
+        <p>本文通过梳理经营者集中领域的典型处罚案例，分析反垄断执法的常态化趋势，探讨企业在并购交易中应关注的反垄断合规要点。</p>
+        <p>欢迎联系获取全文。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ════════════ 相关动态 ════════════ -->
+<section id="news" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">相关动态</h2><p class="section-subtitle">最新资讯 · 行业关注</p></div>
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📰</span> 中银律师受聘为企业合规师专业技术能力评审组专家<span class="toggle-arrow">→</span></div>
+      <div class="article-content" style="padding: 20px; font-size: 14px; line-height: 2; color: var(--text-secondary);">
+        <p>潘良律师受聘为中国信息通信研究院信息通信及互联网行业企业合规师专业技术能力评审组专家成员，参与企业合规师专业技术能力评审工作。</p>
+      </div>
+    </div>
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📰</span> 中银律师团队代理重大商事仲裁案全面获胜<span class="toggle-arrow">→</span></div>
+      <div class="article-content" style="padding: 20px; font-size: 14px; line-height: 2; color: var(--text-secondary);">
+        <p>中银深圳律师团队代理的重大商事仲裁案件获得全面胜诉裁决，充分展现了中银律师在商事争议解决领域的专业实力。</p>
+      </div>
+    </div>
+  </div>
+</section>
 <footer>
   <img src="zhongyin-logo.png" alt="中银律师事务所" style="height:22px;width:auto;opacity:0.5;margin-bottom:8px;"><br>
   &copy; 2026 潘良 &nbsp;·&nbsp; 北京中银（深圳）律师事务所 &nbsp;·&nbsp; 反垄断与竞争政策研究中心<br>
