@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潘良 — 北京中银（深圳）律师事务所 · 反垄断与竞争政策研究中心</title>
+<style>
+:root {
+  --bg: #fafaf8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #5c5c5c;
+  --text-muted: #8a8a8a;
+  --accent: #8c1414;
+  --accent-light: #f8efef;
+  --accent-ghost: #fdf9f9;
+  --border: #e8e5e0;
+  --gold: #c8a078;
+  --gold-light: #faf5ef;
+  --gold-dark: #b48c64;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+  --radius: 8px;
+  --nav-height: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ════════════ Splash Screen ════════════ */
+#splash {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 16px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+#splash img { height: 60px; width: auto; animation: splashPulse 2s ease-in-out infinite; }
+#splash .splash-text {
+  font-size: 14px; color: var(--text-muted); letter-spacing: 0.08em;
+  animation: splashFadeIn 1.2s ease;
+}
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+@keyframes splashFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════ Navigation ════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,250,248,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: var(--nav-height);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-brand img { height: 28px; width: auto; }
+.nav-brand .firm-name { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; padding-left: 12px; border-left: 1px solid var(--border); white-space: nowrap; }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a { display: inline-block; padding: 10px 14px; text-decoration: none; color: var(--text-secondary); font-size: 13px; letter-spacing: 0.06em; border-radius: 6px; transition: all 0.25s; white-space: nowrap; }
+.nav-links a:hover { color: var(--accent); background: var(--accent-ghost); }
+.nav-links a.active { color: #fff; background: var(--accent); font-weight: 700; }
+
+/* ════════════ Hero ════════════ */
+.hero {
+  margin-top: var(--nav-height); padding: 64px 40px 52px; text-align: center;
+  background: linear-gradient(175deg, #fff 0%, #fefcf8 40%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero .hero-logo { height: 48px; width: auto; margin-bottom: 28px; }
+.hero .name { font-size: 44px; font-weight: 700; letter-spacing: 0.14em; color: var(--text); }
+.hero .name .dot { color: var(--accent); }
+.hero .title-line { font-size: 17px; color: var(--text-secondary); margin-top: 14px; letter-spacing: 0.06em; font-weight: 400; }
+.hero .title-line em { font-style: normal; color: var(--accent); font-weight: 600; }
+.hero .divider { width: 50px; height: 2px; background: var(--gold); margin: 26px auto; }
+.hero .org { font-size: 14px; color: var(--text-muted); letter-spacing: 0.05em; }
+
+/* ════════════ Container ════════════ */
+.container { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+/* ════════════ Section visibility ════════════ */
+.section { display: none; padding: 44px 0 80px; animation: fadeIn 0.35s ease; scroll-margin-top: 80px; }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ════════════ Section header ════════════ */
+.section-header { text-align: center; margin-bottom: 48px; }
+.section-title { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; display: inline-block; position: relative; }
+.section-title::after { content: ''; display: block; width: 36px; height: 2px; background: var(--gold); margin: 12px auto 0; }
+.section-subtitle { font-size: 14px; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.04em; }
+
+/* ════════════ Card Grid ════════════ */
+.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.card-grid .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; transition: box-shadow 0.25s; }
+.card-grid .card:hover { box-shadow: var(--shadow-md); }
+.card-grid .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--accent); letter-spacing: 0.04em; }
+.card-grid .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+
+/* ════════════ Stat row ════════════ */
+.stat-row { display: flex; justify-content: center; gap: 48px; margin: 40px 0 20px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-item .num { font-size: 36px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+.stat-item .label { font-size: 13px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.04em; }
+
+/* ════════════ Timeline ════════════ */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); }
+.timeline-item { margin-bottom: 36px; position: relative; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-item::before { content: ''; position: absolute; left: -28px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
+.timeline-item .year { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px; }
+.timeline-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.timeline-item .org-name { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+.timeline-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+
+/* ════════════ Education cards ════════════ */
+.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; display: flex; gap: 24px; align-items: center; margin-bottom: 20px; transition: box-shadow 0.25s; }
+.edu-card:hover { box-shadow: var(--shadow-md); }
+.edu-card:last-child { margin-bottom: 0; }
+.edu-card .edu-badge { flex-shrink: 0; width: 60px; height: 60px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-align: center; line-height: 1.3; }
+.edu-card .edu-info { flex: 1; }
+.edu-card .edu-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.edu-card .edu-info .degree { font-size: 14px; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
+.edu-card .edu-info .year { font-size: 13px; color: var(--text-muted); }
+
+/* ════════════ Qualification grid ════════════ */
+.qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; gap: 16px; align-items: center; transition: box-shadow 0.25s; }
+.qual-card:hover { box-shadow: var(--shadow-md); }
+.qual-card .qual-icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--gold-light); color: var(--gold-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.qual-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.qual-card .issuer { font-size: 12px; color: var(--text-muted); }
+
+/* ════════════ Category header ════════════ */
+.cat-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-light); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--accent); }
+.cat-header .cat-icon { font-size: 22px; }
+
+/* ════════════ Appointment card ════════════ */
+.appt-block { margin-bottom: 44px; }
+.appt-block:last-child { margin-bottom: 0; }
+.appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 10px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
+.appt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); border-radius: 0 2px 2px 0; }
+.appt-card:last-child { margin-bottom: 0; }
+.appt-card:hover { box-shadow: var(--shadow-md); }
+.appt-card .appt-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; }
+.appt-card .appt-body { flex: 1; }
+.appt-card .appt-org { font-size: 12px; color: var(--gold-dark); font-weight: 600; letter-spacing: 0.04em; }
+.appt-card h4 { font-size: 15px; font-weight: 700; margin: 2px 0 4px; }
+.appt-card .appt-date { font-size: 12px; color: var(--text-muted); }
+
+/* ════════════ Publication list ════════════ */
+.pub-section { margin-bottom: 48px; }
+.pub-section:last-child { margin-bottom: 0; }
+.pub-list { list-style: none; }
+.pub-list li { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; align-items: flex-start; }
+.pub-list li:last-child { border-bottom: none; }
+.pub-list .pub-num { flex-shrink: 0; width: 36px; height: 36px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-top: 2px; }
+.pub-list .pub-content { flex: 1; }
+.pub-list h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; line-height: 1.5; }
+.pub-list .pub-meta { font-size: 13px; color: var(--text-muted); }
+.pub-list .pub-role { display: inline-block; font-size: 11px; padding: 3px 12px; background: var(--gold-light); color: var(--gold-dark); border-radius: 10px; margin-top: 6px; letter-spacing: 0.04em; font-weight: 600; }
+
+/* ════════════ Awards ════════════ */
+.award-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 14px; transition: box-shadow 0.25s; display: flex; gap: 18px; align-items: flex-start; }
+.award-card:last-child { margin-bottom: 0; }
+.award-card:hover { box-shadow: var(--shadow-md); }
+.award-card .award-icon { flex-shrink: 0; width: 44px; height: 44px; background: linear-gradient(135deg, var(--gold-light), var(--accent-ghost)); color: var(--gold-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+.award-card .award-info { flex: 1; }
+.award-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.award-card .award-issuer { font-size: 13px; color: var(--accent); font-weight: 600; }
+.award-card .award-date { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* ════════════ Practice areas tags ════════════ */
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 24px 0; }
+.tag { display: inline-block; padding: 9px 22px; font-size: 13px; letter-spacing: 0.04em; border: 1px solid var(--border); border-radius: 24px; background: var(--card); color: var(--text-secondary); transition: all 0.2s; }
+.tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-ghost); }
+
+/* ════════════ About block ════════════ */
+.about-block { max-width: 720px; margin: 0 auto; font-size: 15px; color: var(--text-secondary); line-height: 2; text-align: justify; }
+
+/* ════════════ Contact row ════════════ */
+.contact-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+.contact-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); padding: 12px 20px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); }
+
+/* ════════════ Brand bar ════════════ */
+.brand-bar { text-align: center; padding: 32px 24px; margin-top: 20px; border-top: 1px solid var(--border); }
+.brand-bar img { height: 32px; width: auto; opacity: 0.7; }
+
+/* ════════════ Footer ════════════ */
+footer { text-align: center; padding: 32px 24px 40px; margin-top: auto; font-size: 12px; color: #aaa; border-top: 1px solid var(--border); letter-spacing: 0.04em; line-height: 1.8; }
+footer span { color: var(--accent); }
+
+/* ════════════ Responsive ════════════ */
+@media (max-width: 768px) {
+  nav { padding: 0 16px; }
+  .nav-brand .firm-name { display: none; }
+  .nav-brand img { height: 22px; }
+  .nav-links { gap: 0; }
+  .nav-links a { padding: 8px 10px; font-size: 11px; letter-spacing: 0.02em; }
+  .hero { padding: 48px 20px 36px; }
+  .hero .hero-logo { height: 36px; }
+  .hero .name { font-size: 32px; }
+  .hero .title-line { font-size: 14px; }
+  .card-grid, .qual-grid { grid-template-columns: 1fr !important; }
+  .stat-row { gap: 28px; }
+  .stat-item .num { font-size: 28px; }
+  .section-title { font-size: 22px; }
+  .edu-card { flex-direction: column; align-items: center; text-align: center; }
+  .timeline { padding-left: 24px; }
+  .timeline-item::before { left: -21px; }
+  .contact-row { flex-direction: column; align-items: center; }
+}
+@media (max-width: 480px) {
+  nav { padding: 0 8px; flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; justify-content: center; gap: 6px; }
+  .nav-links { flex-wrap: wrap; justify-content: center; }
+  .nav-links a { padding: 6px 8px; font-size: 10px; }
+  .hero .name { font-size: 26px; letter-spacing: 0.08em; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ Splash Screen ════════════ -->
+<div id="splash">
+  <img src="zhongyin-logo.png" alt="中银律师事务所">
+  <div class="splash-text">北京中银（深圳）律师事务所</div>
+</div>
+
+<!-- ════════════ Navigation ════════════ -->
+<nav>
+  <a href="#home" class="nav-brand" onclick="switchTab('home', document.querySelector('nav a[href=#home]'))">
+    <img src="zhongyin-logo.png" alt="中银律师事务所">
+    <span class="firm-name">深圳分所</span>
+  </a>
+  <div class="nav-links">
+    <a href="#home" class="active" onclick="switchTab('home', this)">首页</a>
+    <a href="#background" onclick="switchTab('background', this)">专业背景</a>
+    <a href="#appointments" onclick="switchTab('appointments', this)">社会兼职</a>
+    <a href="#publications" onclick="switchTab('publications', this)">学术成果</a>
+    <a href="#awards" onclick="switchTab('awards', this)">获奖情况</a>
+  </div>
+</nav>
+
+<!-- ════════════ 首页 ════════════ -->
+<section id="home" class="section active">
+  <div class="hero">
+    <img class="hero-logo" src="zhongyin-logo.png" alt="中银律师事务所">
+    <div class="name">潘<span class="dot">·</span>良</div>
+    <div class="title-line">反垄断与竞争政策研究中心主任 <span style="color:var(--border);margin:0 8px;">|</span> <em>合伙人律师</em></div>
+    <div class="divider"></div>
+    <div class="org">北京中银（深圳）律师事务所</div>
+  </div>
+
+  <div class="container">
+    <div class="stat-row">
+      <div class="stat-item"><div class="num">10+</div><div class="label">年法律从业</div></div>
+      <div class="stat-item"><div class="num">7</div><div class="label">部专著/标准</div></div>
+      <div class="stat-item"><div class="num">20+</div><div class="label">社会兼职</div></div>
+    </div>
+
+    <div class="tag-cloud">
+      <span class="tag">反垄断与反不正当竞争</span>
+      <span class="tag">企业合规</span>
+      <span class="tag">数字经济</span>
+      <span class="tag">公司治理</span>
+      <span class="tag">知识产权</span>
+      <span class="tag">数据安全</span>
+    </div>
+
+    <div class="about-block" style="margin-top:36px;">
+      <p>潘良，北京中银（深圳）律师事务所合伙人，反垄断与竞争政策研究中心主任，同时担任投资与并购专业委员会主任、破产与重组专业委员会副主任，以及党总支组织委员。</p>
+      <p style="margin-top:16px;">现任深圳市律师协会数字经济法律专业委员会副主任、数字创意产业法律服务团副团长，广东省律师协会数字经济法律专业委员会委员；深圳市法学会理事、数字法学研究会秘书长，广东省法学会理事、经济法学研究会理事、反垄断与反不正当竞争法学研究会理事；深圳大学创新发展法治研究院特邀研究员。</p>
+      <p style="margin-top:16px;">受聘为深圳市公平竞争审查专家库专家成员、深圳市市场监督管理局深圳标准专家库第五批专家成员；中国互联网协会数据安全与治理工作委员会副主任委员、专家成员；中国信息通信研究院信息通信及互联网行业企业合规师专业技术能力评审组专家成员，「数据安全推进计划」数安智库专家成员（2022—2024年，续聘一次），「数据安全共同体计划」专家（聘期三年），「个人信息保护合规审计领航计划」专家，「企业合规推进计划」专家；全国两化融合管理标委会数字经济标准工作组（TC573/WG9）专家成员。</p>
+      <p style="margin-top:16px;">2021年牵头成立中银深圳反垄断与竞争政策研究中心，系深圳律师行业率先聚焦反垄断与竞争政策的专业研究平台，致力于为企业提供反垄断合规咨询、公平竞争审查第三方评估、竞争政策研究及行业培训等专业服务。</p>
+    </div>
+
+    <div class="contact-row">
+      <div class="contact-item"><span>📍</span><span>深圳市福田区益田路6003号荣超商务中心A座5楼</span></div>
+    </div>
+
+    <div class="brand-bar"><img src="zhongyin-logo.png" alt="中银律师事务所"></div>
+  </div>
+</section>
+
+<!-- ════════════ 专业背景 ════════════ -->
+<section id="background" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">专业背景</h2><p class="section-subtitle">教育经历 · 执业资质 · 工作履历</p></div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">🎓</span> 教育经历</div>
+      <div class="edu-card">
+        <div class="edu-badge">硕士</div>
+        <div class="edu-info"><h4>深圳大学</h4><div class="degree">法律硕士 · 宪法与行政法学</div><div class="year">2012年9月 — 2015年6月</div></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-badge">学士</div>
+        <div class="edu-info"><h4>南昌大学</h4><div class="degree">法学学士</div><div class="year">1997年9月 — 2001年7月</div></div>
+      </div>
+    </div>
+
+    <div class="pub-section" style="margin-top:40px;">
+      <div class="cat-header"><span class="cat-icon">⚖️</span> 执业资质</div>
+      <div class="qual-grid">
+        <div class="qual-card"><div class="qual-icon">📜</div><div><h4>律师执业证</h4><div class="issuer">广东省司法厅</div></div></div>
+        <div class="qual-card"><div class="qual-icon">🔬</div><div><h4>专利代理师</h4><div class="issuer">国家知识产权局</div></div></div>
+        <div class="qual-card"><div class="qual-icon">🛡</div><div><h4>企业合规师</h4><div class="issuer">中国信通院专业技术能力评审</div></div></div>
+        <div class="qual-card"><div class="qual-icon">📐</div><div><h4>深圳标准专家库专家</h4><div class="issuer">深圳市市场监督管理局</div></div></div>
+      </div>
+    </div>
+
+    <div class="pub-section" style="margin-top:40px;">
+      <div class="cat-header"><span class="cat-icon">💼</span> 工作履历</div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="year">2021 — 至今</div><h4>合伙人律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>执业于中银深圳，专注反垄断与反不正当竞争、企业合规与数字经济领域。同期牵头成立反垄断与竞争政策研究中心并担任主任，兼任投资与并购专业委员会主任、破产与重组专业委员会副主任、党总支组织委员。</p></div>
+        <div class="timeline-item"><div class="year">2015 — 2021</div><h4>执业律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>加入中银深圳，从事民商事诉讼、企业法律顾问及合规业务，逐步聚焦竞争法与数字经济交叉领域。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 社会兼职 ════════════ -->
+<section id="appointments" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">社会兼职</h2><p class="section-subtitle">专家聘任 · 律师协会 · 法学会 · 行业智库</p></div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">🏅</span> 专家聘任</div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳市公平竞争审查专家库 · 专家成员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳标准专家库第五批 · 专家成员</h4><div class="appt-date">2022年11月 — 2025年11月</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>信息通信及互联网行业企业合规师专业技术能力评审组 · 专家成员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>「数据安全推进计划」数安智库 · 专家成员</h4><div class="appt-date">2022年4月 — 2024年4月（续聘一次）</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>「数据安全共同体计划」· 专家</h4><div class="appt-date">聘期三年</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>「个人信息保护合规审计领航计划」· 专家</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>「企业合规推进计划」· 专家</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">全国两化融合管理标委会</div><h4>数字经济标准工作组（TC573/WG9）· 专家成员</h4></div></div>
+    </div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">⚖️</span> 律师协会任职</div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字经济法律专业委员会 · 副主任</h4><div class="appt-date">第十一届，任期四年</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字创意产业法律服务团 · 副团长</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省律师协会</div><h4>数字经济法律专业委员会 · 委员</h4></div></div>
+    </div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">📚</span> 法学会任职</div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>经济法学研究会 · 理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>反垄断与反不正当竞争法学研究会 · 理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市法学会</div><h4>第八届理事会 · 理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市法学会</div><h4>数字法学研究会 · 秘书长</h4></div></div>
+    </div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">🏛</span> 机构职务</div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>反垄断与竞争政策研究中心 · 主任</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>投资与并购专业委员会 · 主任</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>破产与重组专业委员会 · 副主任</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>党总支 · 组织委员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳大学创新发展法治研究院</div><h4>特邀研究员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国互联网协会</div><h4>数据安全与治理工作委员会 · 副主任委员、专家成员</h4></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 学术成果 ════════════ -->
+<section id="publications" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">学术成果</h2><p class="section-subtitle">专著编著 · 标准制定</p></div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📖</span> 专著与编著</div>
+      <ul class="pub-list">
+        <li><span class="pub-num">1</span><div class="pub-content"><h4>《元宇宙法律实务》</h4><p class="pub-meta">法律出版社 · 2023年3月 · ISBN 9787519775711</p><span class="pub-role">副主编之一 · 撰写第十一章（算法合规）</span></div></li>
+        <li><span class="pub-num">2</span><div class="pub-content"><h4>《现代企业合规指引》</h4><p class="pub-meta">中国政法大学出版社 · 2023年4月</p><span class="pub-role">作者之一 · 负责第四章《反垄断合规》</span></div></li>
+        <li><span class="pub-num">3</span><div class="pub-content"><h4>《数据安全治理实践指南（2.0）》</h4><p class="pub-meta">2023年发布</p><span class="pub-role">参编</span></div></li>
+      </ul>
+    </div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📋</span> 团体标准制定</div>
+      <ul class="pub-list">
+        <li><span class="pub-num">1</span><div class="pub-content"><h4>《平台经营者反垄断合规管理规则》</h4><p class="pub-meta">中国标准化协会 · 团体标准 · 2021年</p><span class="pub-role">参与起草</span></div></li>
+        <li><span class="pub-num">2</span><div class="pub-content"><h4>《经营者公平竞争合规管理体系建设规范》</h4><p class="pub-meta">团体标准 · 2022年</p><span class="pub-role">参与起草</span></div></li>
+        <li><span class="pub-num">3</span><div class="pub-content"><h4>《中小企业合规管理体系有效性评价》</h4><p class="pub-meta">中国中小企业协会 · T/CASMES 19—2022 · 2022年5月</p><span class="pub-role">起草人</span></div></li>
+        <li><span class="pub-num">4</span><div class="pub-content"><h4>《企业个人信息保护合规管理体系 指南》</h4><p class="pub-meta">中国互联网协会 · T/ISC 0050—2024 · 2024年</p><span class="pub-role">主要起草人之一</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 获奖情况 ════════════ -->
+<section id="awards" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">获奖情况</h2><p class="section-subtitle">行业荣誉 · 专业表彰</p></div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">🏆</span> 荣誉与表彰</div>
+
+      <div class="award-card"><div class="award-icon">🥇</div><div class="award-info"><h4>深圳市律师协会 · 专业委优秀委员</h4><div class="award-issuer">深圳市律师协会</div><div class="award-date">2022年度、2023年度（连续两年）</div></div></div>
+
+      <div class="award-card"><div class="award-icon">🥇</div><div class="award-info"><h4>广东省律师协会 · 专业委优秀委员</h4><div class="award-issuer">广东省律师协会</div><div class="award-date">2022年度</div></div></div>
+
+      <div class="award-card"><div class="award-icon">⭐</div><div class="award-info"><h4>创新合作论坛 · 突出贡献个人</h4><div class="award-issuer">深圳市律师协会 · 创新合作论坛（2023）</div><div class="award-date">2023年</div></div></div>
+
+      <div class="award-card"><div class="award-icon">🔴</div><div class="award-info"><h4>深圳市律师行业党委 · 优秀共产党员</h4><div class="award-issuer">深圳市律师行业党委</div><div class="award-date">2024年度</div></div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="zhongyin-logo.png" alt="中银律师事务所" style="height:22px;width:auto;opacity:0.5;margin-bottom:8px;"><br>
+  &copy; 2026 潘良 &nbsp;·&nbsp; 北京中银（深圳）律师事务所 &nbsp;·&nbsp; 反垄断与竞争政策研究中心<br>
+  <span>竞争与监管 · 公平与法治</span>
+</footer>
+
+<script>
+// ════════════ Splash Screen ════════════
+(function() {
+  var splash = document.getElementById('splash');
+  // Hide splash after 2s
+  setTimeout(function() {
+    splash.classList.add('hide');
+  }, 2000);
+})();
+
+// ════════════ Tab switching ════════════
+function switchTab(tabId, el) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+  document.getElementById(tabId).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
