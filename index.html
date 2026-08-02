@@ -151,6 +151,9 @@ nav {
 .cat-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-light); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--accent); cursor: pointer; user-select: none; transition: color 0.2s; }
 .cat-header .cat-icon { font-size: 22px; }
 .cat-header:hover { color: #6a0f0f; }
+/* Hide inline content — only shown in modal */
+.pub-section > :not(.cat-header),
+.appt-block > :not(.cat-header) { display: none; }
 .cat-header .toggle-arrow { margin-left: auto; font-size: 13px; color: var(--text-muted); opacity: 0.5; }
 .cat-header:hover .toggle-arrow { opacity: 1; color: var(--accent); }
 /* Modal */
@@ -171,6 +174,9 @@ nav {
 }
 .cat-header .cat-icon { font-size: 22px; }
 .cat-header:hover { color: #6a0f0f; }
+/* Hide inline content — only shown in modal */
+.pub-section > :not(.cat-header),
+.appt-block > :not(.cat-header) { display: none; }
 
 /* ════════════ Appointment card ════════════ */
 .appt-block { margin-bottom: 44px; }
