@@ -148,14 +148,29 @@ nav {
 .qual-card .issuer { font-size: 12px; color: var(--text-muted); }
 
 /* ════════════ Category header ════════════ */
-.cat-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-light); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--accent); cursor: pointer; user-select: none; }
+.cat-header { font-size: 18px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-light); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--accent); cursor: pointer; user-select: none; transition: color 0.2s; }
 .cat-header .cat-icon { font-size: 22px; }
-.cat-header .toggle-arrow { margin-left: auto; font-size: 14px; transition: transform 0.3s; color: var(--text-muted); }
-.cat-header.collapsed .toggle-arrow { transform: rotate(-90deg); }
-.cat-header.collapsed { margin-bottom: 0; }
-.collapse-body { transition: opacity 0.3s; }
-.collapse-body.hidden { display: none; }
+.cat-header:hover { color: #6a0f0f; }
+.cat-header .toggle-arrow { margin-left: auto; font-size: 13px; color: var(--text-muted); opacity: 0.5; }
+.cat-header:hover .toggle-arrow { opacity: 1; color: var(--accent); }
+/* Modal */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9998; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; padding: 24px; animation: fadeIn 0.2s ease; }
+.modal-dialog { background: var(--card); border-radius: 12px; box-shadow: 0 12px 60px rgba(0,0,0,0.15); max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; position: relative; animation: modalIn 0.25s ease; }
+@keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-close { position: absolute; top: 14px; right: 18px; width: 32px; height: 32px; border: none; background: var(--bg); border-radius: 50%; font-size: 16px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
+.modal-close:hover { background: var(--accent); color: #fff; }
+.modal-header { padding: 28px 32px 0; font-size: 18px; font-weight: 700; color: var(--accent); letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
+.modal-header .cat-icon { font-size: 22px; }
+.modal-body { padding: 20px 32px 32px; }
+.modal-body .cat-header { display: none; }
+@media (max-width: 768px) {
+  .modal-overlay { padding: 16px; align-items: flex-end; }
+  .modal-dialog { max-width: 100%; max-height: 78vh; border-radius: 16px 16px 8px 8px; }
+  .modal-header { padding: 22px 24px 0; }
+  .modal-body { padding: 14px 24px 24px; }
+}
 .cat-header .cat-icon { font-size: 22px; }
+.cat-header:hover { color: #6a0f0f; }
 
 /* ════════════ Appointment card ════════════ */
 .appt-block { margin-bottom: 44px; }
@@ -457,23 +472,65 @@ function switchTab(tabId, el) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ════════════ Collapsible sections ════════════
+// ════════════ Modal popups ════════════
 (function() {
   document.querySelectorAll('.cat-header').forEach(function(header) {
-    // Wrap all next siblings until another cat-header into a collapse-body
-    var wrapper = document.createElement('div');
-    wrapper.className = 'collapse-body';
-    var next = header.nextElementSibling;
-    while (next && !next.classList.contains('cat-header')) {
-      var toMove = next;
-      next = next.nextElementSibling;
-      wrapper.appendChild(toMove);
-    }
-    header.parentNode.insertBefore(wrapper, header.nextElementSibling);
-    // Click to toggle
     header.addEventListener('click', function() {
-      header.classList.toggle('collapsed');
-      wrapper.classList.toggle('hidden');
+      // Collect all sibling content until next cat-header
+      var items = [];
+      var next = header.nextElementSibling;
+      while (next && !next.classList.contains('cat-header')) {
+        items.push(next.cloneNode(true));
+        next = next.nextElementSibling;
+      }
+      if (!items.length) return;
+      // Get title text (without the toggle arrow)
+      var title = header.cloneNode(true);
+      var arrow = title.querySelector('.toggle-arrow');
+      if (arrow) arrow.remove();
+      // Build modal
+      var overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      var dialog = document.createElement('div');
+      dialog.className = 'modal-dialog';
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'modal-close';
+      closeBtn.innerHTML = '&#x2715;';
+      closeBtn.setAttribute('aria-label', '关闭');
+      var modalHeader = document.createElement('div');
+      modalHeader.className = 'modal-header';
+      modalHeader.innerHTML = title.innerHTML;
+      var modalBody = document.createElement('div');
+      modalBody.className = 'modal-body';
+      items.forEach(function(item) { modalBody.appendChild(item); });
+      dialog.appendChild(closeBtn);
+      dialog.appendChild(modalHeader);
+      dialog.appendChild(modalBody);
+      overlay.appendChild(dialog);
+      document.body.appendChild(overlay);
+      // Close handlers
+      function closeModal() {
+        overlay.remove();
+        document.removeEventListener('keydown', onKey);
+      }
+      function onKey(e) {
+        if (e.key === 'Escape') closeModal();
+      }
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeModal();
+      });
+      closeBtn.addEventListener('click', closeModal);
+      document.addEventListener('keydown', onKey);
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+      var origOverflow = document.body.style.overflow;
+      var observer = new MutationObserver(function() {
+        if (!document.contains(overlay)) {
+          document.body.style.overflow = origOverflow;
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.body, { childList: true });
     });
   });
 })();
