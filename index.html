@@ -46,7 +46,7 @@ body {
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-#splash img { height: 60px; width: auto; animation: splashPulse 2s ease-in-out infinite; }
+#splash img { height: 60px; width: auto; animation: splashPulse 1.5s ease-in-out infinite; }
 #splash .splash-text {
   font-size: 14px; color: var(--text-muted); letter-spacing: 0.08em;
   animation: splashFadeIn 1.2s ease;
@@ -135,7 +135,7 @@ nav {
 .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; display: flex; gap: 24px; align-items: center; margin-bottom: 20px; transition: box-shadow 0.25s; }
 .edu-card:hover { box-shadow: var(--shadow-md); }
 .edu-card:last-child { margin-bottom: 0; }
-.edu-card .edu-badge { flex-shrink: 0; width: 60px; height: 60px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-align: center; line-height: 1.3; }
+.edu-card .edu-badge { flex-shrink: 0; width: 60px; height: 60px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-align: center; line-height: 1.3; }
 .edu-card .edu-info { flex: 1; }
 .edu-card .edu-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
 .edu-card .edu-info .degree { font-size: 14px; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
@@ -145,7 +145,7 @@ nav {
 .qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
 .qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; gap: 16px; align-items: center; transition: box-shadow 0.25s; }
 .qual-card:hover { box-shadow: var(--shadow-md); }
-.qual-card .qual-icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--gold-light); color: var(--gold-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.qual-card .qual-icon { flex-shrink: 0; width: 44px; height: 44px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; }
 .qual-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
 .qual-card .issuer { font-size: 12px; color: var(--text-muted); }
 
@@ -153,12 +153,15 @@ nav {
 .cat-header { font-size: 15px; font-weight: 600; padding: 16px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 12px; color: var(--text); cursor: pointer; user-select: none; transition: all 0.2s ease; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
 .cat-header:hover { border-color: var(--accent); color: var(--text); box-shadow: 0 6px 24px rgba(140,20,20,0.1); transform: translateY(-2px); }
 .cat-header:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(140,20,20,0.06); }
-.cat-header .cat-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s; }
-.cat-header:hover .cat-icon { background: #fdf0f0; }
+.cat-header .cat-num { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; transition: all 0.2s; }
+.cat-header:hover .cat-num { transform: scale(1.08); }
+.cat-num-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+/* ════════════ Category preview ════════════ */
+.cat-preview { font-size: 14px; color: var(--text-secondary); padding: 8px 18px 16px; line-height: 1.8; }
 
 /* Hide inline content — only shown in modal */
-.pub-section > :not(.cat-header):not(.article-card),
-.appt-block > :not(.cat-header) { display: none; }
+.pub-section > :not(.cat-header):not(.cat-preview):not(.article-card),
+.appt-block > :not(.cat-header):not(.cat-preview) { display: none; }
 .cat-header .toggle-arrow { margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
 .cat-header:hover .toggle-arrow { background: var(--accent); color: #fff; }
 /* ════════════ Article cards ════════════ */
@@ -187,27 +190,30 @@ nav {
 .modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border: none; background: transparent; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
 .modal-close:hover { background: var(--accent); color: #fff; }
 .modal-header { padding: 24px 28px 0; font-size: 17px; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; display: flex; align-items: center; gap: 10px; }
-.modal-header .cat-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.modal-header .cat-num { width: 36px; height: 36px; border-radius: 9px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; }
 .modal-body { padding: 18px 28px 26px; }
 .modal-body .cat-header { display: none; }
 @media (max-width: 768px) {
   .cat-header { padding: 14px 16px; font-size: 14px; border-radius: 10px; }
-  .cat-header .cat-icon { width: 34px; height: 34px; font-size: 16px; border-radius: 8px; }
+  .cat-header .cat-num { width: 34px; height: 34px; font-size: 14px; }
   .cat-header .toggle-arrow { width: 22px; height: 22px; font-size: 12px; }
   .modal-overlay { padding: 16px; align-items: flex-end; }
   .modal-dialog { max-width: 100%; max-height: 65vh; border-radius: 16px 16px 8px 8px; }
   .modal-header { padding: 20px 24px 0; padding-bottom: 14px; }
   .modal-body { padding: 16px 24px 24px; }
 }
-.cat-header .cat-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s; }
-.cat-header:hover .cat-icon { background: #fdf0f0; }
+.cat-header .cat-num { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; transition: all 0.2s; }
+.cat-header:hover .cat-num { transform: scale(1.08); }
+.cat-num-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+/* ════════════ Category preview ════════════ */
+.cat-preview { font-size: 14px; color: var(--text-secondary); padding: 8px 18px 16px; line-height: 1.8; }
 
 /* Hide inline content — only shown in modal */
-.pub-section > :not(.cat-header):not(.article-card),
-.appt-block > :not(.cat-header) { display: none; }
+.pub-section > :not(.cat-header):not(.cat-preview):not(.article-card),
+.appt-block > :not(.cat-header):not(.cat-preview) { display: none; }
 
 /* ════════════ Appointment card ════════════ */
-.appt-block { margin-bottom: 44px; }
+.appt-block { margin-bottom: 24px; }
 .appt-block:last-child { margin-bottom: 0; }
 .appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 10px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
 .appt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); border-radius: 0 2px 2px 0; }
@@ -247,7 +253,7 @@ nav {
 .tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-ghost); }
 
 /* ════════════ About block ════════════ */
-.about-block { max-width: 720px; margin: 0 auto; font-size: 15px; color: var(--text-secondary); line-height: 2; text-align: justify; }
+.about-block { max-width: 720px; margin: 0 auto 20px; font-size: 15px; color: var(--text-secondary); line-height: 2; text-align: justify; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; box-shadow: var(--shadow-sm); }
 
 /* ════════════ Contact row ════════════ */
 .contact-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
@@ -264,7 +270,7 @@ footer span { color: var(--accent); }
 /* ════════════ Responsive ════════════ */
 @media (max-width: 768px) {
   .cat-header { padding: 14px 16px; font-size: 14px; border-radius: 10px; }
-  .cat-header .cat-icon { width: 34px; height: 34px; font-size: 16px; border-radius: 8px; }
+  .cat-header .cat-num { width: 34px; height: 34px; font-size: 14px; }
   .cat-header .toggle-arrow { width: 22px; height: 22px; font-size: 12px; }
   nav { padding: 0 16px; }
   .nav-brand .firm-name { display: none; }
@@ -279,6 +285,7 @@ footer span { color: var(--accent); }
   .stat-row { gap: 28px; }
   .stat-item .num { font-size: 28px; }
   .section-title { font-size: 22px; }
+  .about-block { padding: 20px 18px; }
   .edu-card { flex-direction: column; align-items: center; text-align: center; }
   .timeline { padding-left: 24px; }
   .timeline-item::before { left: -21px; }
@@ -373,7 +380,8 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">专业背景</h2><p class="section-subtitle">教育经历 · 执业资质 · 工作履历</p></div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">🎓</span> 教育经历<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">1</span> 教育经历<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">法律硕士（经济法学）· 法学学士 · 点击查看详情 →</div>
       <div class="edu-card">
         <div class="edu-badge">硕士</div>
         <div class="edu-info"><h4>深圳大学</h4><div class="degree">法律硕士 · 经济法学</div></div>
@@ -385,17 +393,19 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="pub-section" style="margin-top:40px;">
-      <div class="cat-header"><span class="cat-icon">⚖️</span> 执业资质<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">2</span> 执业资质<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">律师执业证 · 证券从业资格 · 上市公司独立董事资格 · 点击查看详情 →</div>
       <div class="qual-grid">
-        <div class="qual-card"><div class="qual-icon">📜</div><div><h4>律师执业证</h4><div class="issuer">广东省司法厅</div></div></div>
-        <div class="qual-card"><div class="qual-icon">📈</div><div><h4>证券从业资格</h4><div class="issuer">中国证券业协会</div></div></div>
-        <div class="qual-card"><div class="qual-icon">🏛</div><div><h4>上市公司独立董事资格</h4><div class="issuer">深圳证券交易所</div></div></div>
+        <div class="qual-card"><div class="qual-icon">1</div><div><h4>律师执业证</h4><div class="issuer">广东省司法厅</div></div></div>
+        <div class="qual-card"><div class="qual-icon">2</div><div><h4>证券从业资格</h4><div class="issuer">中国证券业协会</div></div></div>
+        <div class="qual-card"><div class="qual-icon">3</div><div><h4>上市公司独立董事资格</h4><div class="issuer">深圳证券交易所</div></div></div>
         
       </div>
     </div>
 
     <div class="pub-section" style="margin-top:40px;">
-      <div class="cat-header"><span class="cat-icon">💼</span> 工作履历<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">3</span> 工作履历<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">合伙人律师 · 深圳分所 · 点击查看详情 →</div>
       <div class="timeline">
         <div class="timeline-item"><div class="year">2021 — 至今</div><h4>合伙人律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>执业于中银深圳，专注反垄断与反不正当竞争、企业合规与数字经济领域。牵头成立反垄断与竞争政策研究中心并担任主任，兼任投资与并购专业委员会主任、破产与重组专业委员会副主任、党总支组织委员。</p></div>
         <div class="timeline-item"><div class="year">2015 — 2021</div><h4>执业律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>加入中银深圳，从事民商事诉讼、企业法律顾问及合规业务，逐步聚焦竞争法与数字经济交叉领域。</p></div>
@@ -411,7 +421,8 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">社会兼职</h2><p class="section-subtitle">专家聘任 · 律师协会 · 法学会 · 行业智库</p></div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">🏅</span> 专家聘任<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">1</span> 专家聘任<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">共9项专家聘任 · 涵盖公平竞争审查、标准、数据安全等领域 · 点击查看详情 →</div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳市公平竞争审查专家库 · 专家成员</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳标准专家库第五批 · 专家成员</h4><div class="appt-date">2022年11月 — 2025年11月</div></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>信息通信及互联网行业企业合规师专业技术能力评审组 · 专家成员</h4></div></div>
@@ -424,14 +435,16 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">⚖️</span> 律师协会任职<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">2</span> 律师协会任职<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">深圳律协数字经济委副主任等3项任职 · 点击查看详情 →</div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字经济法律专业委员会 · 副主任</h4><div class="appt-date">第十一届，任期四年</div></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字创意产业法律服务团 · 副团长</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省律师协会</div><h4>数字经济法律专业委员会 · 委员</h4></div></div>
     </div>
 
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">📚</span> 法学会任职<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">3</span> 法学会任职<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">广东省法学会理事等6项任职 · 点击查看详情 →</div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>理事</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>经济法学研究会 · 理事</h4></div></div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>反垄断与反不正当竞争法学研究会 · 理事</h4></div></div>
@@ -440,16 +453,10 @@ footer span { color: var(--accent); }
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国法学会</div><h4>会员</h4></div></div>
     </div>
     <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">⚡</span> 其他社会职务<span class="toggle-arrow">→</span></div>
-      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市福田区人民法院</div><h4>特邀调解员</h4></div></div>
-    </div>
-    <div class="appt-block">
-      <div class="cat-header"><span class="cat-icon">🏢</span> 机构职务<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">4</span> 其他社会职务<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">深圳大学特邀研究员等2项 · 点击查看详情 →</div>
       <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳大学创新发展法治研究院</div><h4>特邀研究员</h4></div></div>
-      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>反垄断与竞争政策研究中心 · 主任</h4></div></div>
-      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>投资与并购专业委员会 · 主任</h4></div></div>
-      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>破产与重组专业委员会 · 副主任</h4></div></div>
-      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>党总支 · 组织委员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市福田区人民法院</div><h4>特邀调解员</h4></div></div>
     </div>
   </div>
 </section>
@@ -460,7 +467,8 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">学术成果</h2><p class="section-subtitle">专著编著 · 标准制定</p></div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">📖</span> 专著与编著<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">1</span> 专著与编著<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">《元宇宙法律实务》等3部专著 · 点击查看详情 →</div>
       <ul class="pub-list">
         <li><span class="pub-num">1</span><div class="pub-content"><h4>《元宇宙法律实务》</h4><p class="pub-meta">法律出版社 · 2023年3月 · ISBN 9787519775711</p><span class="pub-role">副主编之一 · 撰写第十一章（算法合规）</span></div></li>
         <li><span class="pub-num">2</span><div class="pub-content"><h4>《现代企业合规指引》</h4><p class="pub-meta">中国政法大学出版社 · 2023年4月</p><span class="pub-role">作者之一 · 负责第四章《反垄断合规》</span></div></li>
@@ -469,7 +477,8 @@ footer span { color: var(--accent); }
     </div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">📋</span> 团体标准制定<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">2</span> 团体标准制定<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">参与起草4项团体标准 · 点击查看详情 →</div>
       <ul class="pub-list">
         <li><span class="pub-num">1</span><div class="pub-content"><h4>《平台经营者反垄断合规管理规则》</h4><p class="pub-meta">中国标准化协会 · 团体标准 · 2021年</p><span class="pub-role">参与起草</span></div></li>
         <li><span class="pub-num">2</span><div class="pub-content"><h4>《经营者公平竞争合规管理体系建设规范》</h4><p class="pub-meta">团体标准 · 2022年</p><span class="pub-role">参与起草</span></div></li>
@@ -486,7 +495,8 @@ footer span { color: var(--accent); }
     <div class="section-header"><h2 class="section-title">获奖情况</h2><p class="section-subtitle">行业荣誉 · 专业表彰</p></div>
 
     <div class="pub-section">
-      <div class="cat-header"><span class="cat-icon">🏆</span> 荣誉与表彰<span class="toggle-arrow">→</span></div>
+      <div class="cat-header"><span class="cat-num">1</span> 荣誉与表彰<span class="toggle-arrow">→</span></div>
+      <div class="cat-preview">优秀共产党员 · 专业委优秀委员等 · 点击查看详情 →</div>
 
       <div class="award-card"><div class="award-icon">🥇</div><div class="award-info"><h4>深圳市律师协会 · 专业委优秀委员</h4><div class="award-issuer">深圳市律师协会</div><div class="award-date">2022年度、2023年度（连续两年）</div></div></div>
 
@@ -569,10 +579,10 @@ footer span { color: var(--accent); }
 // ════════════ Splash Screen ════════════
 (function() {
   var splash = document.getElementById('splash');
-  // Hide splash after 2s
+  // Hide splash after 1.5s
   setTimeout(function() {
     splash.classList.add('hide');
-  }, 2000);
+  }, 1500);
 })();
 
 // ════════════ Tab switching ════════════
@@ -659,7 +669,7 @@ function openArticleModal(linkEl) {
   closeBtn.innerHTML = '&#x2715;';
   var header = document.createElement('div');
   header.className = 'modal-header';
-  header.innerHTML = '<span class="cat-icon">📄</span> ' + title;
+  header.innerHTML = '<span class="cat-num-dot"></span> ' + title;
   var body = document.createElement('div');
   body.className = 'modal-body';
   body.style.cssText = 'font-size:14px;line-height:2;color:var(--text-secondary);padding:18px 28px 26px';
@@ -692,5 +702,8 @@ function openArticleModal(linkEl) {
 
 </script>
 
+
+<!-- 地图模块 -->
+<script src="map.js"></script>
 </body>
 </html>
