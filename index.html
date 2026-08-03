@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>潘良 — 北京中银（深圳）律师事务所 · 反垄断与竞争政策研究中心</title>
+<style>
+:root {
+  --bg: #fafaf8;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #5c5c5c;
+  --text-muted: #8a8a8a;
+  --accent: #8c1414;
+  --accent-light: #f8efef;
+  --accent-ghost: #fdf9f9;
+  --border: #e8e5e0;
+  --gold: #c8a078;
+  --gold-light: #faf5ef;
+  --gold-dark: #b48c64;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.06);
+  --radius: 8px;
+  --nav-height: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ════════════ Splash Screen ════════════ */
+#splash {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9999;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 16px;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+#splash img { height: 60px; width: auto; animation: splashPulse 2s ease-in-out infinite; }
+#splash .splash-text {
+  font-size: 14px; color: var(--text-muted); letter-spacing: 0.08em;
+  animation: splashFadeIn 1.2s ease;
+}
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+@keyframes splashFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ════════════ Navigation ════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(250,250,248,0.94);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: var(--nav-height);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-brand img { height: 28px; width: auto; }
+.nav-brand .firm-name { font-size: 12px; color: var(--text-muted); letter-spacing: 0.04em; padding-left: 12px; border-left: 1px solid var(--border); white-space: nowrap; }
+.nav-links { display: flex; gap: 4px; }
+.nav-links a { display: inline-block; padding: 10px 14px; text-decoration: none; color: var(--text-secondary); font-size: 13px; letter-spacing: 0.06em; border-radius: 6px; transition: all 0.25s; white-space: nowrap; }
+.nav-links a:hover { color: var(--accent); background: var(--accent-ghost); }
+.nav-links a.active { color: #fff; background: var(--accent); font-weight: 700; }
+
+/* ════════════ Hero ════════════ */
+.hero {
+  margin-top: var(--nav-height); padding: 64px 40px 52px; text-align: center;
+  background: linear-gradient(175deg, #fff 0%, #fefcf8 40%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero .hero-logo { height: 48px; width: auto; margin-bottom: 28px; }
+.hero .name { font-size: 44px; font-weight: 700; letter-spacing: 0.14em; color: var(--text); }
+.hero .name .dot { color: var(--accent); }
+.hero .title-line { font-size: 17px; color: var(--text-secondary); margin-top: 14px; letter-spacing: 0.06em; font-weight: 400; }
+.hero .title-line em { font-style: normal; color: var(--accent); font-weight: 600; }
+.hero .divider { width: 50px; height: 2px; background: var(--gold); margin: 26px auto; }
+.hero .org { font-size: 14px; color: var(--text-muted); letter-spacing: 0.05em; }
+.hero .photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 3px solid var(--card); box-shadow: 0 4px 24px rgba(0,0,0,0.10); margin: 24px auto; display: block; }
+
+/* ════════════ Container ════════════ */
+.container { max-width: 920px; margin: 0 auto; padding: 0 28px; }
+
+/* ════════════ Section visibility ════════════ */
+.section { display: none; padding: calc(var(--nav-height) + 32px) 0 80px; animation: fadeIn 0.35s ease; scroll-margin-top: calc(var(--nav-height) + 16px); }
+.section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ════════════ Section header ════════════ */
+.section-header { text-align: center; margin-bottom: 36px; }
+.section-title { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; display: inline-block; position: relative; }
+.section-title::after { content: ''; display: block; width: 36px; height: 2px; background: var(--gold); margin: 12px auto 0; }
+.section-subtitle { font-size: 14px; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.04em; }
+
+/* ════════════ Card Grid ════════════ */
+.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.card-grid .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; transition: box-shadow 0.25s; }
+.card-grid .card:hover { box-shadow: var(--shadow-md); }
+.card-grid .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--accent); letter-spacing: 0.04em; }
+.card-grid .card p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+
+/* ════════════ Stat row ════════════ */
+.stat-row { display: flex; justify-content: center; gap: 48px; margin: 40px 0 20px; flex-wrap: wrap; }
+.stat-item { text-align: center; }
+.stat-item .num { font-size: 36px; font-weight: 700; color: var(--accent); letter-spacing: 0.02em; }
+.stat-item .label { font-size: 13px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.04em; }
+
+/* ════════════ Timeline ════════════ */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); }
+.timeline-item { margin-bottom: 36px; position: relative; }
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-item::before { content: ''; position: absolute; left: -28px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
+.timeline-item .year { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px; }
+.timeline-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.timeline-item .org-name { font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+.timeline-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+
+/* ════════════ Education cards ════════════ */
+.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 30px; display: flex; gap: 24px; align-items: center; margin-bottom: 20px; transition: box-shadow 0.25s; }
+.edu-card:hover { box-shadow: var(--shadow-md); }
+.edu-card:last-child { margin-bottom: 0; }
+.edu-card .edu-badge { flex-shrink: 0; width: 60px; height: 60px; background: var(--accent); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-align: center; line-height: 1.3; }
+.edu-card .edu-info { flex: 1; }
+.edu-card .edu-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.edu-card .edu-info .degree { font-size: 14px; color: var(--accent); margin-bottom: 4px; font-weight: 600; }
+.edu-card .edu-info .year { font-size: 13px; color: var(--text-muted); }
+
+/* ════════════ Qualification grid ════════════ */
+.qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+.qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; gap: 16px; align-items: center; transition: box-shadow 0.25s; }
+.qual-card:hover { box-shadow: var(--shadow-md); }
+.qual-card .qual-icon { flex-shrink: 0; width: 48px; height: 48px; background: var(--gold-light); color: var(--gold-dark); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.qual-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.qual-card .issuer { font-size: 12px; color: var(--text-muted); }
+
+/* ════════════ Category header ════════════ */
+.cat-header { font-size: 15px; font-weight: 600; padding: 16px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 12px; color: var(--text); cursor: pointer; user-select: none; transition: all 0.2s ease; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+.cat-header:hover { border-color: var(--accent); color: var(--text); box-shadow: 0 6px 24px rgba(140,20,20,0.1); transform: translateY(-2px); }
+.cat-header:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(140,20,20,0.06); }
+.cat-header .cat-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s; }
+.cat-header:hover .cat-icon { background: #fdf0f0; }
+
+/* Hide inline content — only shown in modal */
+.pub-section > :not(.cat-header):not(.article-card),
+.appt-block > :not(.cat-header) { display: none; }
+.cat-header .toggle-arrow { margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
+.cat-header:hover .toggle-arrow { background: var(--accent); color: #fff; }
+/* ════════════ Article cards ════════════ */
+.article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 16px; transition: all 0.2s; }
+.article-card:hover { box-shadow: var(--shadow-md); }
+.article-card .art-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
+.article-card .art-date { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.04em; }
+.article-card .art-excerpt { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 14px; text-indent: 2em; }
+.article-card .art-link { display: inline-block; font-size: 13px; color: var(--accent); font-weight: 600; cursor: pointer; letter-spacing: 0.04em; padding: 6px 0; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+.article-card .art-link:hover { border-bottom-color: var(--accent); }
+/* ════════════ Article card with thumbnail ════════════ */
+.article-card { display: flex; gap: 22px; align-items: flex-start; }
+.art-thumb { flex-shrink: 0; width: 180px; height: 120px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.art-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.art-content { flex: 1; min-width: 0; }
+@media (max-width: 768px) {
+  .article-card { flex-direction: column; padding: 18px 20px; }
+  .art-thumb { width: 100%; height: 160px; }
+  .article-card .art-title { font-size: 15px; }
+}
+
+/* Modal */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 9998; background: rgba(0,0,0,0.35); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 24px; animation: modalFadeIn 0.25s ease; }
+.modal-dialog { background: var(--card); border-radius: 16px; box-shadow: 0 24px 80px rgba(0,0,0,0.2); max-width: 440px; overflow: hidden; width: 100%; max-height: 68vh; overflow-y: auto; position: relative; animation: modalIn 0.25s ease; }
+@keyframes modalIn { from { opacity: 0; transform: translateY(24px) scale(0.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; border: none; background: transparent; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: all 0.2s; z-index: 1; }
+.modal-close:hover { background: var(--accent); color: #fff; }
+.modal-header { padding: 24px 28px 0; font-size: 17px; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; display: flex; align-items: center; gap: 10px; }
+.modal-header .cat-icon { width: 36px; height: 36px; border-radius: 9px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.modal-body { padding: 18px 28px 26px; }
+.modal-body .cat-header { display: none; }
+@media (max-width: 768px) {
+  .cat-header { padding: 14px 16px; font-size: 14px; border-radius: 10px; }
+  .cat-header .cat-icon { width: 34px; height: 34px; font-size: 16px; border-radius: 8px; }
+  .cat-header .toggle-arrow { width: 22px; height: 22px; font-size: 12px; }
+  .modal-overlay { padding: 16px; align-items: flex-end; }
+  .modal-dialog { max-width: 100%; max-height: 65vh; border-radius: 16px 16px 8px 8px; }
+  .modal-header { padding: 20px 24px 0; padding-bottom: 14px; }
+  .modal-body { padding: 16px 24px 24px; }
+}
+.cat-header .cat-icon { width: 38px; height: 38px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: background 0.2s; }
+.cat-header:hover .cat-icon { background: #fdf0f0; }
+
+/* Hide inline content — only shown in modal */
+.pub-section > :not(.cat-header):not(.article-card),
+.appt-block > :not(.cat-header) { display: none; }
+
+/* ════════════ Appointment card ════════════ */
+.appt-block { margin-bottom: 44px; }
+.appt-block:last-child { margin-bottom: 0; }
+.appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 10px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
+.appt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); border-radius: 0 2px 2px 0; }
+.appt-card:last-child { margin-bottom: 0; }
+.appt-card:hover { box-shadow: var(--shadow-md); }
+.appt-card .appt-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; }
+.appt-card .appt-body { flex: 1; }
+.appt-card .appt-org { font-size: 12px; color: var(--gold-dark); font-weight: 600; letter-spacing: 0.04em; }
+.appt-card h4 { font-size: 15px; font-weight: 700; margin: 2px 0 4px; }
+.appt-card .appt-date { font-size: 12px; color: var(--text-muted); }
+
+/* ════════════ Publication list ════════════ */
+.pub-section { margin-bottom: 48px; }
+.pub-section:last-child { margin-bottom: 0; }
+.pub-list { list-style: none; }
+.pub-list li { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; align-items: flex-start; }
+.pub-list li:last-child { border-bottom: none; }
+.pub-list .pub-num { flex-shrink: 0; width: 36px; height: 36px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; margin-top: 2px; }
+.pub-list .pub-content { flex: 1; }
+.pub-list h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; line-height: 1.5; }
+.pub-list .pub-meta { font-size: 13px; color: var(--text-muted); }
+.pub-list .pub-role { display: inline-block; font-size: 11px; padding: 3px 12px; background: var(--gold-light); color: var(--gold-dark); border-radius: 10px; margin-top: 6px; letter-spacing: 0.04em; font-weight: 600; }
+
+/* ════════════ Awards ════════════ */
+.award-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 14px; transition: box-shadow 0.25s; display: flex; gap: 18px; align-items: flex-start; }
+.award-card:last-child { margin-bottom: 0; }
+.award-card:hover { box-shadow: var(--shadow-md); }
+.award-card .award-icon { flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-light), var(--gold-light)); color: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+.award-card .award-info { flex: 1; }
+.award-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.award-card .award-issuer { font-size: 13px; color: var(--accent); font-weight: 600; }
+.award-card .award-date { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+/* ════════════ Practice areas tags ════════════ */
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 24px 0; }
+.tag { display: inline-block; padding: 9px 22px; font-size: 13px; letter-spacing: 0.04em; border: 1px solid var(--border); border-radius: 24px; background: var(--card); color: var(--text-secondary); transition: all 0.2s; }
+.tag:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-ghost); }
+
+/* ════════════ About block ════════════ */
+.about-block { max-width: 720px; margin: 0 auto; font-size: 15px; color: var(--text-secondary); line-height: 2; text-align: justify; }
+
+/* ════════════ Contact row ════════════ */
+.contact-row { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+.contact-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-secondary); padding: 12px 20px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); transition: all 0.2s; }
+
+/* ════════════ Brand bar ════════════ */
+.brand-bar { text-align: center; padding: 32px 24px; margin-top: 20px; border-top: 1px solid var(--border); }
+.brand-bar img { height: 32px; width: auto; opacity: 0.7; }
+
+/* ════════════ Footer ════════════ */
+footer { text-align: center; padding: 32px 24px 40px; margin-top: auto; font-size: 12px; color: #aaa; border-top: 1px solid var(--border); letter-spacing: 0.04em; line-height: 1.8; }
+footer span { color: var(--accent); }
+
+/* ════════════ Responsive ════════════ */
+@media (max-width: 768px) {
+  .cat-header { padding: 14px 16px; font-size: 14px; border-radius: 10px; }
+  .cat-header .cat-icon { width: 34px; height: 34px; font-size: 16px; border-radius: 8px; }
+  .cat-header .toggle-arrow { width: 22px; height: 22px; font-size: 12px; }
+  nav { padding: 0 16px; }
+  .nav-brand .firm-name { display: none; }
+  .nav-brand img { height: 22px; }
+  .nav-links { gap: 0; }
+  .nav-links a { padding: 8px 10px; font-size: 11px; letter-spacing: 0.02em; }
+  .hero { padding: 48px 20px 36px; }
+  .hero .hero-logo { height: 36px; }
+  .hero .name { font-size: 32px; }
+  .hero .title-line { font-size: 14px; }
+  .card-grid, .qual-grid { grid-template-columns: 1fr !important; }
+  .stat-row { gap: 28px; }
+  .stat-item .num { font-size: 28px; }
+  .section-title { font-size: 22px; }
+  .edu-card { flex-direction: column; align-items: center; text-align: center; }
+  .timeline { padding-left: 24px; }
+  .timeline-item::before { left: -21px; }
+  .contact-row { flex-direction: column; align-items: center; } .brand-bar { display: none; }
+}
+@media (max-width: 480px) {
+  nav { padding: 0 8px; flex-wrap: wrap; height: auto; padding-top: 8px; padding-bottom: 8px; justify-content: center; gap: 6px; }
+  .nav-links { flex-wrap: wrap; justify-content: center; }
+  .nav-links a { padding: 6px 8px; font-size: 10px; }
+  .hero .name { font-size: 26px; letter-spacing: 0.08em; }
+  .container { padding: 0 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════ Splash Screen ════════════ -->
+<div id="splash">
+  <img src="zhongyin-logo.png" alt="中银律师事务所">
+  <div class="splash-text">北京中银（深圳）律师事务所</div>
+</div>
+
+<!-- ════════════ Navigation ════════════ -->
+<nav>
+  <a href="#home" class="nav-brand" onclick="switchTab('home', document.querySelector('nav a[href=#home]'))">
+    <img src="zhongyin-logo.png" alt="中银律师事务所">
+    <span class="firm-name">深圳分所</span>
+  </a>
+  <div class="nav-links">
+    <a href="#home" class="active" onclick="switchTab('home', this)">首页</a>
+    <a href="#background" onclick="switchTab('background', this)">专业背景</a>
+    <a href="#appointments" onclick="switchTab('appointments', this)">社会兼职</a>
+    <a href="#publications" onclick="switchTab('publications', this)">学术成果</a>
+    <a href="#awards" onclick="switchTab('awards', this)">获奖情况</a>
+    <a href="#articles" onclick="switchTab('articles', this)">专业文章</a>
+    <a href="#news" onclick="switchTab('news', this)">相关动态</a>
+  </div>
+</nav>
+
+<!-- ════════════ 首页 ════════════ -->
+<section id="home" class="section active">
+  <div class="hero">
+    <div class="name">潘良</div>
+    <div class="title-line">反垄断与竞争政策研究中心主任 <span style="color:var(--border);margin:0 8px;">|</span> <em>合伙人律师</em></div>
+    <img class="photo" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAgESAAMAAAABAAEAAIdpAAQAAAABAAAAJgAAAAAAAqACAAQAAAABAAAEZaADAAQAAAABAAAERAAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgERARlAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMADw8PDw8PGg8PGiQaGhokMSQkJCQxPjExMTExPks+Pj4+Pj5LS0tLS0tLS1paWlpaWmlpaWlpdnZ2dnZ2dnZ2dv/bAEMBEhMTHhweNBwcNHtURVR7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e3t7e//dAAQAR//aAAwDAQACEQMRAD8A6GiiiqDyCij0ooAKKKKA8goo9KKACij0ooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgBaKSigAoopaAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//0OhoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopKACiiigAooooAKKKKACiiigAopaSgAooooAKKKKACiiigAooooAKKKKACiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9HoaKKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoopKAFooooASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//S6GiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAEopaSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAEpaSloAKSiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9PoaKKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgBaKSigBaKSigBaKSigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKSlooASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/1OhoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWigAooooASiiigAooooAKKWkoAKKKKACiiigAooooAKKKKACiiigAooooAKSlpKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//V6GikoqgFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//9boKKKKoApaSigBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiijp1oAKKrvcwoCWYcVkS65CpIhBYigDeyKTcvrXGT61dtkKwX2ArPe/un5ZzQB6B50XdgPxqGS8t4x8zj864DzXP32Y0/zlC85JoCx2p1O2AyGB/Go/7UQjKDNcaLhuopzXMmOTQFjrV1eL+IEUPrNuBlea4ozufYVG0jngUrjsdY+u84UCpYLyec787V965KJhG4dxmrq38obcBx2FMDvUbI6/jTt6+tcV/adywwDipI76ZRuLBvrmgR1/mp2OfpT65qHUXJ5KqKvpqMYIywOaANeiqi3St6VOrg0ASUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUlABRS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/1+goopaoBKWiigAooooAKKKKACkpaKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKgnuIYFzKwX60AT1DJNHGCWOMVy97r/O22H4mubmuri4YtIxOaLgdnc6/aw5VAXasK58QXUvEfyA/j/Suf8AmJpRGxOTxSAnku55Tl2JqPefWkEXvUqwDuaQDFYg8c1YRHbnoKevlxfdGTUoDv7UxkZHG1Rk0CE/xdam+VPeomcn6UAOCL0Wo2Cg+pprOzcD5RSAjHHNAAUJ9hSiL8KUSEfwmkMzHtQIRkA61HvxUmWPXFRsAe4oGJ5tJ5zVGVphoAn85qcsxU5FVqM0hGxFqOGAcE1t2+pwL97P41x+T2qRWZaYHpFtdwzj93nPoau157bakYSNw/EcV1lrqsE4AyAfrTA1qKaGBGRTqACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooASilpKACiiigAoopaAEopaSgAooooAKKKKACiiigAooooAKKKKACiiigBKKWigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Q6ClpKKoBaKSigBaKSigApaKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKY7qgyaxLvUwEcRHkUAXL6/jtUPI3elcNdXTXEhdzn0ouJpZXLyNuz61Q3UgAsM5pvJ60dTUgRjSARR6VLnjFRudvFRZZu9AyyHRfu8ml3u3U1XHy1OkMknPQUAToUHXk09pmPApvlpGOTTC5x8o60wEZm6vTfMHRaQoTy5/CnbeMIMUCHAg8tzT9xA7VAF2/eNLgscDOKABpMnim7gakKAdsVEQKACj5aaSBTetADiV7Uw08LTcc0AN4pcAUh602kBIDS5xUXNLnHWgB5YU5JNhypxUYx3oIHUUDNu11a6gI2tke9dRaavDccP8rV54GKmrcU+OvFO4Hp4YMMjmlrirTV5IiA5LLXVWt3HcoGWmIt0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUtFFABRRRQAUUUUAJRS0UAJRRRQAUUUUAFFFFABRRRQAUUUUAFFJRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/0egoooqgClpKWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAqrPdRwA559qtH1rnNTuYUJCkFu9AGTeX88pYDgelZL3Tfd9abLMS2RVdmLGkAMxam7SetJS8kcUgF3BeBSeYx4phAFSxxu3PQetAEXPepkhd+nAqyvkRj5jk1FJcF/lXgUxkqrDHwfmb2qVpX24AxiqiccilZmbjGaAHpjO4/MfU0NOoPyjJpnlu3+sqZYiOgoAjVpDzjFSY3ck5pSoH3v507eo+7QBHs5zinAEdTQXkIpoz3oAaXPQVCzMae1RUCG7T1p2M0uB60vApABGBTacWWmEg0ANxTSCKU0hoASjNJRQA4c0vNNzRmgB31pcUganA0ASo+DzWtZXsls4dOV7isYGpUbHNMD0i0vIrpNyde4q5XnttdvauHQ/Wu2tLuO6j3KRnuKYFyiiigAooooAKKKKACiiigAooooAKKKKACikpaACkpaSgBaKKKACkpaSgAooooAKKKKACiiigAooooAKKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/0ugoooqgCiiigAooooAKKKKACiiigBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAqN5FT7xpJpo4ULyHFcfdanNvby+VPfpQBtXl87DZB8uR1NcfcSu7FW655NRS3LyD5jk1VZjSAM496Zmk5ox60gEJ9KUbj0o6U9Ud+lAwUKDzyfSnln7nHsKmSADqal2RJ1FAWKIV3qdbc1N5qj7oxTt8jUAOWFeh5p4VFPGPwqAtz701nIpgWXZRUZdiPSowWPalC92oAVVB6mnFY16momb+6RVcqx5PNAFwSxjgUm6M8lqp7W7CjY9IC3tibvR9nB+7VPa4qQPIvamA9rdhzioCpHariT46g1NvjfqPzoAyzmm81otCh6ZFVmiYdKQFfNGc0pBFJQIMUYozThzQAzFJUhBFIRQAwVICBzTfrTgMigCUYxkUZ5xTFzSeuaALisCMVbs717SUMpOO/vWSN2eKnDButMD0i0u47qIOn5Vbrzqwvns5gc/LnmvQIZVmjEqdCM0wJaKKKACiiigAooooAKKKKACiiigAooooAKKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/T6CiiiqAKKKKACiiigAooooAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKOlZ17qEFtGfmBfHAoAyNanG7YD3rlHZ2OAMCrV1ctLIZDzmqLSMRyMUmAFAO+aaQfpTAxBz3qTOeWpAMCk1II+7Gml8dKYWJpDJsxr05pvmHtUVKCO1AEu9u5pevqaiBNOyxoGTA7fQUFgepzUQUmphHRcBOT0OPpQARyKmES0mMHAouOwzJPU0zYSasBMjJp+COgouFiAR+2KUxjuT+FSGNm5NJ5ZFAWG+WoHANRkY6LU209zSYHpTFYr72XoAKPNc1Psz1FHlr6UgsRq7nqKmHPTI/Gm+UPem+Ww6GncLFoKRyCDTjtYfPj8DVLy3p4RgOc0ALLFCfuZFUmUirDAetQH60CsR4oBxSkU00AOzk0vWo6cGGaBDvbFKBg/WlBXNK/wDWgAQ8DNI4IJpoOKcSCtADVYVIG9Kg6VKuBQA4nmtvSNTe2fynPyn1rn885p4bGCKYHqyOrruB60+ud0S/E8flOeV6V0VMAooooAKKKKACiiigAooooAKKKKACiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/1OgoooqgCiiigAooooAKWkpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApM0tYep6l5KmOLk9CaAKGq6tJu8i3JAHUiubeU5/eHJ9TSO3VurE1EQH4NIAL4FQbixqyId3Hap1iVB8vNIDP2senFHI4NXygPWoXTFAyr70lPPFMoASnfSlCmpAvrSGIBUqgUBRU6RFucUrjSEVcVMqg1OkANWVtsdBSuWolMIMcdaTysmtJYD6VMttz0pXHymaI8jmneU5+6K2Vtvap1t6XMPlMD7NIfvCk+zv04/Gui+z4o8gU+YOUwRZsetOFmR0xW+Ifan+VilzBynPGyfrUD2ziuoMVQvBxRcfKjmvJNIY2XtW6bakNuPSjmDlRgFD9Kjbf0zmt5rbIqubWnzC5DCZTUJStt7U1Va2Ip8xPIZRWk21deAiq5jYU7ktEPTqKaUB6VIVNNxTJsR4Ip4bjFPCn60wjHSmKwHmk5xRzS9qBDR0xTgcZzTRnNBoAOtKOKB0pKANKwuPImVx6816HbTieMMO9eVg11miagsZ8l+h6U0B2NFIGDDIpaYBRRRQAUUUUAFFJS0AFFFFABRSUUAFFFLQAlFLSUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/V6CiiiqAKKKKACiiigApaSigBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKQ9KAKt3MYYSw61wt7cGQ498102q3BVSo+lcU2XY0MBFBbgVYCKg29TTVGwUu7nipGSjpTs9hTFPrS5z0FMCNgSagZT3qZm9Kh+Y9aQEZUdqUJmpVTPSrUcXrUtlJFZYc1MsNXki7VZSH2qWy1EopBVxIPSriwD0q0kPpUtmiiVUt6srFVtIgKnEYpDKSw1YWKrASpVWgCJY6eEqYClxQIh2UbKn207bQBW2GlCVZ20oWmFyqY6Zsq9spuyiwrlAxCm+VWgUAppSiw7lDyaaYPatDbS7OKAuZDW4NVXts9q3THmojGKQ7nOyWntVGS19q6p4RVd7cHtRcLHHvAR2qq0eOtdZLaA9qzJrTHaqUiHEwCuDxxS+xFXZICO1Qbau5m0VGUjpTKskYqBhimS0Jmk5pM0ZpkjqBSUUALkGp4ZfLcEVBxjFAxQB6fp9wtxbqynnAzV+uD0G6kS4EWeGFd5VAFFFFABRRRQAUlLSUALSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/W6CiiiqAKKKKACiiigApaSloAKSlpKAClpKWgAoopKAFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAprnAp1QysFUsegFAHIazMAfLXr3rEXCip71zJcu555qmzY4FJjHFs0A1FT160hk49T0oLHtwKaOeTTHagQjNQoLGmAZOBV+CKkxpXJIYsnBrQSIUsUfFXFSsmzdIiVBU6pUipVgJSKGolWlShFqdRSGNAqULTgtSBaYhgWngU7FPAoEMxTgtPxSgUCuNC07bTwKXFVYVxu2nqtOAqQLTSJbI9tN21OVppFMVyuVoKVOQKaRSsVchK03GKnIppFFguQYpjLVjGKYRUlXKxSoylWyOKYVpDuUGjzVWSEHitRhUDLSGYE1qKyJrcqa6x0qlLAGFNMTRyLriqzCtq5gK1mOmK0TMpIpHim1Kw9ajqzMSiikoEOzS/SmilFAFu0na2nWUdjXqEMoliWVf4hXkwOa9B0CcS2YTunFNAblLSUUwFpKWkoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//X6CiiiqAKKKKACiiigApaSigBaSiigApaSloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACszUX2wMB3yK06wdXb903PSgDjZmwxNVs9zTpGycVFntUjH809etRA9qkBxQBIWPQUzA6nmjPc05ELtQBLCmT0rXjjwoqvBHjmtJFzWcmbQRJEmBVpVpiLirIxWZoKq1YVeKjQZqwooGKoqcDFMUVKBQIcKeKaBUgFMQYp2KWigQCngUwVKKaEwAyaUUvFHeqJHCn5po6UlMQ/vQabmloAKTFFLQAhHNIRT6aTQBERTCKkPSm1LKRERTDUpqI0mUhhqJhUpqNqQyswzURXIqwwqI0ijHu4cisCaLBNdZMoIrEuIupppkyRzzrVcir8i4NU2X0rZGDREaSnUhpkiUUUUCHqa6jw5Ky3DJ2YVyorc0OTberk9eKaA9EpKWimAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABSUtJQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUlFABS0lLQAUUUUAf/Q6CiiiqAKKWkoAKKKKACiiigAooooAKWkpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArlNdcKAvc5NdXXG+I+JE/3aGByxPOab1oJoHrUjHjrSk+lMHrRnvQBKvqatwruNUl61qW6/hSbGkX4UwM1eQVFGvFWlHFYs6Ehy1OvNRgVKtIonQVYWq61YWgRMBTxTO1KKYiUU8UwU6gQ6lpmadmgB4FOFMzTgaoQ/NBNJRTJFzS03NLmgBc07PFMBpS1AC04Go80uaYWH7qaTTS1NzSuCQE0maaTRSKsGajNOY03NIYw1E1SGozSGRmomFTGompFFWQcVmzrnpWo4qpImRQBzU8eGIrNdSK37hOSDWVIh6VrFmEkZ1NxUzLg0zpVmZHijFSdaaRQITGKt2Mnl3cb+jD+dVSe1EZw4NAHrgOQCKWooDmFT7VLVAFFFFABRRRQAUUtJQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFJS0UAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFACUUUUAFLSUtABRRRQB//9HoKKKKoAooooAKKKKACiiigAooooAKKKKACiiigBaKSloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArj/Ei/vFPbb/Wuwrk/ES5wf8AZ/rQwRxx5oPFLTB1qQHk44pB6UGnKOaAJo1H4Vq2685NUIgK1YB61EjWCL8fSrSiq6VZUVkbEgFSCmqKlAoGPWp1NRLUgoETA54qQVEtSCmBIDS0ylzQIdTqjp4oEPpRTaWmIeDS5puaKYDs0ZpuaKAHZoptLmgQoIpc0ylzQAE03NBpKQwoopDQAGmGnGm0DGmmGpCaiNIYw1GaeaYaQyBhVZ6tt0qq9AzLmXPBrMlTk1sy9eazZV7VaM5Ix5U5qDb61ekGDg1WK4OD0rRGLIVxSPjtU20E4qvIMHFMkaOaUUijmpBy4HvQB6laf8e6fSrFQ2wxAg9qnqgEooooAKKKKAFopKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAKKKKAClpKKAFopKKAP/0ugoooqgCiiigAooooAKKKKACiiigAooooAKKKKAFooooAKKKKACiiigAopKWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACub18fuCf8APWukrm/EGTDigDhz60xetSPwcUxRUgFSp1phqRKBluP0rUiPFZcQxWnHWcjWBpR1bUVWiHrVtRWZqSAVIBTRUgFAxRUgpoqQUCHCpBTBTxQIeKWkFLTAMU4UClxQAuaWkxThTEFLRQKBBRxRiigApaSnUwExQRS0tADaSn4puKQDaMU6m4oAaaaafTSaQxhphp5ppoGRmmEVKQKYaQyFhVaQVbPNV3WgZnSKetZ8q4Oe1bLKKoTJ3FNCaMKYc1VPStCdQG4qk4ANapmEkRuvcVA44zVo8ioWHFUQQAdqmgTMg+tREc8Vq6ZF5lwnf5s0xHoEH+pX6VNTEG1QKdTAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooASiiigAooooAKKKKAP/9PoKKKKoAooooAKKKKACiiigAooooAKKKKACiiigBaKKKACikpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArD1tM27MfStyqGoQ+bbt7A0AeaOOaaOKlnBWQg1GBxUgBp6VGKkQ80DRcirVhHSs+Fc1rRLispG0S5HxxVparJ1q0oqDQmWpRUS1MKAFFSCmCpBQA8U4UgFPApiFAp4FNFSAUCDFGKkxRinYVyPFOxS4paYCUtJTqBDKMU7FJQMQ06ilFAC4NGKUU7imIbikIp/SkoER4ppqTFNIpWGRmmGpSKaRSsMiNNp5FNpDGGm080w5oGRtxUTc1K1RmgZXYVUkWrrdKrsKQzGuI+prKcc10UyZFYkqYY1pFmU0VCMDNR4DCpyPlwar45NaGLGlB3rV0mItcBc4PUVldRXRaOqyON/bGDTEdioIABpaKKYBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSUALSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFAH/1OgoooqgCiiigAooooAKKKKACiiigAooooAKKKKAFpKKKACiiigBaKSigBaKSloAKKKKACikooAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACo5F3oVPcVJTT0P0oA801GMR3LqOxqgDxW9qsBErtisHFSACpE5aoxViFcuKGNGpbrwK00FVYVwKvIKxZ0ImSrK1AtWFpFEoqUVEtSigCQCnioN6jrQJR2osIuLUoqqsgqYSLVWJJgKkFQBqmBoEPoo7UmRTAWim5ozQApopM0maQC0UlLQMKUE02jNAD80oNR5oBpiJuKX6VFuo3YoEPJppNRmQCommAoAmJppNVWn4qA3AFFhlwsKbuFUjP3ppm7rSaGi71pDUKygjNP3g0ihGqI1KTUZNIZC3SoWqdqhagZTkGazbiPAzWs4qncLlKaIkYLelV24arbjmq7jNbIwZHiup0WJuo6cVzKjPTqK7LR/8AVnjFMk3aKWkpgFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUlAC0lFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSUALSUUUAFFFFABRRRQB//1egoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKKKAEooooAWikpaAEpaSloAKSlooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgDnNbiURtJ3OK4thivQtWjL2/FcDKMMw96TAhxzVu3Hz1VAwat2v36llI3IhwKtrUMY+UVZArJm6JFzUoJqEGlL4pDLIbApjTelUnkI5NUZJ2Y4FUkJs0GuBn1qF7pv4azxuJ5p67umKqxFy6t4+elWFvGxyKyCMHrTNzCnYVzoE1ACpl1RO/Fc2CafjPahjR2Ed6j96mFwp6YrjUkeM47VoRz45qRnSCZacHBrFWbkrV1JM8UDNANS5qBW4xUgNIRJRmm5ozQMXNIW4pjNionfgmgB7PgVC1wFGaqmbD4PQ1Qnc5KigDR+3Y4qvLqW0Z6VnscJxwapndu3GqFY0zqZPUY/Gomvi3P8AWs9/m5BquVY9DmmI0TdHPFAuNwwTWfhh65qVQcc0xF1ZG7HI704S5PXHvVMJg8Z+tPVGY5YfjUspGmrkYJ6+3Q1KJcjms+NGHQ1Z2sRUspFxZDjmpAwNVVyKmVuakocwqIipjTDQCK71TmGVq+RVObgGmhM56brVcnirUw+Y1Uatkc7Ft13yba72whaKIK3b/Oa4/Toi1wARkGu9jUIgUdBVEjqKWkoAKWkooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooASiiigAooooAKKKKACiiigAooooA/9boKKKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApaKKAEpaSloAKKKSgBaKKKACikooAWiiigAooooAKKKKACiiigAooooAhnXdEwxnivOruJkkYH1Nelda5XWbXkyj1oA5IjBq5aD5hVZxtNXrIZaoZUTdjHyipwKiQdKsVkboQCmtUgprUhlRoy9RG2GeavjFSYBqhWMwWpB4qUQMOhxWioFShV707isY32VmNO+xHtW6Fj74p48oelFwOf+yEUpgIHNdFiHHUVA8cZ6EUAjBERH0p+3tWi0aj0qEoO1SUiNTjFW0nAqqUpm09qLjsbCTbjVsPk1gRyMhrUik3DNFxcpoA07NQB6cW4ouKwO2Kz5pSOlWJCSOKzZFYmi5SQwy881Gz7jmnbVBwetKASMqKAIj8w6UwxZ61bCAfeNI00EXbP1p2EysLcEVIlkhPIpG1Bh/q0C1A2qzdC9UkS2aa2SgcDP1p32Re61iNqUh/jFINQmJwGFFhXRtfZwvamGNR7VlrqMn8Sg1ZjvopOCAD6UikWgIwamBQDjmq5WKUYZRUJs4s5RmX6GkMu5zThzWf5V3H9yQMPRuP8alS8aNttwhT37UrBc0aaRT1GRkcjtimtnNICFqpzY2mrpHFZl3II1poGYE74eoApY4FPaGWXMhGFFWrM7TgLluxrW5hZs2NKt/LxM5xgV0fnIelY9rCx+Z61Moo54qXM09mupYDK3SlqlvX7ymrUbh1zVRlcznCw+iiirICiiigAooooAKKKKACiiigAooooAKKKKACkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgAooooAKKKKACiiigAooooAKKKKAP//X6CiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKWkpaACkpaSgApaSigBaY7rGMsafWRcSeY/sKmTsVCN2SPf7TwuRVG5voZlMUykA96QlSaryxBhWfOzZ00YF7HGhHlnOamsR81Staea3ldM9KbbRvBMY5Bhqpu6M0rM3Exipwvaq8fSrS8dayNgC+tI+1Rljge9Mkkct5UIyx/SoxYGQ77li59O1MRXa7hBwmXP8Asgn+VIJbx/uRYHqxx/PFXvLSMYjUAVBI2Bkmi4WICLo/flVPoM/1qq7xL/rZ2b6cVFczseFrOCMxyeapCZoCSBj8is2PU/8A1qSS/eLgL+dWrKAH7wqrqkHlyg44NWkZtsWC+uriTyo1TPXnj+tSTX17auFkCZ9Ac/1rGWORpQsfU+lSyQyxSbZjk1XQm7OhttTuWXdtyPatGO9EvBzn0qnosO6Ji44zS3sAjffGMHNTIuLLzGMjhRn3qqqxgYJIPf0qO2nEuUY8inTIV6VmaoAI3fZHIpPofl/nVwk2hAufkJ6ZrDuY98e5eGHenJFc3oU3Em4AcZpWQXZ0sVxbv91gfpVjcvZWP0BNZtparbj5GP5D/CtFjuXBY/yoAekUk2fl2Ad24rAlulN41tARIB1Iq3PGGBG9/wA6x4I4oLpkTuM0aBqXvLQNuxzS5pepp/lk0DK0shAwKoFiWwOTU9wSX2Jz61ZtIUVst1ppEyKktsY4DPN+Arn0aPzwZvuE8/Su31CHz7QhOoriHiLMqnjsa2Rgy/qI09FVbQ5Y1Vs4xLKI27065s0gClDnPWrmlW5kn3kcLQwSGS281sc9RTEkR+Dwa3rxQwxWR9l3HgYrNmsUyzA7rwORWkjbqzYreRK0Yo5M81malxBnpUxiV1KsMg0RoRVoDuaCWYsN1BZ7obhwAp+XPeoZNassnnp096zdVsp7m9YW67sdaof2NfuwBTH1Iq7Ii76Gtca1GifKvWq0U3mgytyDyKo31hcRgKRnHpWhYxlbcK4xT0Ju76mXNLK7hegJ5FbthbqoDVlToFlwK24pQsS7fSlIqG5pNKsQqiZWlbnpUeHlOWqxFHUG6RJGCGx61owAqSDVYJhwaungjHeqjozOpsS0UUVucoUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAlFFFABRRRQAUUUUAFFFFAC0UlLQB//Q6CikpaoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApaSigBaSiigAopaKAI5DtjJ9qw5QVU1tT/6s1lzAkCsqhvSM6QEDIqJbg/dar8seVrLkj5rM3ZHcvhPMQ4I6Uy7nEbRyyHLkDj8ahuMhMGo7tTdLEYxkgYP51rHY5p7mg9+YUDkcNjFSx6rEqZm4J6VTeyluLdU6MKiGjXTKBxkUnYacjorLayFlIbJ6itLbxisrS0MSNA33lP8AStrFQzRbFV0qhLblula5WoilIDDNl3NItiTyK2ylOVcGncDMiilj7VJcQrdRbHHPY1rAL0p3lxkYIqkxM4+PTLhZcxkcd6svYXEj5lINdQsUSnOKdtj9Kq5NzNiP2eIRxrTSssrZZeK1Dt7Cm1NxpGCbCVXV4xg1otHuTJHPer+cjFRsuAfSk0O5zl6PKgbFOtztVU9AKbfMskqxD7pNXkhBAcetJlRL0Skirfl8UsEeBV3ZxQkTJmJPGQCawbtWhlScfQ1180eQaxby3E0DIODj9aNmO90Q2kouBn+IHkVphPlxXNQOy5lAKkDazD1FdFYSvc2qyOMN0NVYVyBbPy3LKetMa2YHINapSoWSkNMrRrJ0Y9qpPpUUsm48VqjINTq2KaYmjFOk25B3HOKnht/LGyFcCtcPSbqbZKRmm03HL0fZlFXiSaTbmpKuVkiFWUjAp4WngUgbAAUGg0xjQBmwf8fk79uB/OrDt1oI2jioHNIpIrzENxUWMDFSNUZPagGYl4MSgjvWhYp5iDNVLtNzZHatXS1ymat7Gcdy6Igop8Sc1aZeKbCozUo2TAj5hVhxhQaY4+YVLLxGKFuTLYKKKK6DkCiiigAooooAKKKKACiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKWkoAKKKKACiiigAooooAKKKKACiiigAooooA/9HfpaSlqgCiiigAooooAKKKKACiiigAooooAKKKSgBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaSiigCKb/Vmqco+UGrk3+rNV5BuQYrKe5vSK7LlKzHT5iK2QMpWay5c1BuZF9HhKrWXUmta7XMZrLtRg1a2MJbmtGcVoRvnrWYnFW0eoZaLEEbrdvJj5WA/OtMVTibPFWwaQDyKiKmpetLimIg20YqxtppQ0ARCnDNO2U4KaAGgml5NOC08JTAixTtpNTBKfjHSmK5CFxVe9RmtXVOCRV3FV7kjyzmi4WOOCM8o5+5x+ldFbpuI9BWfHbjzDtHUk1uQx7Biovc0tZFxBjGKnHSoV7VMKtGTInGaoTRkfMK0X6VAwyMVLKizkpLVxckKCY5Ov1/yK6K0URoE7UGHDZFSxKVPNFxssFAaiKYqce9OKg1RBVCjvTto9KkKU3BoHcZtpNlSc04CgLkOynBAKmAzS7aLCuRhaTFS4pCKAITUTVO1QNUlIrvzVZhVwiq7YpFFRhxVdqtvVZhTQMoSjkZresUXYMViyAbx9a3bZdqgiqJRcK8U2JfmqcDK1HF940hpikZeiTkhakAxljUQ5JY04q7JnLQdRRRWxzhRRRQAUUUUAFFFFABSUUUAFLSUtACUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFJRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//9LfoooqgCiiigAooooAKKKKACiiigAooooAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBGG4EVVQHGxuoq3UMqnO8dRUSVy4SsyDGCfSqJX96a0jhlyKo4/fGsjpTKdypdcDtWTGu1yK6V0ABzWARiU1SM5EwqwgqsKtx9KTGi7EelXl5GRVBOKtoxHIqSiytPFIpVvY07aaZI4U4DNNGakFMQgSl2c1IKdimIj207aKdRigQw0hFPxSHFAyM8VSl+bIqzI4HAquBk5NSy0RxxheasrUeakWkhssLU1QJU1WjNiN0qA1KTUJpMaEYUgpRSkcVJRKualxVZWI61ZVyRzVohgBS7AadkelLkVRJHtFG2pcikzQA3bSECn5FMLCgBpAqM04tUZqWUhhNRmpDURNSUQtVZ6sMaruaRRWc1WY1Yc8VUJpoTI9pdh7Gt6EkKBWRAMyCtmPmmC2Lin5agj++an+6nNRwjPNAkPkOF2+tNxgYoY7n+lFawWhjN6hRRRVEBRRRQAUUUUAFJS0lABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUlAC0lFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//09+iiiqAKKKKACiiigAooooAKKKKACiiigBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKWgBKPb1oooAqkbHK9jVV/llB9auzj5d3pVG4Pyh/SsZKzOiDuiWXkVgzribitYOHWs+4HzUkU0RLVlKqDrVqOhkotoeatqeKppVlTxUlllWqwkmKqLUgpisXA4p28VVANPAJp3FYtBh607cvrVcIacEPamKxNvUU0yDtTAmetO2AUBZDfOPpUTOxqYqBVeRh0qWNEZ65pc8UAZqTYKLFEOalU0xlwakUUATrUlMUVOEyKpIhkJqKpmGOKhNJjQmaM0Dml20hjQeamU1ARilRqAZaGadUQbNPBqrkWHUtJkUUxC4ppGKdmmmgBpFRmnk0w0iiM1C1TNUDVLKRC1VnNWGqs9IZWkPFVGNWHNVWPOKaEy1bj5ga3ItuM1kWaFsmrgJBwKALcj7vlWp0GxeahiQDmnTNgYpoTEXnJ9adSKMClrZHO3qFFFFMQUUUUAFFFJQAtJRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFJRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//1N+iiiqAKKKKACiiigAooooAWikpaAEooooAKKKKACiiloASloooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBGG5SPWs0YIMbdq1KzLpdkgcdDUTRpTetjNkjaI5U8VBISRV+RgVqkwytZo2kyFetW4+apL1q9HQyUWFqwtQqKmWpLJ196sKtQJU4piJVFSjNRg08UxEgp2ajFLQIdSEikyKidsUDSB5AKoO+WqYguaoy5R+aktI0UqxxVGOQYqcSCncloc3NIvBppkFQiUZoGaSECrQcYrMWQHpU4biqTIaJpMGqxoZxURkFJjSJlp9Rowp5agGRsKr5w2KmduKplv3tJlIuByKnDZqoc4pyPSQNFzNLmoQ1PzVEWH5ppNNNGaYWA0ylzTCaQxjGoGNTnFQtSGQtVWQ9asscVUekMqOarHOasPVdsVSJZq2OdlWB/rar2RASrOMPupMaLqnAqEtvkA9Kk4K1HEvLGqitSZOyJ6KKK2OcKKKKACiiigApKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9XfoooqgCiiigAooooAKKKKACiiigAooooAKKKKAClpKKAFpKWkoAKKKKAFopKKAFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAqtdpui+nNWaim/1bfSkxrcxyPlqrJwKsE5GKYybhWJ0meDzV6I8VSbhsVaiNDJiXFOKsKarJVgVJZYU1OtUwasKaYiypp+agBp+aAJs0ZpgopiFJqIjccU80qikMUIAKz7xCRuFaeeKglXcKQJnPpdKOGODRJeMB8nNPubLccis42bKepoLI31C83cdP8APtUkOoyFsSjFIbdhTfIYdqYjdhuARkVcFxxXORO0ZwelWxOuOtILGi89UZdRhiPJzVaQtJ0qD7KepoAuLrS5wFarsepLJ6isgW5HQUvlzn5V4oHY3Wn4zRb/ALxt1ZUFrKzDexroYIwigUA9CXbULAqc1aprAEUEJkanNSA1EBtqQGmgY7NGaSmmmIUmmE0tMNACGoWNSmoWpDIHNVWqw9VXOKQys5qsetWHqueoqkSzYtozszVv2NVoZVVMGpfOU0hpk6sRxSwnJNVfM3HC1djTYuPWrgiKj0sSUUUVqYBSUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAJRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFJS0lAC0UUUAf/9bfoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACilooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKawDKVPenUUAYMitGxVuPSjcAK2ZIUl++KhWziU561m4GqqaHPSj5s0+LrWlqUKhAVGMVlx8GlJDi7mglTgVXjNWlHFZmoAVIpxSUooAmBqQVADUgNAEoNOpgp4piFzTqaKdmkAtNNNZsU3dQIY6g1XMQ9KtHrTtoNMdyh5I9KDbg1oBRmpAgosFzHks8jpUH2Ouh2jHNMKLTsHMZkNoKsNagjgVdUYp5FAmzM8jFPESjrV1lBpmKQ7jERRUwGKYOBSg8UCH0dai3jOKkBoAaRRTjSUDDtTTTqbTEJ0pDTvrTTSAjNQvUrVA1A0QNVZxmrJqs/FIZUemxLulVadJxT7MZnHtVxM5HQBFK4Ipn2eL0qalrWxhdjVRU+6MUtLSUwCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWkpaSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKSlpKACiiigBaKKKAP//X36KKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBaKSigBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigCvdR+bCVrmlyD+ldYea5i4TZMR71EkXBliI1eQ8VmxGtBDWJuT44oFOFFAAKkAzTBUg6UAOFSCmCnUAOziml+cVG7ECombB2jvQAjSEE05WNZ8j7T1pwnA70BY1Ac0u7FZLXgHQ0xrzdQNRNjzADzUqyKawvPyM5qVZ/Q0D5TdGDQayluSKmNySvHWqFyl0nHeo/MA71ntMSOtR+ZSHymr5gNANY7T470gvCO9AcpsnpUDNtqkt92NBulNBPKyzv+bNSLIc1niZSamU5G4elILGlniiq0T5AFWRQIKWlpDTAaajJpzUw0AMNQmpTUJ60hkL8VVc1Zc1TkNAytIc1b01cyE1Rc1raamE3etaQMps1qSlpK1MRaSiloASiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopKKACloooAKKKKAP/0N+iiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAClpKKAFopKKAFopKKAFopKWgAooooAKKKKACiikoAWikooAWikpaACiiigAooooAKKKKACiiigAooooAKxdSjwwcVtVSvo98JPcUmNbmHG3NacRyBWTGea0om4rBnQi+KOaahqSkAmaeDTcU4CgZKKWkWnUAV5ciqjMSWI7Vedc1WaLggd6AMW4dgMjmstr1gcOCK6g2wxyKozWKP1FCZRjC4Dd6eLhVqwbEIeRUyWiHtVaFIqC6TpzU6XC+tXUso88irI06PrgUFaGb9ox0NKLn6/lWwljGOwq2ljGfT8qdiXJHPeefQ/lTjNxwDXS/Y4/b8qY9vGBjA/KnYXOjlWnPoaj84d810ElvEO1U2t4z2qSzJMw9aj+0tnaoJrU+wqx6VehsY05xzSuSzNghmkG4jFa0KFVwatpEAKfspENkMa4q4tRqtTDimSwNNNOJqMmgBCajNKTTM4pDGNUDGpWNVmNAETtVR2qZ2qm5NAMiY5OK6OzTZCB7VzsY3yge9dVGNqAe1bQRjNj6KKKszClpKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACkpaSgAooooAKKKKACiiigD//0d+iiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApaSigBaKSigAooooAKKKKAClpKKAFooooAKKKKACikooAWikpaACiiigAprKGUqe9OooA5SVPLlKmrMTirGpQ4Pmj8azkODWMkbwZsxnpVhTWdG9XFbioLJqcKj3Zp2aAJBUlQ5qQGgB+KZin5ozQIYVFQvHkVaphFAzOeOowozWgyVWePHIoKTEXAqUSYqqcijcadyrmisg71MJRisjzKcJ8UXE0jYEwHWoZZgeBWeZiaA2afMCSJTljQI1HJpRntUqoW61INjQtWFTApwQCn0ENgFFNNPJphoEAp2aZSbqAFJphoJpmaAAmmGlNRsQKBkbmqrtUrtVR2oAic1VY1I5quTk4qkiWy/p8e+TdXRDpVCyiEcQPrV+tkjBvUKKKKYgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgBaKSigBaSiigAooooAKKKKACiiigAooooAKKKKACiikoAWikooAKKKKACiiigAooooAKKKKACiiigD/0t+iiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAClpKKAFopKKACiiigAooooAWikooAWikooAinjEsRU+lcwymNyp6iutrG1G3J/fJ+NTJFRZUjfFXEespWq3G9Ys3TNFDUoNVEeplbikUWQaUGoA1OByaBFgNS5qLNLnNAE2aKYDThQAGmlc1JS4oEVDEDTDDV7FG2gdzNNv6UggrV2ZpvligLlAQ1KsAFXdgpwQUBcrqgFTAAU/GKTFArjaKU000AJmkpM00mgYpNMzzQTTCaAHE0wmmE0zdQA9mxVd2oZ6ru1AxrvVZ2pWaq7mmJjWNPto/MmAPSqztWvpShssauKMpM2kXaoFPoorUyCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWikooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWkoooAKKKKACiiigAooooAKKKKACiiigAooooA//9PfopKWqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACkZQww3Q0tLQBzF1bmCU+h6Go0aujngWdNp/CubkjaB9rCspRNYSLiPVgOMVno9TK1ZmxdDVKDVNXqZWpAWs8U4Hmq4epA1AE4PFOBqEGng0xE4p9QqalBoELTxTacKYC0uBSUZoEPwOlLjimg0uaYBimmlpDSAaajNOJqMmkUhCaYTQTTCaQxSajLUFqhZhQArMBUJemM1RM1MBzPUDNSFs1GeaaQmxjGoGNPcgVAzZpksiY5ro9KGLfPvXNHmuo0of6OfrWsDOZqUVSuLoWpBkHynjPpVqORJVDxnIPNUZj6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAopKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/9TepaSiqAWkoooAWikooAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACqtzbJOhz1A4NWqKGBybKY3KHtUivS6mDHdEjo1VVfIrGSN4svK4qVXqiGqQPUWLuXg4p4eqIfmpFekM0FapFbmqSuKmVqALwNSKapq9To1MCyKfUYbNOzTJHc0lNzRmgCQGlzUWaC2KAJCaTNR5ozigBSaialLVEWpDAmoSaGaoGakMVnqFmprPURJNOwAzVGSaWmsQKqxNxDxUTPTWc1Dk0XARiTTDT8ZppFAWIgMmuu0xMW2fWuXRCWAHc121vH5cAWtaZjMrXUAuLdoyOorjLXUJtOuWhfJQHBH416BivP9ehEV6zAcNzWjMztYJ0uIxLEcg1NXBaTqBtZQjcox59q7tWDqHXoakY6iiigAooooAKKKKACiiigAooooAKKKKAEooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKKKKAFopKKAFopKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD/1d6iiiqAKKKKACiiigAooooAKKKKAClpKWgAooooAKKKKACiiigApKKKAClpKKAFopKWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAwdZj+7J+FYSnFdPqybrUn0IrlhWctzSOxZV6mDVUHFSK2Kg0LGacHxUQOaWlYdyyJKsq9Z1SK5AosO5pq471YRxWMZcYqyk3GaVgua6vUgfmsgTkNUwn+YUxGiXFBbjNZ5n5xSmf5SKQF0PSGQZqj5wxUD3GDimBr+ZxmmtIKzftGBg1G9zngUAaTScVAZKpfaKaJc0WGWmk71Az5qIvTN1OwrkpNNJAqMtmkJoAUvULGnGkIzSuOxHRtqQLTttICLbTSKnxTSKAJ9Pg824HoK6/GBiszSrby4/MPVulaprpgrI55u7I8VyHiaMAxv65/pXZ4rl/EwH2eNv8Aa/pVEHDdDXaaFe+dF9nc/MvT6VxZq3YXJtbhZB+NSM9KoqOKRZY1kXoRmn0ALRRRQAUUlFAC0lFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlLSUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/1t6iiiqAKKKKACiiigAooooAKKKKAClpKKAFopKKAFopKKACiiigAooooAKKKKACiiigApaSigBaKSigBaKSigBaKSigBaKSigBaKSigBaKSigBaKKKACiiigAooooAKKKKACiiigAooooAKKKKACikooAWikpaAKt4m+2YVxld1IMoRXDsu1yPQ1Ey4DhTqYKdWZqSA1IDUIqQGgCSjNNBpaAGMPnppkINTkZqsFJY5pgS+f0BqWOcFvwqiwIzxwOKZERgkn2osK5pPNnpTTcEHmqHzE8dqNxY8DmiwXLpnwuahExZgDUEhIAWowCDuPbinYVy21wThRUfmk81WUMXLHpVhIy5A7dTSGT+YT+VTR525pqxg5NTAYFJsdhKM0uKXFIoSlpQpp22kBFinAVIFp22kMjCil21JtpSKAISOCantbczzBO3emYJ4FdJp1t5MfmN95v5VpCN2RN2RdVQihR0FIRUppmOa6DmExxXI+J3xHHH7k12GOK8/8RziS68ofwf/AFqAOZNNpxppqQOp0TU9uLWXp2NdaOR9a8qUkHI612ekasswEE5AYdD60AdFRRRQMKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWkoooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiikoAWikooAWikooAWikooA//9feoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAFpKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooARiApJriJTmVj7muxuW2wn3rj5RiQipnsXATFOpop9ZGoU4U2loAeKeDTBThSGSUYFIKWgCKSPI4qCO2ZuT2q9jingAU7isVo4AuRUwiVRgCpRRSuOxUaEFt2OlRSJvbagwBWhim+WOp607hYoLAelWlQgYHFThcU7FK4WIgMcCn4p4UUoWlcYwLTgKfil20hjcUYqQDil20AR4pwWnbaeBxQMZtppFTEUixtIwRepoSE2WLC286XcfurXSYAAAqK2t1t4tg696mNdUVZHNKV2JTcU+kqiCNztUt6V5XqUvm3kr+rGvRtWuBbWMj9yMD8a8tclmLetICI00040lACU9GZGDKcEU2ikB22k6qLgeRMfn7e9b9eWo7RsHU4IOa7TStVW5UQzcOB+dAzeoo74ooAKKKKACiiigAooooAKKKKACikpaACiiigAooooAKKKKACkpaSgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKSlpKACiiigAooooAKKKKACiiigAooooA//0N6iiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooqtd3C21u8zdhQBDcyqzeUOcda5y5XbL9au6dI1wGnbqxNGox4w9EloOO5min4pq1JWDN0JijFLSgUgACnYoFOFACingUgFSCkUAFOApwFPAoAjxS4qTFG2gCPFLin4xRigBoFOxTsUu2gY2nAU7bS4FIBMUuKUClxQAgFPAoApwoGNxTsU4Cg9KBEeM9Otbdja+WvmOOTVeytfMbzXHy9vetrp0reEbamNSXRCGkxS0VoZCYpKcaikcIpc9ACT+FAjkPFF0MLaqfc1xRrQ1K5N1dvKTxnA/Cs40ANNJS0UAJRRRQAU5HZG3KcEUlBoA6zT9cXaIrrj0NdDDcQzjMTA/Q15jyKsQ3EsTZjYg0gPTaSuTs9fZcJdDPvXSwXUNwu6JgaBk9FFFAC0UlFABRRRQAtJRRQAtFJRQAtFJRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFJRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf/9HdpaSlqgCiikoAWiiigAopKWgAooooAKKKKACiiigBKKKKAFooooASiiigApaSloAKKKKACikpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiq093BbLmVgPagCzUckscS7pDgVyt54hJylsMe5rnZ7ue4OZGz+NAHY3WvW8Xywjca5e+1O4vPlc/L6Vn5pnU0AdroygWq++TWpcwiWEjvVHSV22iD2rbUZFX0A4/btOD2qRau39v5Uu4dGqmtc0lZm8WLiin4oxUlDBTxRilxQA8VKq1GtSikMkAp+KRafQAmKTAzT8UYoAbijFOxS0AN20uKdSUAIKXiloApDFoxSgVJjFADMU4Cn49aTgUAAFWba2M75PCim28DXD4H3R1NdBGixrtXgCtYQ6synO2iFVQihV6CkNONNrYxEpcUUtADTWHrt19nsXAOC4wK3DXAeJrrzLhYF5CD9aBHLMcnJphp5ppoAbRRSUALRRS0AFFLRQA2ilpKADrU0NxLA2YmI+lQUdKAOqste6JcjPvXRw3MNwu6Ns5rzKp4riWFt0ZIPtQB6bRXJ2uvsuFuBn3roYL22uQDG4J9O9IZbooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKSlpKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//S3aKKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAClpKKAFopKKAFopKKAFpKKKAFopKKAFopKKAFopKKAFoopKAFpKKKACiiigAooooAKKKp3N/bWozI3PoKALlVLi+trVcysAfSuXvdflkyluNo9a5+WWSU7pGJPvQB0V5r8jkrbfKPWudknkmO6Rs1FSUgFoHrSUtMAPSkXqMUGlT7w+tAjvtNBFtHn0raXpWVYD/Ro/92tVKsCG7txNCR3HSubClTtPUV2IGawNRgMUvmqPlbis6iujSDKOKXGKcOadisDYiIpMVNimNQAgqVaiWp1oAkWpKaBT8UhiilxSCnUAJilpfajFACUmKdiigBtKBTsUopDAU8UgpTxQA7IAoiha4k2p07miKJ7h9i9O5roIIEhQKo57mtIQvqzOcrDoYlhQItSmgmkrYwEopcUUxBRS000AV7iVYYXlPRQTXk1zK08zSt1Y5ru/Ed35NsIFPL/yrz00DGmm0tJQIbRS0UAFLiiigAooooASkp1FADaQ4p1I3TNABSUoooASnrI6HKnBptFAG3a63cw4WT5l966O21e0uMAnafeuBpdxHQ0DPUQwYZBzS159a6rc2x+8Svoa6e01u2uAFk+Vv0pAbVFNVlcZQ5FOoAKKSloAKKKKACiiigAooooAKSlpKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKSlpKACiiigAooooA//092iiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAWkoooAKKKKACimsyqMsQB7msa91q3gBWE72/SgDbJAGTWVdava2wIB3t7VyNzql1c/ebA9BWaWJOTzQBuXWuXM2Vj+QH0rEeRnOWOSe9MzSZoEFJmijFIApKWkoGOoNJSZpgFPTG8fWmVJF99fqKBHotkP8AR48f3RWglUrMfuE/3RV9RWgiwtR3ECzxGM+lSrUoFSxnFgNDIYX6irHFaWq2RkXz4h8w61iRSgjBrnkrM6Yu6LBHFRkVJnNIagZEBU61H3qZRimBKBTwKatSUgFAoxThSmgY0CncUlHNAAetIRS8ijrQAlHSkJAqFpPSkMmMgHSnwRSXL7V6dzTLa3kumxj5e5rpoYEhUKlaRhfVmc520QQQJAuxKnoorYwEpaKKYgpKWigAqNjgZp5rK1W7FpaNJnk8GgDhdbuftF6+05C8CsU06RiSWPXrTD7UAIabTqbQAlFFFAC0UUUAFFFFABRRRQAUh6UtFADAacKaKcKACkpaKAEopaKAEo96WkxQBct7+5tj+7Y/SuitfECNhbhcH1FcjSUAenQ3EM67o2BqavMYp5YW3Rtg10Fpr7rhbgbh60hnXUVUgvba5GY3B9qtfSgBaKSigBaKSigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgBaSiigAooooAKKKKACiiigD//U3aKSlqgCiiigAooooAKKSigBaKSigBaKSigBaKSigBaKSloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiio3ljjG5yAKAJKQkAZNYVzrtvD8sQ3n9K5y61a6ucgsQvoKBHYXGqWdvwz5I7CsSfxCxysC49zXLs5POaZmgC9cahc3BzIx/CqZJPWm0lAC0lFJQAUUuKMUAJSU6m0AFAopaBhSUUUgAVLF/rF+oqMVLH99fqKaA9Gs/9Qn+6K0ErNs/9Qn+6K0krQksLUwqJamFIYpAYYPNcnqVibZ/NjHyHrXXCmTRLMhRhwRiokrlRlY4iOTirA55qO6tntJip6HpTVY1ztWOlO+pN3qQVEDnrUq0gJlqQVEpqUUCFzS5pM0ZoAXNLzTM0bqAHZ9ajLCmM9V2c9qBj3cmprS0e5fj7vrS2do9y4J4Uda6qGJIU2IMYrSMOrInO2iEhhSFAiDpU9GKK2MAooooEFFFLSASilpKAEPSvP/El75s/2ZTwnX61215OLe2kmP8ACpNeUXMpnmeRurEmmBBTOhxT6aRmgBDTad9aSgBKSlpKAFooooAKKKKACiiigAooooAjHWn0z+KnUALRSUUAFLSUtABRRS0AGKQiiloAbikp9JigBySvGcocGtu01y4iws3zisLFJSA9CttTtbkDa2G9DWhnPSvLgzKcqcGtS21e7gIG4sPQ0DO9orGtNat7j5X+Vq2AQRkHNAC0UUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUlAC0UlFABRRRQAUUUUAFFFFABRRRQB/9XcoooqgFopKKACiiigAooooAKKKKACiiigAooooAKKKKAClpKKACiiigApaSigBaKSigBaKSigBaKSloAKKSigBaKKaWUck4oAdRUElzbxLud1A+tc/d6+q5S2Gfc0AdG8kcY3OQBWRca5aw8R/OfauRnvJ7hi0jZqoTQI3rjXrmTIjG0frWPLczTHMjE5qvmkoAdmkzSUUAFFFFABSUUUDCkopDQIfmkpAaWgBKSlpKACiikpDFooooAUVIv3h9RTBUi/eH1FMR6HY/6hP90VqLWVY/6lP90VrLWgidamFQrUopDJRTsU0U8VIFS6tUuYyjfgfSuOngktpCj+vBrvcVQvbNLqPH8Q6VMo3NITscgGzVhTVWSN4XKSDBFOV65zo3L4NSbqqo9TBqBEmRTCxppaoy1AEheoy5qAvSdTx3oAeTmr1nYPcNufhansdOLkSTAgdhXRogQYHQVrGHVmcp9EJFEkShEGAKlx2oFLWpiFFFFAgooopALRSUUAFJRTHYIpYngDP4UwOS8TXm1FtVP3hk/nxXDmtDU7o3d00p6dBWdQAUlFFACGkp1NPFACUlOpKAEooooAKWkooABS0lFABRRRQAxhyMUtI3rQKAHUUUlAC0UlLQAtFJS0AFFFJQAtLSUUALRRRQAhFNwakpKAG5xzWpY6rPasATuT0NZhFNIoA9HtL2C7TdGee4q5XmMU0kLbozgiuks9fIwtyM+9IDqqKqw3trOMxyA57VZGD0oGLRRRQAUUUlAC0UlFAC0lFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH/9bcoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAqOWZIUMjnAFQ3d1HaRb5PwFcLe6hLeOWY4HpQI27vxBglLYfiawpNRu5Tl5G/A1RzmkzQBM88r8MxP1NRZptFAC5pKKKACiiigBKKWigYUUUUCEooooGJRS0lAhnQ5qQcimmhTQAtJRRQAUlLSUhhS0lLQIcKkT76/UUxaljGZUHuKpAegWPESf7orWTkVl2oxGn0FaidKtiJ1qUVEtTCkMkFPFMFPFSA6kpaKBmXf2CXK7lGHHeuUeJoXKMORXoFZ17Ypcp6MOhqJRuaQnbRnIBsVMHOKJoHt3KOKjFYtG5KWNRnNGe1PjieVtqDNJIGRBSzbRya6Gx01UHmTDJ9Ks2enxwDc3LVqAVvGNjCc77CKAOlPoApasyCiiikAUUUUwCiiigAoopKACue8QXptrTy0OGkyPwxW+TgZNeY61em7vGIPyqcCgDHPWkoJzzSUAFFJRQAtFJS0AN9qSnHmkoAbRS0lABRS0GgBKKKKAFpKKOtACEZFNFOLADFNFADqKKKAEpaSloAKKKKAFooooAKKKKAClpKKAFooooAKKKKAEIpvNPooAFkdDlCQfbita11q6gOJG3r6GscikoA9Fs7+C8XMZ57g1erzCKaSFg6Egiut0/WkmxHccMe5NIZ0NFICCAw5BpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9fcoooqgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACo5JFiQu5wBUlc3r14Y0ECnk4JoAwNQvXu5iSflBOKzTSmk7UxCUUlLSAKKKKACiiigApKWigApKWigYUUUlAgooooAKSlpKACm45p1JQAUUUUhiUUUUAFKKKBQIkFTQf69P94fzqEVNDxMp9xVID0SEYRfoK0E6VSh5iQ+qj+VXU6VbETrUy1CtTLSGSCnimCnipAcKKQU6gBaTGadRQBUnto512yCubudPkt2+UFl9a67FV2dHOwDcKlxTLjNo5OC1e4faoP1rpLW0jt0wOvc1NHDHH9wAVOBRGNglO4AU8CinVRAlFLSUgCiiigAooopgFFFFABSUU1mCqWboBk0AYevXotbQop+dzgV5qxJOa2NavmvLtiD8qnA/CsagBKSlpKACiiigAooooAKSlooASm06kIoASiiigApKM0cDk0AL2qN37CmvJ2FQ9aTYDskmplqJRUoFCGPpKWkpiCiiigApaSigBaWkpaAClopKACilpKAFopKWgAooooAKKKKACkxmlooAYRQCRT6Qr3oA0rPVbi04B3L6GuptNWtrkYJCN6GuCNCsynIOKQz1Hg8ilri7DWpYSEuDuX1rroZo50EkZyDQBNRRRQAUUUUAFFFFABRRRQAUUUUAFFFJQAtFJRQB//Q26WkoqgFopKWgAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAEJCjJrzvUZzcXTOfXH5V2upzCCzdu5GB+NeeMckn1oEJSGlpDTASiiikAlLSUtABRRRQAUUUUAFFFFABSUUUAFFFJQAUUtJQAlFFJQMKWkpaQBSUtJQAtKKSlFAiRamhGZVFRCrdhGZbtEHc1SA9As/mtoz7VdWoLePy4VT0qerETrUoqBanFIZKKfUYqQUgHClpBThSAWmvIsaF3OAKRmVF3P0Fc7rMc95aM0ZI287R3FIaQ6TUvtk/2eFtqjv61tRoEUAcCvLLO4Nvdo7/AMJ5FerqQyhh0IoTBoUCngUAUtMQUtFFIApKWkoAKKKKACilpKACiiimAlc94hvvs1r5KH5pBj8K33ZUUu3AAyTXlerXpvbppe3QUAZhOTmkozSUAFJRRQAUUUUAFLSUtABRSUUALTadTT60AIaOtIXUVA0hPSi4EhYLUTNupuCaeqVIxgGakC1IFpcU7CGhad0paKYBSUtJQAUUUlAC0tJS0AFLSUtAC0UlFABSUtFABRRRQAtFJRQAtFJRQAtFJS0AFFFFACEU0in0daAI6v2N/LZyZUnb3WqDDFJSA9KtbqK6jDxn6irVea211NauHirtLDVIrpcOQr+lAzWopAQRkUUALRSUtABRRRQAlFFFABRRRQAUUUUAf//R26KKKoAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAClpKhuJRBEZD2FAHM6/dBmW3U9OtcxU1xM00hkY9TUAoEOppp1MNMApKKKQwpaSloEFFFFABRRRQAUUUlAC0lFFAxKXtSUvagQlJS0lABSUtJSGFFLRQAlFLSUAFOFNp4oESitXRAG1FM+/8jWSOlbGh/8AIRT8f5GrQHoMeCxWgjApI/lkzUrrg0xCKanWqy9amU0AWBUgqJakFIY8UpIA3HoKQc8VQuptzeSnbrSY0hkkpmbJ+6OlNDZPPSoiewpydM1Fyjj9c08wTfaoR8jnP411mgXou7MKxy0eAfyqWSCO5iMEoyDXM2Bl0bUDHL9xjg/n1piPQMY4ooBBGRRTJCiiigBKKKKACiiloASloooAKSlpjsEUs3AHNAHN+JL/AOz232dD80nX6V52Tk1parete3bSHp0A9qzDTASiikoAKKKKACiiigBaKSigAooooAKbjg0tFAFZlOcU4JUxGeaaKAECilAopaACiiigAooooASiikoAWiiloASlopaAEopaSgAopKWgApaKKAClpKKACiiigAooooAKWkooAKKKPc0AFNLHotJksfangAUAIF7mlyO1BNNzQAZpRIynIOKZmkzSA2LPWLm2bDnevoa7G0vYLtN0TfUV5tVi2upbaQPGSPWgZ6ZRWdp+oR30fHDDqK0aACiiigAooooAKKKKACiiigD/0tuiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArn9fn8uBYh1augritfl3XQTstAGATmgUlKKBDqYafUfemAUUUUgClpKWgAooooAKKKKACkoooAKQ0tMJoGOpaaKdQISkopKQC0lFFAxaKKKACkpaSgAp4plPFMRKOla+hf8hFPx/kayO1a2hnGoofr/I1SA76U7RkVbyHQNVWQblNOs23RlD1WqAfjmnA807HNN70gLCHiphVZanXmkAy4lEMWe54FZWSOvJPWopdQjl1A22fkUYz709shiKhlpDhyasAVCgyatqtSAqr3qvqNgt9Dn+NASPerq8U7fjkUxGfot4ZYvs0p/eRnv1xW5XLX0T2l0upW44yBIPaulhlWeJZEOQwzVCZJRS0lAhKWiigApaSloAKSlpKACub8R3v2e1EKH5pD+ldBI6xo0jcBRk/hXlmsXpvbx3z8oOB9BxTAyjSUUlABRRRQAUUlLQAUUUUAFFFFABSUtJQAUUUUAHamEYp1Bz3oAbRSUtAC0UUlAC0lLSUAJS0UtAAKKWigBKKKKACkpaSgBaMUUtABRRRQAUUlLQAUUlLQAUlFLQAUUUUAB6ZNR8saCSxp4GKAFAwKKKSgBDTKU000gCiikoAWk+lFJQBZtbmS1mWVD0FeiWlyl1AJkPXrXmVb2iXxgnELn5WoGdzRScHkfWigAooooAKKKKACiiigD//09uiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBK8/1ht169egV57q//AB/P9aBGbSim04UAOqOn0zvQAUUUUAFLSUtABRRRQAlFFFABRRRQAUw0+kNACCnUwU89KAG0lLSUhhRRS0AFFFFACUUUUAFPFMqQU0BJ2rU0T/kIJ+P8jWX2rW0PH9op+P8AI1SEeibfkqnC/lXO09G4rSx8tZF0CHDDqDVCNhhg0wilVvMjDikpDHClmkENu8p7A00GqWry+XbbP71Jgjj5VaFvOB+8c5rpbSdbu3Eg+8ow1Yvl/aLQxjqpyKr6ddNaXAz908MKyejNd0dlGtXFGKgVRkbeQelT9qZIU1jxQajY0AMYqylX5DcGq+nTG2uGsnPyn5k+npUjtxWXOWYZXhkOVNNCsdhSVUsbtby3WVevcehq3TJFooooASiiigApKWmO6opZug5NAHP+Ir4W1oYVPzScfhXm5Oea1dYvTeXbSDoMAVkUwCkopKAFpKKKAClpKKAFopKaTzxQA+ikBzRQAtJRRQAUUUlABRRRmgBCKaKfmmkYoAWkoooAKSiigAFOpKWgAoopaAEoopKACiiigBaUU2loAWikooAWkopKAFooooAKWiigAqNm7CnM2BimqKAFUYp9JiigBaaTRmmmgBDSUUlIApKWkoAKKKKACnIxVgw7UyikM9H0y5F1aK+eQMGtCuN8PXGyZoT0Yf1rsqYBRRRQAUUUUAFFJRQB/9TbopKKoBaKSigBaKSloAKKKSgBaKKKACikooAWiiigAooooAKKKKACiiigAooooAKKKKAErz7WMfbnxzzXZ6jdraWzOTyeledySNK5kbqeaBDKUUlKKAHVH3qSoz1oAWikpaAClpKWgAooooAKSiigAooooAKQ0tFADBTqZ3p4oASilNNoAKWiikMKKKKAEooooABUgqMVItNCJO1a2h/8hGP8f5GsntWtofGpRfX+lUgPTMfLWdOm41pHpVVlyaaEMs3+Uwnt0qwetZzkwyiQdutaJIZQ46GgYLy2KwNck3zJGOw/nW/Fy/0rnL8GS6bP0oBFKycpLiotRtvKl85B8r8/jT0XZKDWv5aXMZhfv09jWcl0Li+pZ0a582MwyHlcY+la7ccGuTt1ktVYHhga6W2uFu4sn7w7VEX0ZUl1QpNRucDNSH0qpcNgAVRJE78VQdsPmrBPFVihdsCmgH6RK1tdyIT+7Y/1rsc5Ga5OOAIN3et6yuPNUo33hVNEsv0UlFIQtJSUe9ABXIeINV2obaE9eprX1O/ECGOM/P3rzW7mMspYnNMCsTmm0ZpKACiikzQAtFJmloAKKSigBaTPNLQaAA9aKQUUALSUUUAFFFFABnAxSUUUALRjNFLQBGRg0UMwzxSUALRRS0AFFFFAC0UZpKACiiigAoopKAFpaSloAKKKKAEoopaACiiigBaaTgUZxTD8xoAAMnNSUgGKWgApM0hpDQAGkzSUlIAopKKACiiigAopKKACikopDLtlKYblHHqM16SDkA15YpwwNem2r+Zbo/qBTAsUUlFABRRRQAUUUUAf/9XaoooqgCiikoAWiiigAooooAKKKKACiiigAooooAWikpaACiikoAWikooAWikpaAEooqjqNwLa1d+5GBQBymu3nnz+Up+VawhTpGLsXPUnNNFAhaUUlLQAtMPWn0w9aYBS0lLSAKWkpaACiiigBKSlpKACilpKAFopKWgCM9acKD1oFAAaKKKACiiikMKKKKYCUUUUgAVIKjFPFNCJu1aei/8AISi+v9Kyx0rR0g41GI/7VNAeojpUYGWqQdKRRzVAVJ48qaispc5gfr2q+65FY06tHJ5q9RTEbES4Y5rEkTdKzepNbMEyyR571RKDJ+tJDMaaPHIq3bHK5HWpLiP5CaZZI2M7TUzKiak1qJ7fco+cD86w0ne1l3jjBwRXSJMFXJVhj2rH1FrSRDMjAN3FYyXU0i+hrJIlxGsydDVG4OWx6Vj2V79lc85Q9a1ZSpG9SNp6VSdyWrIhPAyas20O4bz3qqo81go5Ga3oowEAFaIllSSPAAqpEzQT7h0zzWvIvU1Rkj4qiTaVg4DClzWbZzZHlN1FaHvUgLVO8uhBHjqx6CpJ51hQsevYVjKjTOZ5aaQGBqsrRRbnOXeuUNaerXP2i7bH3V4FZVDAKKKTNIAooooAKKKKAClopKAFopKM0AIad1FJSdKAFoo60UAFFFJQAUUUUABFRu+BgUPJjgVGFJOTSAVc9TUlIBTqYBS0lLQAUUUUAFFFFABRRRQAlLRRQAUtJRQAtJRRQAUUUUALSUU1jigBGPalApo5qSkAtJRSUwENNNLSGkAlFJS0AJRS0lABSUtJQAlLRRSGJS0UUAAr0TSX3WKew/pXndd3oJzZfQ/0FMDcopKKAClpKKAFopKKAP/W2qKSiqAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigArkfENwS4gB6DJrrGIVST2rzm+nNxctITmgRRNJSmkoAdS02nUALUZ61JUZ60AKKWkFLQAtJRRQAtJS0lABRRRQAlFFFABS0lLQA0nBzQevFBpooAdSU6koASloopDCiikoAWkoooAKeKZTxTESjpV3TTi/hx/fFUhVvTztvYT/tj+dUgPVV+7SpyTTUOVH0p0femIlI4qlLEGzV/FRlc0IZirGUbjNXFXipmiGaAuKBGNey4kEC9TzWnaDCjsPWsCU+ZfsR2wP0qe4v/LH2eE89GNZSfU0irmvdXgb91ERjvUEFktz80g+QVVsYGuD7Dqa6H5VUInAFQlfVlt20RQmsoDwF4FQeSiLtxitXOetVZVqyLkFoAMr0rVi5XHpWRCcS1qxHDfWmhMey5qCROKt4zUTjiqJMZy0Ugda0ftabc559KjaIM4zVkW0Y5wKoCh5clw++T8qq6zcCysSFIDPwK3gAteceIb77TdmNT8qcUrgYBOTk96bRRSASiiigApKKWgAopKKAFooooAKKKWgBKTFLRQAnSlopKAClpKKAA1G744FK7gDFRAE8mkAKpPJqXpQBiloASloopgLRRRQAUUUZoAKKOtFABRRRQAlFFFAC0UlLQAUUUUAFFFFACE1H1NKxpVFIBwFLRSUwFppopKQBSUtJQAlLSUtABSUtJQAlJRRQMKWiigQUlLSGgArudABFmc+v9BXDCvQ9Ij8uyQHvz+goGadFFFABRRSUALRSUUAf/9fZoooqgCiiigAooooAWkoooAKKKKAFopKKAFopKKAFpKKKAClpKWgAopKKAFopKPegChqc3kWjN3II/SvOzzzXXeIpsRpED1zmuRoENNJS0lAC0tNpwoAdUbVJTGoYAKWminUAFFFFABRS0lABRRRQAlFFFAC0lLSUAFMp9MNADqKQUUDFooopAFJS0lMAooopAFOFNpwpiJhU9p/x9Rf76/zquKmt+LiM/wC0P50wPV4/uL9BUkVQQnMSH/ZFWIuaoRY7UmKf2popDGkVTuZBDEW74q83TNc3qE+8NzwM0rjSMCW58lWcffbpRp1vJdy4z7k1mgPeXQSMZHau5soUtoRFH1xyfWs3qWnY0IlSFBHGMCpwM1XU96nBpiHHgVWbmp2PFVjQBBGv73NT3d2tpGjHqzYpYlGdx6DrXJazefaLr5eUQ4GKNgtc78HIyO9IRmoLNzJaxuepUfyqxVkEO356lpv8VONAGVq96LOyd/4mGBXljsXYs3U10PiK9+03XlIcqnH41zdABRSGloAKKKSgAooooAWikooAWkoozQAvNBNGaSgAooooAWg0lGaACmOwA4pWYAVEBk5NAABnk1JijFAoAWiiigAooooAWiiigAopKWgAooooAKKKSgAooooAWkoooAWkozRQAUhNLTGNACDk08UgFOoAWkopKACkoopAJRRRQAYopaKAEpppaSgBKWiigBaKKKAEpKWkoGKvWvTLUYtkA/uivMx1r022/wCPdPoKALFJRRQAUUUUAFFFFAH/0NmiiiqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKazBAWboKdWFrd55MPlIcMaAOa1K6N1cFv4RkCs2lpKBBSGlpKAEpwptOFAC0xqfTWoAQUtNFOoAWikpaACiiigBKKKKACiiigBaSlooASmGn000AAopBS0hi0UUUxCUUtJQMKSlpKQCinCminCmIlFPQ4cN71GDS96YHqts2bWI/wCwP5Veg6Vkae26wiJ/uitiEfLVAWO1NPWn1G3HNICpeTeWmB1NchqkpWAqvVuK27uXzHJ7CsO6AeVA3IHOKhlIXTLYW6bmH7xv5V0cXQVlwAk7jWpHUlFoVIDUIqVaBElRlc1IBmoLq4js4TM/0A96YGbq16LWH7PGf3jjn2FYOm2TXk+G+4vLGqxM19cZOSznFdvZ2iWduIx94jLH3pLUp6IvQYCbF6DipiarQHlhU5OK0RkIOtZ+qXosrRpSeTwPrir69K4DxNfGW4+zKeIyc/WgDmXcuxZupphopKACiiigApKKKAFopKWgAopKKAFooooAKKKKAClpKAaAD2pGIUUNheah5Y5NAAAWOTUnSgCloASloooAKKKKAFooooASiiloAKKKKACkoooAWkoooAKKKKACiikoAKKKKAA0zqaUmgCkA6iiimAUUUlABRRRSAKKKKACkopKACkopKAClpKUUALRS0lACUlBptIYo6ivTbM5toz/ALIrzGvSdOObKM/7I/lTQF2iiigAooooAKKKKAP/0diiiiqAKKKKAFopKKACiiigBaKSigAooooAWikooAWikooAWikooAWikooAR2CKWPQDNee6jcm4uWftnArrdYufItioPLcCuDJyaBDaKQ0ZoAdRSUUAJSiiigB1NbpThTW6UANFOpgp1AC0tJS0AFFFFACUUUUALRSUUAFFFFABSGlooAjp1NpwpDFooopiCkoooGJRRRSAUU4UwU8UxDxTqaKdTA9D0d91hF9P610kQ4Fcn4fbdZqPQn+dddH0qmBJVO7fy4yfWrlY1++XC+lSNGXI3NY8z7pgB2q3fXIiXH8R4FZsQJkGe1SykdBb9K0UrPt+grRSpGTLUoqNaezxwoZZThVpiJmdIYzNKcKPWuK1G8e9myfujIAp9/qbXkhVDiMdBWlpOnE/6TcLgD7o9aW+hSVtSzpOn/Zk8+b/AFjdAe1bPWkzk0tMkbEf3pHqKnfpVZTiYfSrEnSrRLKl5dJZ2rTufpXk8shlkaRuSxzXUeJb7zJBaIeFwT9a5KgQtJRSUALSUUUAFFFFABRRRQAUUtJQAtFJRQAtJRRQAUnSjpzUZJY4FACZLn2p4FAGKWgAooooAKWkpaACiiigAooooAKKKKACiiigAooooAKSlooAKKKKACkpaSgBaSimk0AJ1NOFNFPFIAooopgFJRRQAUUUlIBaSikoAKSikoAKKKKBi07FIKdQIKaadTDQA00lBopDFr0HR33WKe3H6V59XcaA26zI9G/oKaA3aKKKACiiigAooooA/9LYopKWqAKKKKACiiigAooooAKKKKACiiigAooooAWikooAWikooAWikpGO1Sx7UCON16cvcCIdFFc/Vq9l864d/WqlACGkFONNNACilpopRQAtFFFADqQ9KKQ9KAGDrThTR1p1IBaKSlpgFFFFABRSUUALRRRQAUUUUAFFFFADDQKU0gpDHUUlLQAlFFFMBKKKKQBThTacKBEgp1MFPqgO08MtmJl9Ca7ZOlcF4Xb53X2J/lXepwKYCscDNcpqF2sW6Vj9PeuivJhBA8jHAArzWeSS/uT/AHc1LKQK73Mpnk6DoDVqDl80xwqAIvQVLbD5qllG9b9BWilUIRxV9SEUu5wo6mkJljKopdzhRyTXGapqr3j7IsrGOMetN1XVGu28mLiNf1p+kaW104mlyI1P50eSHtqWtG0w3BFxOMRjp712WRjCjAHaoF2qAiDCjgCpR0piYU+m0tAiFjiRT+FJf3K2ts8zfwg/nRLwVPvXK+KL3lbRDwOTVrYTOSnlaeVpGOSTmoaKKBBSUUUAFFFFABRRRQAUUUUAFFJS0AFFFJQAtFJTGYngUAIzEnApwGBSAYp1ABRRRQAtJRRQAUtJRQAtFFFABRRRQAUUUUAFFFFABSUUUALSUtJQAUUUUAFLSUUAFMPWnGmDk0gHCnUlLTASlpKKQBRRSUAFJRRQAUlFJQAUtJTqAEpcUYpaACloooAQ0w040w0ANNLRS0hhXYeHGzDInuDXH10nh58TOnrj+tAHY0UlLTAKKKKACikooA//09eiiiqAWikooAWkoooAKKKKACiiigBaSiigAooooAWikooAWikooAKo6lL5No7e1Xq5/wAQSlLcJ/eNAHGk5NJSUtAgpKWigBlKDQab0pASUUgpaYC0GkoPSgBnenU3vS0hi0tJS0xBRRSUAFLSUUALRRRQAUUUUAFFFFACGmU+mEc4oGOpabS0gCiiigBKKKKACnU2loESCnUwU8VQHTeGH23pT1U/0r0ZeleX+H226mnuCP0r1DoKYHMeJJz5K26dX7Vz8cQt4tv8R61t6qVa68xudowKx3OetQy0VHPNXLYc1SPWtG1HIqRm3BgDJOMdT2xXOatqnnn7NAfkU/nRqmp7V+yQH/eIqlpmnSX0vPCL1NPyEWtK0xryTfICIwetdwoVFEaDCr0FQxpHCgiiGFFTCgCQVIDUQp4pAS0U0Uv0piKl7MIITK38PNeYXVw1zO0zdWNdj4mu/LiW2U8tya4XNUhMKKKSmIWikooAWikooAWikpaAEpaKSgBaKSigBaSikYgDigBrN2FIBikUd6fSAKWkopgFLSUtABRRRQAUUUUAFLSUUALSUUZoAWikooAKKKKACikooAWikpaACikooAWkoooAaaBSGnCkAtFFFABRRSUAFFFJQAUlLSUAFGKKWgApaKWgBKWiigBKKKQ0AITTKU0lIYUtLRQAlbWhPtvQD3rFrQ0x9l7GfUigD0SiiimAUUUUAFFFFAH/1NalpKWqAKKKSgBaKSigBaKSloAKKKKACikooAWikooAWiiigAoopKAFrkvEb/PGvtmusrjvEX/Hwn0oEc7S02loAWiiigBKaRT6Q0AMBp4phFKDSGPoNJRTENPWlFNPWnUDFpaSigQtJRRQAUUUUAFLSUtABSUtJQAtFJRQAtMNOoPSgBlOptOFIYUUUUAJRRRQAUtJS0APFOFMFPFUI0dLk8q+jf0P9K9bYgJmvGIm2yqfevW5psWXmeq5/SmBydy5kmZj61Sc1OxzzVdqyNCD+Kn3N19kgKr99xx7UAqmXfoOtYbNLfXIC8ljgfSmhMsWFnJfThB06sa7+CKO2iEMIwB+tULG3S0gESdepNaKmmBMKkFRjFSCpAeKeDUYpwoAlBqO5uUs4jK/XsKbLMlrH5kh57CuM1e+eRTk8sf0ov0BLqYl9dPd3DTOc5PH0qnRSVoQLSUUUAFFFFAC0lFFABRRRQAUUlLQAUUU08c0AKxxUYGeTR97k0+kAUUUUwCiiigApaSigBaSiloAKKSloAKKKKACiikoAWiiigAooooASiiigApaSloASiiigApDS0w0gAU4U0U6gBaKSigAooooAKSiigAooooAKWiigBaKKKAEopaSgApppaaaAENJRS0hi0UUUAJU9s2ydG9GFQUoODmgD0+Nt0at6in1TsJPMtI29quUwCiiigAooooA/9XWopKWqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAriNenSW5AT+EYrp9Ruxa25buelefOzOxZuSaBDKWm0tAC0tJS0AFFFLQA0imdKkppFAADS0wU6kMaadTTSigB1FFFMQUUUUAFJRRSGLRRRTELSUtJQAUUUUAFFFFADO9LSkU0UhjqSlooASiiigApaSloAcKeKYKcKYhwODmvRpbjdpMODyyqP0rzg109rcmWziiz9zNDGiY9KhPpU7DAqpcSrBEZG69hUIsztQnwBbofc1o6RaCKP7RIPmb7v0rIsbdr24LydOprrBgdOB2FUSWkPOTVtTVJKtrSGWRUgNQg1KKQEnWklmjto/Ml/AUyWaO1j82U/Qetcpd3kl1Jubp2FJuw0rks929zIXc/h6Vzd7N5kxHYV0LxC0s2uZ/vMMKv8AWuTJ3MT604x6sJy6ISikorQzFopKKAFopKKADNLSUUAFFFFABRmikoAWo8ljQSScCnAYpAKOKKKKACiiimAUUUUAFFFFIAooopgFFFFABRRRQAUUUUALRSUUALSUUUAFFFFIAooooAKKKSgAph606migB1LRRQAUUUUAFFFFABSUtFABRRS0AJS0UUAFFJRQAUUUhoAQ0lLTaACiiikMWikooAKKKKAOz0C4325hPVa6CuF0W48m7Cno3FdzTAWiiigAooooA//W1aKKKoBaSiigBaKSigBaKSigBaKSigBaKKKACiikoAWkoooAKCQoJPaisvVroW1sQDy3SgDmdXvDc3BUH5UOKx+1OJ3HJ7000CG0tJQKQx1FJS0xC0UUUALSEUtFAEZFJmnmmUhgaBSUooAdRRRTAWkoopAFFFFABS0lLTEFFFFABRRRQAUUUUAFMp9NIoGApabTqQCUUUUAFFFFADhTxUYp4piFNbOlnO4VjVqaU375l9qGNG8wGMngDrXMXczXdwETp0FaOqXoA+zRHOfvGmaVaY/0hx/u/wCNKw2atpAttAsY69T9auCou+TUooGTpVlfaqqVaX9KQFhaWaZLaIyyfgPWmPJHbxmWQ4A6D1rlbu7ku5NzdOwpN2GlcfdXcl1IXbp2HpWjYWQUC4uB9BTdPsBgXFwOOy1fupxGjSMeACaSj1Y2+iOZ167M1x5QPCgVz9SSyGVy7dTUdaGYUlLSUxC0UUUAFFJS0AFFFFABRSUUAFNJ7UpOKQDuaQABxTqSloAKKKKACiiigAooooAKKKKACiiigAooooAKKKKYBRRRQAUUUUAFFFFIAooooAKKKKACm0tIaAGmlFN704UAOopKWgAooooAKKKKACiiigApaSloAKKSigAoopKACkopKACkoopDCiikoAWikpaACiiigCWFzHKrjsa9IgfzIUcd1BrzMV3ukS+ZZpn+EYpgalFFFAC0UlFAH//X1KWkoqgFopKKAFopKKAFoopKAFopKKAFoopKAFopKWgAooooAK4nW7nzbny16KBXYXD+VC7nsCa84lcySFzzk0CI6SlpKAEpKdSUhhS02lpgOopKWgQtFJRQAlNNPptADKBSmkFIY+ikpaACiiigAooooAKKKKYC0UUUCCiiigAooooAKQ0tFADKUUhpRSGFFFFABRRRQAtOFNpwpiHU+Kd7di8fXGKZSqu9gvrQBasbV72bLcgHLGupwqKI1GAKS3gS1hEcfXuaVvWgoBUy9KgFTLSGWFqwGWNTJIcAVCmAMnjHWsDUL83D+VGcIp/Ok9AsLeXz3cnHCjoK0NNsQQLiccDoKqabYecfOl4QdPeukLdhwB0FSl1ZTfRCO9c1rVwQgiU8t1rfkOBXDahP59wT2HSrRDKVJRRVEhRRRQAUZoooAKKKKACiikzSAWg8CkpvU0AAGeadRRQAUtJS0AFFFFABRRRQAUUUUAFFFFABRSUtABRSUUALRRRQAUUUUwCiiikAUUlFAC0UlFAC0lFJQAUlFIaAE706minUALS0lFAC0UlFAC0UUUAFFFFABRRRQAUUUUAFNpaSgBKKKSkAlLSUUDCiiigApaKWgApKWigBK6zw9LlXiPbmuTrc0GTbdlfUUAdtRSUUwFooooA//9DUopKWqAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAMrWJfLsm9+K4Sus8QyYjWMd65KgQUUUlAC0lFFIYUUUUAFLSUUwHUUlFAhaaadSUAMNJTjTaQxadTRS0ALRRSUALSUUUAFLSUtAC0UlFMQtFFFABSUtJQAtFFFADTTaeaZSGOooFFABRRRQAtOFMpwpiH0A4YGkFBoA7SNsxqfUUGoLN99upqc0ixFqwoqFetVb67FvHsQ/Mw/KgCHUb/AD/o8R47kVFp1kbp9zcIOpqjaW8l1NtH4muxhRIYxFHwBxU76jLIwAFUYA6CmsabmmsaYihqM/kwFgfauJJzya3NZnLMIQfc1h1SJYUUUUCCiiigAooooAKKSigBaSimk9hQAHnilAxQBiigBaKKKACiiigApaSigBaKSigAooooAKKKKACiiigAooooAKWkooAKKKKACiiigAooooAKKKSgAoopKACmmlppoGKKdSCloELRSUUALRRRQAUtJRQAtFFFABRRRQAlFFJQAUlFFACUlLSUhhRRRQAUtFFAC0UUtMApKWkNADau6fJ5d2je9UqcjFXDDsaQHp4PelqC3fzYVcdxU9MAooooA//R06KKKoBaKSigBaKSigBaKSigBaKSigBaKSigBaKSigBaKSkJ2gk0Acdr0oa5Ceg/rWBV2/l865d/c4qlQAUlLTTSAWlpmaXNADqKSigBaKSigB1FJRQAtFJRTAQ02nGm0gAU6m06gAooooAWkpaSgApaSigBaKKKYC0UUUAFJS0lAC0UUUCCmGn000gEFLTaWgYtFFFABThTaUUxD6KQUtAHR6W+bfHoa0SPSsPSX+8lbfQZPFIobLMsEZdq5lmku5/UscCptQuvPk2L91a0NPtxCnnP949PaluM07SBbaMIvXqTV9TVSP0qyDQBKTUEr7ULHoBmnk8Vk6nP5cBA6txQBzVzKZp2c9zUFFFUSLSUUUCFopKKACiikoAWkozSZxQAE4oApBzzTqAClpKKAFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKSgBaKKSgBaKKKACiiigAopKKAFpKKSgApKKKAEpKWkFIY4UtIKWmAUUUUAFLSUUCFopKWgBaKKSgBaSiigApKKSgApKKSkMKKKKAClopaAEpaKKACloopgFNNLTaACkoopAd5o0vmWYHdeK1q5fw9Lw8X0NdRTAKKSigD/0tKlpKKoBaKKKACiiigAooooAKKKKACiiigAooooAKpahMIbVnzirtczr85CLCO/WgDlScnJpKSlpAFIaWigBlFOxSYoASlzSUUAOpaaKXNAC0UUUAJmiikoAKSikoAKdTadQAtFFFABRRRQAUUUUAFLSUtABRRRTAKKKKACiiikAUUUUAMNKDQaSgB1FFFABS0lLQA4UUlLTEX9NfbcAetaWoXflp5Sn5jWDHIYnEi9qePMupueppFItWNv5r+Y/wB0fzrfBzVWNBEgjXt1qwtIZbjqcGqyGpgaQDya5bVpt8wQdFropX2IXPYZri5XMkhc9zVCQyiigUyQooooAKKKKACkpc0maAEpOppDzxTvagBe1FJRQAtFFFAC0UlFAC0UlFAC0UlFABRRRQAUUUUAFFFFABS0lFAC0lFFABRSUtAC0lFFABRRRQAUlFFABRSUUAFJS0lIYlAooFADhRRRQAUUUUwFopKWgQUUUUALRSUUAFFFFACUUUlIYUUUUAFFLRQAUUUUAFLSUtMQUlFFAwptLTaQBRRRQBtaHJsu9vqK7evPdNfZeIfcV6CDxTAWiiigD//T0aKKKoBaWkpaACkpaSgAooooAKWkpaAEooooAKWkpaAErhNYYtesD2ruzXB6t/x/PQBk+lOpvpTqQBRRRQAUlLSUAJSUtJQAUopKUUAOooooAWm06koAbTadTaACnU2nUALRRRQAUUUUAFFFFABRRRQAtFFFABRRRTAKKKKQBRRRQAhpvanHpTe1ADqKKKAClpKWgBadTadTENNa+movlvJ/EOBWSelbGm/6iT6/4UDRf71ItR96kWoKLSVNUKVNTAztSYrbtiuW9a6fU/8Aj3Ncx600SwooopiCiiigBKKKKAG0hpaQ0gFHSlFA6UDpQAUUUUwFooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigBKWkpaACiiigApKWkoAKKKKAEooooGFJS0lIBtOFNpw6UALSUtJQAUUUUALS0lLTEFFFFABRRRQAlFFFAxKKKKQBS0lLQAUlLSUALRRRQAUtJS0wEooooAaaSlNJSAKKKSgCzaH/SE+or0ZT8g+lec2v/AB8J9RXoo+4PpTApySuG4NR+a/rRL96o6AP/2Q==" alt="潘良">
+    <div class="divider"></div>
+    <div class="org">北京中银（深圳）律师事务所</div>
+  </div>
+
+  <div class="container">
+    <div class="stat-row">
+      <div class="stat-item"><div class="num">10+</div><div class="label">年法律从业</div></div>
+      <div class="stat-item"><div class="num">7</div><div class="label">部专著/标准</div></div>
+      <div class="stat-item"><div class="num">20+</div><div class="label">社会兼职</div></div>
+    </div>
+
+    <div class="tag-cloud">
+      <span class="tag">反垄断与反不正当竞争</span>
+      <span class="tag">企业合规</span>
+      <span class="tag">数字经济</span>
+      <span class="tag">公司治理</span>
+      <span class="tag">知识产权</span>
+      <span class="tag">数据安全</span>
+    </div>
+
+    <div class="about-block" style="margin-top:36px;">
+      <p>潘良，中共党员，经济学学士、经济法学硕士，中国法学会会员，北京中银（深圳）律师事务所合伙人，反垄断与竞争政策研究中心主任，同时担任投资与并购专业委员会主任、破产与重组专业委员会副主任，以及党总支组织委员。同时拥有证券从业资格、深交所上市公司独立董事资格。</p>
+      <p style="margin-top:16px;">深圳市福田区人民法院特邀调解员。现任深圳市律师协会数字经济法律专业委员会副主任、数字创意产业法律服务团副团长，广东省律师协会数字经济法律专业委员会委员；深圳市法学会理事、数字法学研究会秘书长，广东省法学会理事、经济法学研究会理事、反垄断与反不正当竞争法学研究会理事；深圳大学创新发展法治研究院特邀研究员。</p>
+      <p style="margin-top:16px;">受聘为深圳市公平竞争审查专家库专家成员、深圳市市场监督管理局深圳标准专家库第五批专家成员；中国互联网协会数据安全与治理工作委员会副主任委员、专家成员；中国信息通信研究院信息通信及互联网行业企业合规师专业技术能力评审组专家成员，"数据安全推进计划"数安智库专家成员（2022—2024年，续聘一次），"数据安全共同体计划"专家（聘期三年），"个人信息保护合规审计领航计划"专家，"企业合规推进计划"专家；全国两化融合管理标委会数字经济标准工作组（TC573/WG9）专家成员。</p>
+      <p style="margin-top:16px;">2021年牵头成立中银深圳反垄断与竞争政策研究中心，系深圳律师行业率先聚焦反垄断与竞争政策的专业研究平台，致力于为企业提供反垄断合规咨询、公平竞争审查第三方评估、竞争政策研究及行业培训等专业服务。</p>
+    </div>
+
+    <div class="about-block" style="margin-top:28px; text-align:left;">
+      <h3 style="text-align:center; font-size:17px; font-weight:700; color:var(--accent); margin-bottom:18px; letter-spacing:0.06em;">专业经验</h3>
+      <p>潘良律师在投资并购与公司治理、反垄断与竞争监管、企业合规与数据保护、公司综合类业务、破产清算/重整与不良资产处置等业务领域有丰富工作经验。</p>
+      <p style="margin-top:12px;">曾代理了几十起与企业/公司有关的纠纷案件，包括但不限于：企业出资人权益确认纠纷、挂靠经营合同纠纷、联营合同纠纷、企业承包经营合同纠纷、股东资格确认纠纷、请求变更公司登记纠纷、股东知情权纠纷、股权转让纠纷、公司决议纠纷、公司证照返还纠纷、损害公司/股东/债权人利益责任纠纷、公司合并/分立/减资/增资/解散纠纷、合伙企业纠纷以及有关破产清算案件；</p>
+      <p style="margin-top:12px;">曾代理几十起房地产与建设工程合同纠纷案件，包括但不限于：房屋租赁/买卖合同纠纷、建设工程勘察合同纠纷、建设工程施工合同纠纷、建设工程分包合同纠纷、装饰装修合同纠纷；有关房屋拆迁与征收等行政纠纷与执行等案件提供系列法律服务；</p>
+      <p style="margin-top:12px;">曾为深圳市河北商会、龙华产业资本、福田引导基金、OPPO、天健集团、水务集团、信新智本、维拓环境、茂硕电源、广州资产等多家上市和非上市公司、私募基金、政府机构、企事业单位等客户提供各类优质法律服务。</p>
+    </div>
+    <div class="contact-row">
+      <div class="contact-item"><span>📞</span><span>159 9958 1187</span></div>
+      <div class="contact-item"><span>✉️</span><span>panliang@zhongyinlawyer-sz.com</span></div>
+      <div class="contact-item"><span>📍</span><span>深圳市福田区益田路6003号荣超商务中心A座5楼</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════ 专业背景 ════════════ -->
+<section id="background" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">专业背景</h2><p class="section-subtitle">教育经历 · 执业资质 · 工作履历</p></div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">🎓</span> 教育经历<span class="toggle-arrow">→</span></div>
+      <div class="edu-card">
+        <div class="edu-badge">硕士</div>
+        <div class="edu-info"><h4>深圳大学</h4><div class="degree">法律硕士 · 经济法学</div></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-badge">学士</div>
+        <div class="edu-info"><h4>南昌大学</h4><div class="degree">经济学学士</div></div>
+      </div>
+    </div>
+
+    <div class="pub-section" style="margin-top:40px;">
+      <div class="cat-header"><span class="cat-icon">⚖️</span> 执业资质<span class="toggle-arrow">→</span></div>
+      <div class="qual-grid">
+        <div class="qual-card"><div class="qual-icon">📜</div><div><h4>律师执业证</h4><div class="issuer">广东省司法厅</div></div></div>
+        <div class="qual-card"><div class="qual-icon">📈</div><div><h4>证券从业资格</h4><div class="issuer">中国证券业协会</div></div></div>
+        <div class="qual-card"><div class="qual-icon">🏛</div><div><h4>上市公司独立董事资格</h4><div class="issuer">深圳证券交易所</div></div></div>
+        
+      </div>
+    </div>
+
+    <div class="pub-section" style="margin-top:40px;">
+      <div class="cat-header"><span class="cat-icon">💼</span> 工作履历<span class="toggle-arrow">→</span></div>
+      <div class="timeline">
+        <div class="timeline-item"><div class="year">2021 — 至今</div><h4>合伙人律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>执业于中银深圳，专注反垄断与反不正当竞争、企业合规与数字经济领域。牵头成立反垄断与竞争政策研究中心并担任主任，兼任投资与并购专业委员会主任、破产与重组专业委员会副主任、党总支组织委员。</p></div>
+        <div class="timeline-item"><div class="year">2015 — 2021</div><h4>执业律师</h4><div class="org-name">北京中银（深圳）律师事务所</div><p>加入中银深圳，从事民商事诉讼、企业法律顾问及合规业务，逐步聚焦竞争法与数字经济交叉领域。</p></div>
+        <div class="timeline-item"><div class="year">2012 — 2015</div><h4>执业律师</h4><div class="org-name">广东信达律师事务所 · 广东深兴律师事务所</div><p>先后在广东信达律师事务所、广东深兴律师事务所工作，积累民商事诉讼与企业法律顾问经验。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 社会兼职 ════════════ -->
+<section id="appointments" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">社会兼职</h2><p class="section-subtitle">专家聘任 · 律师协会 · 法学会 · 行业智库</p></div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">🏅</span> 专家聘任<span class="toggle-arrow">→</span></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳市公平竞争审查专家库 · 专家成员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市市场监督管理局</div><h4>深圳标准专家库第五批 · 专家成员</h4><div class="appt-date">2022年11月 — 2025年11月</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>信息通信及互联网行业企业合规师专业技术能力评审组 · 专家成员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>"数据安全推进计划"数安智库 · 专家成员</h4><div class="appt-date">2022年4月 — 2024年4月（续聘一次）</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>"数据安全共同体计划"· 专家</h4><div class="appt-date">聘期三年</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>"个人信息保护合规审计领航计划"· 专家</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国信息通信研究院</div><h4>"企业合规推进计划"· 专家</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">全国两化融合管理标委会</div><h4>数字经济标准工作组（TC573/WG9）· 专家成员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国互联网协会</div><h4>数据安全与治理工作委员会 · 专家成员</h4></div></div>
+    </div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">⚖️</span> 律师协会任职<span class="toggle-arrow">→</span></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字经济法律专业委员会 · 副主任</h4><div class="appt-date">第十一届，任期四年</div></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市律师协会</div><h4>数字创意产业法律服务团 · 副团长</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省律师协会</div><h4>数字经济法律专业委员会 · 委员</h4></div></div>
+    </div>
+
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">📚</span> 法学会任职<span class="toggle-arrow">→</span></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>经济法学研究会 · 理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">广东省法学会</div><h4>反垄断与反不正当竞争法学研究会 · 理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市法学会</div><h4>第八届理事会 · 理事</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市法学会</div><h4>数字法学研究会 · 秘书长</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">中国法学会</div><h4>会员</h4></div></div>
+    </div>
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">⚡</span> 其他社会职务<span class="toggle-arrow">→</span></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳市福田区人民法院</div><h4>特邀调解员</h4></div></div>
+    </div>
+    <div class="appt-block">
+      <div class="cat-header"><span class="cat-icon">🏢</span> 机构职务<span class="toggle-arrow">→</span></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">深圳大学创新发展法治研究院</div><h4>特邀研究员</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>反垄断与竞争政策研究中心 · 主任</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>投资与并购专业委员会 · 主任</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>破产与重组专业委员会 · 副主任</h4></div></div>
+      <div class="appt-card"><span class="appt-dot"></span><div class="appt-body"><div class="appt-org">北京中银（深圳）律师事务所</div><h4>党总支 · 组织委员</h4></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 学术成果 ════════════ -->
+<section id="publications" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">学术成果</h2><p class="section-subtitle">专著编著 · 标准制定</p></div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📖</span> 专著与编著<span class="toggle-arrow">→</span></div>
+      <ul class="pub-list">
+        <li><span class="pub-num">1</span><div class="pub-content"><h4>《元宇宙法律实务》</h4><p class="pub-meta">法律出版社 · 2023年3月 · ISBN 9787519775711</p><span class="pub-role">副主编之一 · 撰写第十一章（算法合规）</span></div></li>
+        <li><span class="pub-num">2</span><div class="pub-content"><h4>《现代企业合规指引》</h4><p class="pub-meta">中国政法大学出版社 · 2023年4月</p><span class="pub-role">作者之一 · 负责第四章《反垄断合规》</span></div></li>
+        <li><span class="pub-num">3</span><div class="pub-content"><h4>《数据安全治理实践指南（2.0）》</h4><p class="pub-meta">2023年发布</p><span class="pub-role">参编</span></div></li>
+      </ul>
+    </div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">📋</span> 团体标准制定<span class="toggle-arrow">→</span></div>
+      <ul class="pub-list">
+        <li><span class="pub-num">1</span><div class="pub-content"><h4>《平台经营者反垄断合规管理规则》</h4><p class="pub-meta">中国标准化协会 · 团体标准 · 2021年</p><span class="pub-role">参与起草</span></div></li>
+        <li><span class="pub-num">2</span><div class="pub-content"><h4>《经营者公平竞争合规管理体系建设规范》</h4><p class="pub-meta">团体标准 · 2022年</p><span class="pub-role">参与起草</span></div></li>
+        <li><span class="pub-num">3</span><div class="pub-content"><h4>《中小企业合规管理体系有效性评价》</h4><p class="pub-meta">中国中小企业协会 · T/CASMES 19—2022 · 2022年5月</p><span class="pub-role">起草人</span></div></li>
+        <li><span class="pub-num">4</span><div class="pub-content"><h4>《企业个人信息保护合规管理体系指南》</h4><p class="pub-meta">中国互联网协会 · T/ISC 0050—2024 · 2024年</p><span class="pub-role">主要起草人之一</span></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 获奖情况 ════════════ -->
+<section id="awards" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">获奖情况</h2><p class="section-subtitle">行业荣誉 · 专业表彰</p></div>
+
+    <div class="pub-section">
+      <div class="cat-header"><span class="cat-icon">🏆</span> 荣誉与表彰<span class="toggle-arrow">→</span></div>
+
+      <div class="award-card"><div class="award-icon">🥇</div><div class="award-info"><h4>深圳市律师协会 · 专业委优秀委员</h4><div class="award-issuer">深圳市律师协会</div><div class="award-date">2022年度、2023年度（连续两年）</div></div></div>
+
+      <div class="award-card"><div class="award-icon">🥇</div><div class="award-info"><h4>广东省律师协会 · 专业委优秀委员</h4><div class="award-issuer">广东省律师协会</div><div class="award-date">2022年度</div></div></div>
+
+      <div class="award-card"><div class="award-icon">🌟</div><div class="award-info"><h4>创新合作论坛 · 突出贡献个人</h4><div class="award-issuer">深圳市律师协会 · 创新合作论坛（2023）</div><div class="award-date">2023年</div></div></div>
+
+      <div class="award-card"><div class="award-icon">🎖️</div><div class="award-info"><h4>深圳市律师行业党委 · 优秀共产党员</h4><div class="award-issuer">深圳市律师行业党委</div><div class="award-date">2024年度</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 专业文章 ════════════ -->
+<section id="articles" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">专业文章</h2><p class="section-subtitle">研究成果 · 专业洞见</p></div>
+    <div class="article-card">
+      <div class="art-thumb"><img src="art1_1.jpg" alt="反垄断合规问题研究" loading="lazy"></div>
+      <div class="art-content">
+      <div class="art-title">《反垄断合规问题研究——基于行政诉讼案件统计分析与应对策略》</div>
+      <div class="art-date">2022年1月26日 · 中银（深圳）律师事务所</div>
+      <div class="art-excerpt">2021年，是中国反垄断“大年”，强监管常态化使“反垄断”一词耳熟能详。而针对反垄断合规问题，尤其是针对行政处罚提起行政诉讼的案件情况又如何？且看本文的统计分析与研究，希望本文能起抛砖引玉之效，让读者更好理解反垄断行政诉讼案件的现状。但鉴于……</div>
+      <span class="art-link" onclick="openArticleModal(this)">阅读全文 →</span>
+      </div>
+      <script type="text/template"><!--subtitle--END-->
+ 2021年，是中国反垄断“大年”，强监管常态化使“反垄断”一词耳熟能详。而针对反垄断合规问题，尤其是针对行政处罚提起行政诉讼的案件情况又如何？且看本文的统计分析与研究，希望本文能起抛砖引玉之效，让读者更好理解反垄断行政诉讼案件的现状。但鉴于搜索查找能力有限，数据统计分类与研究若有未详尽之处，还请读者见谅。
+ <p>2021年，是中国反垄断“大年”，强监管常态化使“反垄断”一词耳熟能详。而针对反垄断合规问题，尤其是针对行政处罚提起行政诉讼的案件情况又如何？且看本文的统计分析与研究，希望本文能起抛砖引玉之效，让读者更好理解反垄断行政诉讼案件的现状。但鉴于搜索查找能力有限，数据统计分类与研究若有未详尽之处，还请读者见谅。</p><p>根据笔者在中国裁判文书网、北大法宝、威科先行等法律数据库以及国家市场监督管理总局官方网站公布的案例检索，全国各级法院针对反垄断行政处罚的诉讼案件分门别类统计共有14起。其中，经营者达成垄断协议行政诉讼12起，包括达成横向垄断协议11起，纵向垄断协议1起；经营者滥用市场支配地位行政诉讼2起，以上共计14起。但奇怪的是，并没有检索到有关经营者集中行政诉讼案例，根据官方公布的数据，《反垄断法》自2008年8月1日实施以来，执法机关已审结经营者集中案件近4000件。在数量如此庞大的经营者集中行政处罚案件中，竟然没有一个经营者因不服行政机关处罚而提起行政诉讼，其中原由复杂，值得进一步探讨，在此不做赘述。</p><p><strong>一、反垄断行政诉讼案件统计</strong></p><p>为方便查看，笔者将这14起反垄断行政诉讼案件分别以横向垄断协议、纵向垄断协议、滥用市场支配地位案由为分类进行统计。</p><p>（一）横向垄断协议行政诉讼案件统计 </p><p>经营者不服所谓达成和/或实施横向垄断协议行政处罚而提起行政诉讼的共有11起，见下表：</p><br data-darkmode-color-16451864898917="rgb(163, 163, 163)" data-darkmode-original-color-16451864898917="#fff|rgb(0, 0, 0)"/><p><img src="art_img_0.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p><img src="art_img_1.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p>表1 横向垄断协议行政诉讼案件统计<br data-darkmode-color-16451864898917="rgb(163, 163, 163)" data-darkmode-original-color-16451864898917="#fff|rgb(0, 0, 0)|rgb(63, 63, 63)"/></p><br data-darkmode-color-16451864898917="rgb(163, 163, 163)" data-darkmode-original-color-16451864898917="#fff|rgb(0, 0, 0)"/><p>（二）纵向垄断协议行政诉讼案件统计 </p><p>经营者不服所谓达成和/或实施纵向垄断协议行政处罚而提起行政诉讼的共有1起，见下表2：</p><p><img src="art_img_2.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p>表2 纵向垄断协议行政诉讼案件统计</p><br/><p>（三）滥用市场支配地位行政诉讼案件统计 </p><p>经营者不服所谓滥用市场支配地位行为行政处罚而提起行政诉讼的共有2起，见下表3：</p><p><img src="art_img_3.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p>表3 滥用市场支配地位行政诉讼案件统计</p><br/><p><strong>二、反垄断行政诉讼案件分析</strong></p><p>（一）横向垄断协议行政诉讼案件最多，占到了总数的近八成</p><p>由上述表格的统计数据可知，自《反垄断法》实施以来，因不服反垄断执法机构行政处罚而向法院提起行政诉讼的案件归类总结仅有14起，其中又以达成和/或实施横向垄断协议案例最多，占到了11起。所谓横向垄断协议，是指具有竞争关系的经营者达成的排除、限制竞争的协议、决定或者其他协同行为。比如在生产或者销售过程中处于同一阶段的生产商之间、零售商之间或者批发商之间达成的有关商品价格、数量等的协议、决定或者其他协同行为。根据《反垄断法》的相关规定，横向垄断协议主要包括实施固定价格、限制产量、划分市场、限制购买或开发、联合抵制其他竞争对手等排除、限制竞争等行为。实践中，经营者达成/实施横向垄断协议往往最常见，也是最为典型的垄断行为。</p><p>（二）反垄断行政诉讼案件，相较于反垄断处罚案件而言数量极少</p><p>根据国家反垄断局局长甘霖在2021年11月9日接受人民日报专访时透露的数据，自《反垄断法》颁布实施以来，共查处各类垄断案件741件，罚没316.84亿元。而根据笔者上述的统计数据，因不服反垄断执法机构行政处罚而提起的行政诉讼案件数量仅为14件，占比仅为执法机关已查处的反垄断处罚案件总数的不到2%。由此可见，经营者涉嫌垄断被行政处罚后，因不服该处罚决定提起行政诉讼的仅为极少数，更多的受罚对象只是停留在反垄断执法调查或复议程序阶段，之后并不会选择进一步的司法救济。</p><p>（三）在已结案的反垄断行政诉讼中，经营者最终都没有胜诉</p><p>如上述表格所示，除了2起案件尚待法院作出判决以外，即除了海南某工程有限公司等12家公司诉海南省市场监督管理局案，以及山东康惠医药有限公司、潍坊普云惠医药有限公司诉国家市场监督管理总局案之外，其他已结案的反垄断行政诉讼中，法院的最终判决均支持了执法机构的处罚决定，驳回了被处罚经营者的诉讼请求，这些经营者提起的行政诉讼全部败诉。通过查阅相关判决书可以发现，尽管在诉讼中，被处罚经营者始终坚持认为自身行为不涉及垄断，自认未达成和/或实施垄断协议，同时也积极向法院主张执法机构作出的行政处罚决定适用法律错误、程序不合法、处罚过重等，但最终的结果也显而易见，在历经一审、二审甚至再审程序后，法院并未支持被罚经营者的上述辩解主张。</p><p>（四）罕见的经营者主张曾获得一审法院支持</p><p>值得注意的是，在表2即海南裕泰科技饲料有限公司与海南省物价局一案中，一审法院（海口市中级人民法院）判决撤销了反垄断执法机构作出的行政处罚决定。但随着该案被上诉至海南省高级人民法院，二审法院认为反垄断执法机构作出的行政处罚决定认定事实清楚、适用法律正确，撤销了一审判决。且在后续的再审程序中，最高人民法院也裁定支持二审法院的判决。至此，原告（即经营者）仅在一审中曾取得过罕见的胜诉，但历经了二审和再审程序之后，最终还是以败诉告终。同时，该案也是本文列举的14起行政诉讼案件中，唯一的一起纵向垄断协议行政诉讼案件。鉴于此，笔者认为，这是唯一一起经营者主张曾获得一审法院认可的案件，其对于理论界与实务界都具有重要意义，尤其是该案各级法院对于纵向垄断协议认定的观点，值得深入学习和探讨，下文仅列举部分：</p><p>下文仅列举部分：</p><p>一审法院认为，对于反垄断法第十四条所规定的垄断协议的认定，不能仅以经营者与交易相对人是否达成了固定或者限定转售价格协议为依据，而需要结合该法第十三条第二款所规定的内容，进一步综合考虑相关价格协议是否具有排除、限制竞争效果。本案中，裕泰公司与经销商签订《饲料产品销售合同》第七条有关“销售价服从甲方（裕泰公司）的指导价，否则，甲方有权减少其让利”的约定，是否属于反垄断法第十四条第（一）项规定的“固定向第三人转售商品的价格”的情形，需要综合考虑裕泰公司的经营规模、裕泰公司与经销商签订合同项下的鱼饲料在相关市场所占份额、鱼饲料在市场上的竞争水平、该约定对产品供给数量和价格的影响程度、该约定对市场行情的影响等因素。现有证据表明，裕泰公司的经营规模、市场所占份额等上述因素不具有排除、限制竞争效果，不构成垄断协议。因此海南省物价局作出的行政处罚适用法律存在错误。</p><br data-darkmode-color-16451864898917="rgb(255, 255, 255)" data-darkmode-original-color-16451864898917="#fff|rgb(0, 0, 0)|rgb(255, 255, 255)" data-darkmode-bgcolor-16451864898917="rgb(205, 188, 161)" data-darkmode-original-bgcolor-16451864898917="#fff|rgb(243, 245, 251)|rgb(251, 230, 197)"/><p>对此，最高人民法院在再审过程中予以了明确，行政诉讼中对反垄断执法机构认定纵向垄断协议行为合法性的判断标准，与民事诉讼中对纵向垄断协议的审查标准，存在明显的差别。纵向垄断协议案件的认定，不应当将“排除、限制竞争”的构成要件等同于“排除、限制竞争的效果”，换言之，虽然达成但未实施垄断协议的行为不会构成“排除、限制竞争”的效果，但如果该协议一旦实施则必然构成“排除、限制竞争”的效果，则未实施的协议仍然具有“排除、限制竞争”的可能性。那么，反垄断执法机构在反垄断行政调查中，经过调查证实经营者存在固定向第三人转售商品的价格及限定向第三人转售商品的最低价格时，即可认定构成纵向垄断协议，无需对该新协议是否符合“排除、限制竞争”这一构成要件承担举证责任，除非经营者能够提交证据证明协议不符合“排除、限制竞争”，或属于《反垄断法》第十五条规定的豁免情形。</p><p>由此可见，一审法院和最高人民法院观点之间的差异在于认定纵向垄断协议中的“排除、限制竞争”，一审法院强调认定纵向垄断协议需要具有“排除、限制竞争的效果”，而最高院则认为只要具有“排除、限制竞争”的可能性，即可认定构成纵向垄断协议。</p><p>在2021年10月23日公布的《反垄断法（修正草案）》第十七条第二款中，新增了“经营者能够证明其不具有排除、竞争效果的，不予禁止”的规定。据此，《反垄断法（修正草案）》的上述新增条款能否在执法层面和司法层面为相关机构的决策提供依据，能否有效解决有关“排除、限制竞争”的争议，特别是能否为企业提供明确的反垄断合规风险预期，都值得各界密切关注。</p><br/><p><strong>三、反垄断行政调查与行政诉讼的应对策略</strong></p><p>近年来，随着反垄断法律法规与政策的落地，反垄断强监管已然常态化，相关经营者被行政处罚的案件亦在不断增多。与此同时，相关企业在实施可能涉及垄断的事务时，如何明确反垄断合规风险与预期、如何应对或配合执法机构的调查与处罚、如何寻求救济途径，已是相关企业不得不高度重视的重要议题。</p><p>从以上的数据分析，可以看出最高法院对于反垄断行政诉讼案件核心问题的把握与倾向，以及地方法院在处理反垄断行政诉讼案件时关注的焦点问题。对于从事反垄断业务的律师而言，应如何介入并运用有效的策略和措施尽最大限度保护当事人的权利,已成为律师实践工作中最大的挑战。基于现有数据，我们对案件处理的不同阶段可以采取的有效措施及应对策略进行分析。</p><p>（一）反垄断行政执法调查阶段</p><p>根据《反垄断法》第三十八条规定，反垄断执法机构依法对涉嫌垄断行为进行调查。对涉嫌垄断行为，任何单位和个人有权向反垄断执法机构举报。反垄断执法机构应当为举报人保密。举报采用书面形式并提供相关事实和证据的，反垄断执法机构应当进行必要的调查。</p><p>凡事预则立不预则废！执法机关行政调查取证阶段属于重要且关键时期，相关企业应当及时聘请专业人士提供全面的反垄断合规服务。律师首先应向当事人了解案件情况，主要是充分了解当事人的基本信息、所在行业及相关市场情况，从而判断经营者属于哪种垄断行为，包括垄断行为所涉及的产品或服务、达成垄断行为的形式和方式、竞争者在市场中的地位或作用、垄断行为实施情况和持续时间等；其次，对于执法机关提出的约谈、调查要求，律师可以协助当事人进行约谈、调查前的准备工作，包括对可能涉嫌垄断行为的预判及答辩准备，还可以协助被调查经营者与执法机构积极沟通与协商，比如制作申请宽大材料或提出豁免申请，争取执法机构对当事人从宽、从轻处理，尽最大可能使反垄断执法机构终止（中止）调查或结案等；再者，当执法机构作出行政处罚后，可以向执法机构申请举行听证，充分保障被调查经营者的陈述权、申辩权和质证权等权利；最后，还可以协助当事人在垄断行为终止后就减轻或消除垄断行为的危害后果制订整改方案，跟进整改方案落实情况，并及时向执法机关进行汇报等。</p><p>（二）反垄断行政复议和行政诉讼阶段</p><p>根据《反垄断法》第五十三条规定，对反垄断执法机构依据本法第二十八条、第二十九条（经营者集中）作出的决定不服的，可以先依法申请行政复议；对行政复议决定不服的，可以依法提起行政诉讼。对反垄断执法机构作出的前款规定以外的决定不服的，可以依法申请行政复议或者提起行政诉讼。可见，对于经营者集中而言，行政复议是前置程序，而后才可提起行政诉讼。但涉及垄断协议和滥用市场支配地位的案件，当事人可以任意选择行政复议或行政诉讼程序，并没有限制。</p><p>在行政复议和行政诉讼阶段，律师应向当事人明确告知提起行政复议或行政诉讼可能的法律后果，并且通过及时查阅、复制反垄断执法机构的答辩和证据材料，进行合法性审查及分析，并结合反垄断相关法律、法规、规章与案例，对执法机构的具体行政行为进行综合评价，对经营者是否构成垄断进行全面阐述，并最后向复议机关或法院递交法律意见书或代理意见，对争议事实、法律适用、具体行政行为合法性等方面给予充分的<p>…（全文请访问中银官网）</p></script>
+    </div>
+    <div class="article-card">
+      <div class="art-thumb"><img src="art2_1.jpg" alt="经营者集中处罚案例" loading="lazy"></div>
+      <div class="art-content">
+      <div class="art-title">《从经营者集中处罚案例看反垄断执法常态化》</div>
+      <div class="art-date">2021年12月8日 · 中银（深圳）律师事务所</div>
+      <div class="art-excerpt">强化反垄断和防止资本无序扩张，是2021年国家经济发展的重点任务之一。随着反垄断政策的不断强化、相关大案要案的陆续公布，我国反垄断执法已经进入常态化、强监管时代。 强化反垄断和防止资本无序扩张，是2021年国家经济发展的重点任务之一。随着反……</div>
+      <span class="art-link" onclick="openArticleModal(this)">阅读全文 →</span>
+      </div>
+      <script type="text/template"><!--subtitle--END-->
+ 强化反垄断和防止资本无序扩张，是2021年国家经济发展的重点任务之一。随着反垄断政策的不断强化、相关大案要案的陆续公布，我国反垄断执法已经进入常态化、强监管时代。
+ <p>强化反垄断和防止资本无序扩张，是2021年国家经济发展的重点任务之一。随着反垄断政策的不断强化、相关大案要案的陆续公布，我国反垄断执法已经进入常态化、强监管时代。</p><p>在立法修法层面，第十三届全国人大常委会第三十一次会议对《中华人民共和国反垄断法（修正草案）》进行了审议，于2021年10月23日向社会公众公布并征求意见，意味着我国反垄断法的修订工作将会全面提速、加快完成。</p><p>在执法层面，通过对经营者集中案例的统计数据进行分析，仅2021年一年，国家市场监管总局发布的对违法实施经营者集中处罚案例的数量就已经超过了2014-2020年过去几年发布数量的总和。就在前几日，2021年11月20日，国家市场监管总局依法发布对43起未依法申报违法实施经营者集中案作出行政处罚决定，涉及案件数量多、涉及企业广泛、交易时间跨度较长。腾讯、阿里、百度、京东、滴滴、美团等均涉其中，其中属腾讯系与阿里系最多，分别涉及13起和12起案件。在此做一个简单的对比，以2020年为例，2020年全年违法实施经营者集中处罚案例总共也才13例，而今年以来仅腾讯系案例就已经和去年全年案例总数持平。由此可见，今年以来相关执法部门加强了对反垄断领域经营者集中的审查力度，所查处的企业数量不可谓不多。</p><p>总体来说，就经营者集中案件审查而言，在强化反垄断执法的大环境之下，企业经营者主动申报的意识须不断提高。而执法部门在有限的执法资源下，集中力量精准出击，对重点行业或领域重点关注，将会成为执法方向的必然选择。正如《反垄断法（修正草案）》第37条规定，“国务院反垄断执法机构应当依法加强民生、金融、科技、媒体等领域经营者集中的审查。”因此，笔者认为，结合近年执法机关对违法经营者集中行政处罚的实际情况与特点来看，以下几点趋势或问题值得关注。</p><p>一、规范涉及协议控制架构企业（VIE）的经营者集中行为<br/> 根据笔者的统计，在2014年至2021年11月20日期间，因违法实施经营者集中被行政处罚的案件总计为153起，涉及到213家企业（见下表1）。以2020年为例，被处以50万元顶格罚款的案件仅有3起，分别是国市监处〔2020〕26号、国市监处〔2020〕27号、国市监处〔2020〕28号，即阿里巴巴投资有限公司收购银泰商业（集团）有限公司股权、阅文集团收购新丽传媒控股有限公司股权、深圳市丰巢网络技术有限公司收购中邮智递科技有限公司股权等三起未依法申报违法实施经营者集中案。上述三家被处罚公司均在互联网领域有较大的影响力，且都存在协议控制架构：其中既有被调查的经营者存在协议控制架构的情形，也有目标公司通过协议控制境内运营实体的情形。</p><p><br/></p><p><img src="art2_1.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p><br/></p><p>在上述这三起案件中，释放出来的信号已非常明确，那就是《反垄断法》适用于所有主体，包括但不限于内资和外资企业、国有企业和民营企业、大企业和中小企业、互联网企业和传统企业等等。同时，上述三起案件也是执法机关首次对协议控制架构企业违法实施经营者集中进行处罚。而且2020年12月14日，市场监管总局反垄断局主要负责人在接受采访时也表示，希望能够通过这三起案件，让经营者更清楚地认识到协议控制架构不是互联网企业规避经营者集中监管的理由，违法实施集中，均会受到相应处罚。<br/> 2021年2月7日发布的《国务院反垄断委员会关于平台经济领域的反垄断指南》对此也已进一步明确：“涉及协议控制架构的经营者集中，属于经营者集中反垄断审查范围”。据此，执法机关对涉及协议控制架构企业的经营者集中行为的监管做到了有法可依、逐渐规范，协议控制架构不再是企业规避经营者集中监管的“避风港”。<br/> 为此，我们建议相关企业在实施经营者集中时，应当进一步提高依法申报的风险意识，审查自身企业架构，尽早放弃观望态度，高度重视并聘请专业律师积极主动申报。无论何种类型的企业，无论是被调查的经营者、目标公司还是实际控制人存在协议控制架构，只要违法实施经营者集中都将会受到相应的行政处罚。<br/> <br/> </p><p>二、强化民生领域和科技领域的反垄断监管</p><p>通过查阅近几年的《中国反垄断执法年度报告》可以看出，反垄断执法机构对民生和科技领域一直保持着很高的监管力度。<br/> 在2019年，反垄断执法的重点行业主要是医药行业、公共事业行业、石油化工行业、汽车行业、航空行业、建筑和房地产行业、信息通信行业等。</p><p>在2020年，反垄断执法的重点行业主要是互联网行业、半导体行业、汽车行业、建筑材料行业、公共事业行业、医药行业、交通运输行业、石油化工行业等。</p><p>医药行业、建筑和房地产行业等民生领域，是直接关乎人民群众切身利益的行业与领域，对上述重点行业与领域加强反垄断审查，有利于增进人民福祉，维护社会公平。<br/></p><p> 而互联网行业、航空行业等科技领域，关涉国家核心竞争力，在国际竞争愈发激烈的大背景下，强化科技领域的反垄断审查工作，有利于促进科技企业有序健康发展，也有助于提高我国科技实力、激发活力。2021年以来，国家对科技领域尤其是互联网领域进一步加大了反垄断审查力度。</p><p>截至2021年11月20日，国家市场监管总局已累计发布了92例对违法实施经营者集中行政处罚的通报，其中针对互联网领域的违法实施经营者集中行为，就发布了86例处罚通告，占比为93.48%。<br/> 仅有的6起非互联网领域的违法实施经营者集中案分别为：华发物业与仲量联行设立合营企业华发仲量联行案（国市监处〔2021〕2号）、宝能汽车收购观致汽车股权案（国市监处〔2021〕4号）、中山乐兴通过合同取得深圳索菱控制权案（国市监处〔2021〕5号）、武汉金宇与敦豪北京设立合营企业案（国市监处〔2021〕11号）、萃联中国收购沈阳捷通股权案（国市监处〔2021〕42号）、中集集团收购中国消防股权案（国市监处〔2021〕43号）。</p><p>由此可见，今年以来互联网领域违法实施经营者集中的案件数量远多于其他领域的案件数量。这说明执法机关对互联网领域的违法实施经营者集中行为，采取了强监管、严惩罚的态度。但从另一个方面也可看出，互联网平台主动申报意识也在不断提高，实施集中的公司通过主动梳理和申报相关交易，以期能够通过反垄断审查。</p><p> 随着申报数量的激增，在有限的执法资源、人员编制等条件制约之下，未来国家市场监管总局、国家反垄断局是否会调整现有的执法架构，是否会授权省级执法机关参与或执行审查工作，拭目以待。</p><p><img src="art2_2.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p><br/></p><p>三、加大未依法申报违法实施经营者集中的处罚力度，顶格罚款案件大幅增加</p><p>根据现行《反垄断法》第四十八条：“经营者违反本法规定实施集中的，由国务院反垄断执法机构责令停止实施集中、限期处分股份或者资产、限期转让营业以及采取其他必要措施恢复到集中前的状态，可以处五十万元以下的罚款。”50万元的顶格罚款与这些动辄上亿元的交易标的金额相比，实在是九牛一毛。但在现行反垄断法之下，50万元顶格罚款已属于最严厉的处罚措施了。现如今，50万元顶格罚款已经不能满足当今反垄断执法工作的要求，反垄断法需要及时修正、与时俱进。 </p><p>相比域外而言，目前我国针对违法实施经营者集中的罚款额度明显偏低，处罚措施确实欠缺威慑力，使得企业违法成本低，一些企业频繁违法实施经营者集中，或者对以往集中案例处于观望状态。以欧盟为例，2004年开始施行的《欧盟并购条例》 [Regulation (EC) No 139/2004 — the control of concentrations between undertakings (the Merger Regulation)]第14条第2款，就对未依法申报而进行的经营者集中设置了总营业额10%的罚款上限。这意味着在欧盟，企业如果违法实施经营者集中可能将面临巨额罚款，这也使得企业在实施经营者集中时不得不慎重评估反垄断风险与后果。</p><p>不过，值得期待的是，在2021年10月23日公布的《反垄断法（修正草案）》第五十六条中，对于违反法律规定进行经营者集中，罚款额度上限由原来的50万元变更设置为“上一年度销售额百分之十”，其中对于上一年度没有销售额的，处五百万元以下的罚款。虽然目前《反垄断法（修正草案）》还处于征求意见阶段，但为了适应新时代反垄断的需要，罚款额度的变化趋势已经不可逆转。在未来企业如果违法实施经营者集中所面临的处罚将更加严厉，罚款数额也将大幅提高，这会对企业违法实施经营者集中产生极大的威慑力。当然，尽管罚款额度会有所提高，但具体如何确定该规定中的企业“销售额”依然是问题的关键。对于企业来说，销售额可以是国内销售额，也可以是全球销售额；可以是涉案企业的销售额，还可以是整个集团的销售额。因此，到底是“抓大放小”，抑或是“抓小放大”，未来还需要出台相关细则予以明确。</p><p>从相关的处罚案例和数据来看，上述变化将带来的震慑力已经预先产生了效果。经笔者统计，在2014-2020年过去7年间，未依法申报违法实施经营者集中被行政处罚的案件数量总计为61件，总体呈现上升趋势，2019年稍达到一个峰值，2020年又有所回落。而2021年截至目前，未依法申报违法实施经营者集中被行政处罚的案件数量就达到了92件，申报数量和处罚数量呈现出爆发式的增长，已经超过了2014年-2020年过去7年案件数量总和（见下表2）。此外，2020年系首次出现顶格罚款50万元的年份，但仅有3起，约占当年违法实施经营者集中行政处罚案件数量的23.07%。而进入2021年以后，截止11月20日，在国家市场监管总局作出92例违法实施经营者集中行政处罚决定中，被顶格处罚50万元的案件就有86件，占比达到了93.48%，平均罚款金额也有所提高（见下表3）。由此可见，进入2021年以后，未依法申报违法实施经营者集中的处罚案件数量已经大幅增加，呈现出加速上升趋势，且大多数都被顶格处罚。这也体现出反垄断执法力度不断加大、执法愈发严格、企业反垄断风险意识越来越强等特征。</p><p><br/></p><p>四、推进反垄断相关配套制度修改完善，充实监管力量</p><p>《反垄断法》自2008年8月1日生效以来，相关配套制度不断健全完善，修法工作也在稳步推进。2020年1月2日，国家市场监督管理总局公开发布《反垄断法修订草案公开征求意见稿》，向社会公众广泛征求意见，标志着我国《反垄断法》的修订进程启动。而备受国内外关注的《国务院反垄断委员会关于平台经济领域的反垄断指南》也已于2021年2月7日生效，这让互联网领域的反垄断法律制度更趋完善，也更具有可操作性和可预期性。2021年10月23日，第十三届全国人大常委会第三十一次会议对《反垄断法（修正草案）》进行了审议，并于2021年10月23日公布，再次向社会广泛征求意见，此次修正针对反垄断法实施中存在的突出问题，进一步完善了反垄断相关制度，加大了对垄断行为的处罚力度，为强化反垄断和防止资本无序扩张提供更加明确的法律依据和更加有力的制度保障。</p><p>《反垄断法》从征求意见稿到现在的修正草案，已经在不断加强对反垄断执法的保障。征求意见稿中规定反垄断执法机构可以根据具体情形责令停止实施集中，附加减少集中对竞争产生不利影响的限制性条件，责令继续履行附加的限制性条件中的义务或变更附加的限制性条件，责令限期处分股份或者资产、限期转让营业以及采取其他必要救济措施恢复到集中前的状态。修正草案中规定了反垄断执法机构依法对滥用行政权力排除、限制竞争的行为进行调查时有关单位或者个人的配合义务，并规定对涉嫌违法行为的经营者、行政机关和法律、法规授权的具有管理公共事务职能的组织，反垄断执法机构可以对其法定代表人或者负责人进行约谈，要求其采取措施进行整改。上述这些变化将为反垄断执法工作提供有力的制度保障，进一步扩充反垄断执法机构权限，提升治理能力。</p><p>在充实执法力量和队伍建设上，2021年11月18日在国家市场监督管理总局办公大楼，国家反垄断局正式挂牌。甘霖任市场监管总局副局长、国家反垄断局局长，主持国家反垄断局工作。如此一来，首先可以解决多头监管的协调问题，统一反垄断执法。其次，国家反垄断局下设竞争政策协调司、执法一司、执法二司，相比此前受限于市场监管总局反垄断局，如今可以扩充人员编制，充实反垄断监管力量。而从官方公布三个新司局机构职责来看，数字经济领域垄断协议、滥用市场支配地位执法、数字经济领域经营者集中反垄断审查被单独列出。可见，数字经济将成为监管执法的重点领域。当然，随着申报数量的激增，在有限的执法资源、人员编制等条件制约之下，未来国家市场监管总局、国家反垄断局还可能会调整现有的执法架构，授权省级执法机关参与或执行审查工作。</p><p>简而言之，随着科技进步与技术发展，我国平台经济蓬勃发展，新业态、新模式层出不穷，但涉及垄断的大案、重案、疑难杂案也明显增多，给市场监管带来了巨大的挑战。如今反垄断执法进入常态化，强监管时代已是大势所趋。各类企业，尤其是平台企业，都应当严格遵守反垄断法律法规，在实施经营者集中之前充分评估反垄断风险，或者聘请具有相关专业经验的律师进行咨询，依法申报。而反垄断执法部门，则应当依法依规提高执法透明度，充分保障社会各界对反垄断执法的有效监督，切实维护市场公平竞争，使我国的反垄断事业不断发展进步。</p><p><br/></p></script>
+    </div>
+  </div>
+</section>
+<!-- ════════════ 相关动态 ════════════ -->
+<section id="news" class="section">
+  <div class="container">
+    <div class="section-header"><h2 class="section-title">相关动态</h2><p class="section-subtitle">最新资讯 · 行业关注</p></div>
+    <div class="article-card">
+      <div class="art-thumb"><img src="news1_1.png" alt="企业合规师评审组专家" loading="lazy"></div>
+      <div class="art-content">
+      <div class="art-title">中银律师受聘为企业合规师专业技术能力评审组专家</div>
+      <div class="art-date">2022年9月21日 · 中银（深圳）律师事务所</div>
+      <div class="art-excerpt">近日，由中国互联网协会主办、中国信息通信研究院知识产权与创新发展中心承办的“合规治理和知识产权保护论坛”在京成功举办。作为2022(第八届)中国互联网法治大会的分论坛之一，会议由中国知识产权法学研究会副会长、中国互联网协会知识产权工作委员会……</div>
+      <span class="art-link" onclick="openArticleModal(this)">阅读全文 →</span>
+      </div>
+      <script type="text/template"><!--subtitle--END-->
+ 
+<p>近日，由中国互联网协会主办、中国信息通信研究院知识产权与创新发展中心承办的“合规治理和知识产权保护论坛”在京成功举办。作为2022(第八届)中国互联网法治大会的分论坛之一，会议由中国知识产权法学研究会副会长、中国互联网协会知识产权工作委员会执行主任金克胜教授、中国信通院知识产权与创新发展中心主任李文宇主持，来自政府部门、高校、互联网企业、律师事务所等单位的数百位专家与代表，围绕企业合规治理和知识产权保护问题进行了深入探讨。</p><p><br/></p><p><img src="news1_1.png" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p>会议期间举行了新书《数字经济合规管理与案例解析》刊印启动仪式，新书作为信息通信及互联网行业企业合规师教材，自2022年3月启动以来，由来自反腐败合规、知识产权合规、反垄断合规、数据合规、算法合规、广告合规、刑事合规等领域的十余位专家学者参与编写。</p><p>北京中银（深圳）律师事务所合伙人、中银反垄断与竞争政策研究中心主任潘良律师作为新书作者之一，深度参与了编写工作，受聘为“企业合规师专业技术能力评审组专家”。</p><p><br/></p><p> <img src="news1_2.png" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p><br/></p><p>中国信息通信研究院为工业和信息化部直属科研事业单位，是国家在信息通信领域（ICT）最重要的支撑单位以及工业和信息化部综合政策领域主要依托单位。</p><p><br/></p><p>中国互联网协会成立于2001年5月25日，由国内从事互联网行业的网络运营商、服务提供商、设备制造商、系统集成商以及科研、教育机构等70多家互联网从业者共同发起成立，是由中国互联网行业及与互联网相关的企事业单位自愿结成的行业性的全国性的非营利性的社会组织，现有会员1000多个。现任理事长为工业和信息化部原副部长、中国移动通信集团有限公司原董事长尚冰。</p><p><br/></p><p>中银深圳现为全国两化融合标委会数字经济标准工作组（TC573/WG9）第一批成员单位、中国互联网协会与中国信通院“电信和互联网行业数据安全人才强基计划”“个人信息保护合规审计领航计划”“数据安全推进计划”“企业合规推进计划”首批参与单位。中银律师不仅在传统业务领域保持优势，针对反垄断、数字经济、企业合规等法律服务也展现了深厚专业能力。</p><p><br/></p><p>其中，潘良律师及其团队成员参与完成《中小企业合规管理体系有效性评价》团体标准起草，正参与《经营者公平竞争合规管理体系建设规范》《数字经济 术语》《数字经济 评估规范》等团体标准起草。潘良律师现为深圳大学创新发展法治研究院特邀研究员、深圳市律师协会数字经济委副主任、广东省律师协会数字经济委委员、广东省法学会经济法学研究会第三届理事会理事、中国信通院“个人信息保护合规审计领航计划”“数据安全推进计划”“企业合规推进计划”等项目专家成员。</p><p><br/></p></script>
+    </div>
+    <div class="article-card">
+      <div class="art-thumb"><img src="news2_1.jpg" alt="商事仲裁案全面获胜" loading="lazy"></div>
+      <div class="art-content">
+      <div class="art-title">中银律师团队代理重大商事仲裁案全面获胜</div>
+      <div class="art-date">2022年1月11日 · 中银（深圳）律师事务所</div>
+      <div class="art-excerpt">近日，北京中银（深圳）律师事务所潘良律师带领团队代理的两起金融借款纠纷商事仲裁案，经北京仲裁委员会/北京国际仲裁中心组庭审理，两案均取得全面胜诉裁决，涉案标的金额超过一亿元。本案由合伙人潘良、刘康力、廖烨明、朱方涛、邱忠森律师及杨继奇实习律……</div>
+      <span class="art-link" onclick="openArticleModal(this)">阅读全文 →</span>
+      </div>
+      <script type="text/template"><!--subtitle--END-->
+ 
+<p>近日，北京中银（深圳）律师事务所潘良律师带领团队代理的两起金融借款纠纷商事仲裁案，经北京仲裁委员会/北京国际仲裁中心组庭审理，两案均取得全面胜诉裁决，涉案标的金额超过一亿元。</p><p><br/></p><p>本案由合伙人潘良、刘康力、廖烨明、朱方涛、邱忠森律师及杨继奇实习律师等人共同组成法律服务团队。两个案件涉及主体众多，需要处理金融借款、保证担保、抵押担保、上市公司违规担保、上市公司破产重整、债权申报、当事人内地身份变为香港身份、国内/国际仲裁程序的变更与选择、多次确仲之诉导致仲裁程序的中止与恢复等多重法律关系及法律事项，涉及刑民交叉等复杂法律程序，法律关系、事务和程序错综复杂。</p><p>中银律师充分发挥在金融与资本法律领域的专业特长，充分了解案情，全面收集并认真研究证据，依法提出有力证据和观点，从事实认定及法律适用等方面进行了充分论证，使仲裁庭最终依法采纳并裁决支持我方仲裁请求，有力维护了当事人合法权益。中银律师在两案中展现了精湛的专业能力和勤勉、高效的工作态度，得到了客户的高度评价与认可。</p><br/><p><strong>【案件一】</strong></p><p><img src="news2_1.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><p><br/></p><p><strong> 【案件二】</strong></p><p><img src="news2_2.jpg" style="max-width:100%;height:auto;display:block;margin:12px auto"></p><br/><p><br/></p></script>
+    </div>
+  </div>
+</section>
+<footer>
+  <img src="zhongyin-logo.png" alt="中银律师事务所" style="height:22px;width:auto;opacity:0.5;margin-bottom:8px;"><br>
+  &copy; 2026 潘良 &nbsp;·&nbsp; 北京中银（深圳）律师事务所 &nbsp;·&nbsp; 反垄断与竞争政策研究中心<br>
+  <span>竞争与监管 · 公平与法治</span>
+</footer>
+
+<script>
+// ════════════ Splash Screen ════════════
+(function() {
+  var splash = document.getElementById('splash');
+  // Hide splash after 2s
+  setTimeout(function() {
+    splash.classList.add('hide');
+  }, 2000);
+})();
+
+// ════════════ Tab switching ════════════
+function switchTab(tabId, el) {
+  document.querySelectorAll('.section').forEach(function(s) { s.classList.remove('active'); });
+  document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+  document.getElementById(tabId).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════ Modal popups ════════════
+(function() {
+  document.querySelectorAll('.cat-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+      // Collect all sibling content until next cat-header
+      var items = [];
+      var next = header.nextElementSibling;
+      while (next && !next.classList.contains('cat-header')) {
+        items.push(next.cloneNode(true));
+        next = next.nextElementSibling;
+      }
+      if (!items.length) return;
+      // Get title text (without the toggle arrow)
+      var title = header.cloneNode(true);
+      var arrow = title.querySelector('.toggle-arrow');
+      if (arrow) arrow.remove();
+      // Build modal
+      var overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      var dialog = document.createElement('div');
+      dialog.className = 'modal-dialog';
+      var closeBtn = document.createElement('button');
+      closeBtn.className = 'modal-close';
+      closeBtn.innerHTML = '&#x2715;';
+      closeBtn.setAttribute('aria-label', '关闭');
+      var modalHeader = document.createElement('div');
+      modalHeader.className = 'modal-header';
+      modalHeader.innerHTML = title.innerHTML;
+      var modalBody = document.createElement('div');
+      modalBody.className = 'modal-body';
+      items.forEach(function(item) { modalBody.appendChild(item); });
+      dialog.appendChild(closeBtn);
+      dialog.appendChild(modalHeader);
+      dialog.appendChild(modalBody);
+      overlay.appendChild(dialog);
+      document.body.appendChild(overlay);
+      // Close handlers
+      function closeModal() {
+        overlay.remove();
+        document.body.style.overflow = origOverflow;
+        document.removeEventListener('keydown', onKey);
+      }
+      function onKey(e) {
+        if (e.key === 'Escape') closeModal();
+      }
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeModal();
+      });
+      closeBtn.addEventListener('click', closeModal);
+      document.addEventListener('keydown', onKey);
+      // Prevent body scroll
+      var origOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      
+    });
+  });
+})();
+
+// ════════════ Article modal ════════════
+function openArticleModal(linkEl) {
+  var card = linkEl.closest('.article-card');
+  var title = card.querySelector('.art-title').textContent;
+  var tmpl = card.querySelector('script[type="text/template"]');
+  var fullContent = tmpl ? tmpl.textContent : '';
+  var origOverflow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden';
+  var overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  var dialog = document.createElement('div');
+  dialog.className = 'modal-dialog';
+  var closeBtn = document.createElement('button');
+  closeBtn.className = 'modal-close';
+  closeBtn.innerHTML = '&#x2715;';
+  var header = document.createElement('div');
+  header.className = 'modal-header';
+  header.innerHTML = '<span class="cat-icon">📄</span> ' + title;
+  var body = document.createElement('div');
+  body.className = 'modal-body';
+  body.style.cssText = 'font-size:14px;line-height:2;color:var(--text-secondary);padding:18px 28px 26px';
+  body.innerHTML = fullContent;
+  // Style paragraphs
+  var ps = body.querySelectorAll('p');
+  for (var i = 0; i < ps.length; i++) { ps[i].style.textIndent = '2em'; ps[i].style.marginBottom = '0.6em'; }
+  // Style images
+  var imgs = body.querySelectorAll('img');
+  for (var j = 0; j < imgs.length; j++) { imgs[j].style.maxWidth = '100%'; imgs[j].style.height = 'auto'; imgs[j].style.display = 'block'; imgs[j].style.margin = '12px auto'; }
+  dialog.appendChild(closeBtn);
+  dialog.appendChild(header);
+  dialog.appendChild(body);
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+  function closeModal() {
+    overlay.remove();
+    document.body.style.overflow = origOverflow;
+    document.removeEventListener('keydown', onKey);
+  }
+  function onKey(e) {
+    if (e.key === 'Escape') closeModal();
+  }
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal();
+  });
+  closeBtn.addEventListener('click', closeModal);
+  document.addEventListener('keydown', onKey);
+}
+
+</script>
+
+</body>
+</html>
