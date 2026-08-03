@@ -46,7 +46,7 @@ body {
   transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
-#splash img { height: 60px; width: auto; animation: splashPulse 2s ease-in-out infinite; }
+#splash img { height: 60px; width: auto; animation: splashPulse 1.5s ease-in-out infinite; }
 #splash .splash-text {
   font-size: 14px; color: var(--text-muted); letter-spacing: 0.08em;
   animation: splashFadeIn 1.2s ease;
@@ -213,7 +213,7 @@ nav {
 .appt-block > :not(.cat-header):not(.cat-preview) { display: none; }
 
 /* ════════════ Appointment card ════════════ */
-.appt-block { margin-bottom: 44px; }
+.appt-block { margin-bottom: 24px; }
 .appt-block:last-child { margin-bottom: 0; }
 .appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; margin-bottom: 10px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
 .appt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); border-radius: 0 2px 2px 0; }
@@ -579,10 +579,10 @@ footer span { color: var(--accent); }
 // ════════════ Splash Screen ════════════
 (function() {
   var splash = document.getElementById('splash');
-  // Hide splash after 2s
+  // Hide splash after 1.5s
   setTimeout(function() {
     splash.classList.add('hide');
-  }, 2000);
+  }, 1500);
 })();
 
 // ════════════ Tab switching ════════════
