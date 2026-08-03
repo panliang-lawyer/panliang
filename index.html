@@ -102,7 +102,7 @@ nav {
 @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* ════════════ Section header ════════════ */
-.section-header { text-align: center; margin-bottom: 12px; }
+.section-header { text-align: center; margin-bottom: 8px; }
 .section-title { font-size: 26px; font-weight: 700; letter-spacing: 0.08em; display: inline-block; position: relative; }
 .section-title::after { content: ''; display: block; width: 36px; height: 2px; background: var(--gold); margin: 12px auto 0; }
 .section-subtitle { font-size: 14px; color: var(--text-muted); margin-top: 8px; letter-spacing: 0.04em; }
@@ -123,7 +123,7 @@ nav {
 /* ════════════ Timeline ════════════ */
 .timeline { position: relative; padding-left: 32px; }
 .timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); }
-.timeline-item { margin-bottom: 10px; position: relative; }
+.timeline-item { margin-bottom: 6px; position: relative; }
 .timeline-item:last-child { margin-bottom: 0; }
 .timeline-item::before { content: ''; position: absolute; left: -28px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
 .timeline-item .year { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 2px; }
@@ -132,7 +132,7 @@ nav {
 .timeline-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 
 /* ════════════ Education cards ════════════ */
-.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 18px; display: flex; gap: 14px; align-items: center; margin-bottom: 6px; transition: box-shadow 0.25s; }
+.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 14px; display: flex; gap: 10px; align-items: center; margin-bottom: 4px; transition: box-shadow 0.25s; }
 .edu-card:hover { box-shadow: var(--shadow-md); }
 .edu-card:last-child { margin-bottom: 0; }
 .edu-card .edu-badge { flex-shrink: 0; width: 60px; height: 60px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-align: center; line-height: 1.3; }
@@ -143,21 +143,21 @@ nav {
 
 /* ════════════ Qualification grid ════════════ */
 .qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; display: flex; gap: 12px; align-items: center; transition: box-shadow 0.25s; }
+.qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; display: flex; gap: 10px; align-items: center; transition: box-shadow 0.25s; }
 .qual-card:hover { box-shadow: var(--shadow-md); }
 .qual-card .qual-icon { flex-shrink: 0; width: 44px; height: 44px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; }
 .qual-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
 .qual-card .issuer { font-size: 12px; color: var(--text-muted); }
 
 /* ════════════ Category header ════════════ */
-.cat-header { font-size: 15px; font-weight: 600; padding: 12px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; color: var(--text); cursor: pointer; user-select: none; transition: all 0.2s ease; margin-bottom: 8px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
+.cat-header { font-size: 15px; font-weight: 600; padding: 8px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; color: var(--text); cursor: pointer; user-select: none; transition: all 0.2s ease; margin-bottom: 4px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
 .cat-header:hover { border-color: var(--accent); color: var(--text); box-shadow: 0 6px 24px rgba(140,20,20,0.1); transform: translateY(-2px); }
 .cat-header:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(140,20,20,0.06); }
 .cat-header .cat-num { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; flex-shrink: 0; transition: all 0.2s; }
 .cat-header:hover .cat-num { transform: scale(1.08); }
 .cat-num-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
 /* ════════════ Category preview ════════════ */
-.cat-preview { font-size: 14px; color: var(--text-secondary); padding: 4px 16px 6px; line-height: 1.6; font-size: 13px; }
+.cat-preview { font-size: 14px; color: var(--text-secondary); padding: 2px 14px 4px; line-height: 1.5; font-size: 12px; }
 
 /* Hide inline content — only shown in modal */
 .pub-section > :not(.cat-header):not(.cat-preview):not(.article-card),
@@ -165,7 +165,7 @@ nav {
 .cat-header .toggle-arrow { margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
 .cat-header:hover .toggle-arrow { background: var(--accent); color: #fff; }
 /* ════════════ Article cards ════════════ */
-.article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; margin-bottom: 10px; transition: all 0.2s; }
+.article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 8px; transition: all 0.2s; }
 .article-card:hover { box-shadow: var(--shadow-md); }
 .article-card .art-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
 .article-card .art-date { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.04em; }
@@ -194,7 +194,7 @@ nav {
 .modal-body { padding: 18px 28px 26px; }
 .modal-body .cat-header { display: none; }
 @media (max-width: 768px) {
-  .cat-header { padding: 10px 14px; font-size: 13px; border-radius: 8px; }
+  .cat-header { padding: 8px 12px; font-size: 12px; border-radius: 6px; }
   .cat-header .cat-num { width: 34px; height: 34px; font-size: 14px; }
   .cat-header .toggle-arrow { width: 22px; height: 22px; font-size: 12px; }
   .modal-overlay { padding: 16px; align-items: flex-end; }
@@ -213,9 +213,9 @@ nav {
 .appt-block > :not(.cat-header):not(.cat-preview) { display: none; }
 
 /* ════════════ Appointment card ════════════ */
-.appt-block { margin-bottom: 8px; }
+.appt-block { margin-bottom: 6px; }
 .appt-block:last-child { margin-bottom: 0; }
-.appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 4px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
+.appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; margin-bottom: 3px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
 .appt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); border-radius: 0 2px 2px 0; }
 .appt-card:last-child { margin-bottom: 0; }
 .appt-card:hover { box-shadow: var(--shadow-md); }
@@ -226,7 +226,7 @@ nav {
 .appt-card .appt-date { font-size: 12px; color: var(--text-muted); }
 
 /* ════════════ Publication list ════════════ */
-.pub-section { margin-bottom: 14px; }
+.pub-section { margin-bottom: 10px; }
 .pub-section:last-child { margin-bottom: 0; }
 .pub-list { list-style: none; }
 .pub-list li { padding: 20px 0; border-bottom: 1px solid var(--border); display: flex; gap: 18px; align-items: flex-start; }
@@ -238,7 +238,7 @@ nav {
 .pub-list .pub-role { display: inline-block; font-size: 11px; padding: 3px 12px; background: var(--gold-light); color: var(--gold-dark); border-radius: 10px; margin-top: 6px; letter-spacing: 0.04em; font-weight: 600; }
 
 /* ════════════ Awards ════════════ */
-.award-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 8px; transition: box-shadow 0.25s; display: flex; gap: 18px; align-items: flex-start; }
+.award-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 6px; transition: box-shadow 0.25s; display: flex; gap: 18px; align-items: flex-start; }
 .award-card:last-child { margin-bottom: 0; }
 .award-card:hover { box-shadow: var(--shadow-md); }
 .award-card .award-icon { flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-light), var(--gold-light)); color: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
