@@ -41,6 +41,8 @@
     mapContainer.appendChild(mapDiv);
     contactRow.insertAdjacentElement('afterend', mapContainer);
 
+    // Fix Leaflet default icon path (loaded from CDN)
+    L.Icon.Default.prototype.options.imagePath = 'https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/images/';
     var map = L.map('map', {
       center: [22.5432, 114.0580],
       zoom: 16,
