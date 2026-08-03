@@ -123,7 +123,7 @@ nav {
 /* ════════════ Timeline ════════════ */
 .timeline { position: relative; padding-left: 32px; }
 .timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%); }
-.timeline-item { margin-bottom: 6px; position: relative; }
+.timeline-item { margin-bottom: 4px; position: relative; }
 .timeline-item:last-child { margin-bottom: 0; }
 .timeline-item::before { content: ''; position: absolute; left: -28px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); }
 .timeline-item .year { font-size: 13px; color: var(--accent); font-weight: 700; letter-spacing: 0.06em; margin-bottom: 2px; }
@@ -132,9 +132,9 @@ nav {
 .timeline-item p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
 
 /* ════════════ Education cards ════════════ */
-.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 14px; display: flex; gap: 10px; align-items: center; margin-bottom: 4px; transition: box-shadow 0.25s; }
+.edu-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 0; display: flex; gap: 10px; align-items: center; margin-bottom: 0; transition: box-shadow 0.25s; border-bottom: 1px solid var(--border); }
 .edu-card:hover { box-shadow: var(--shadow-md); }
-.edu-card:last-child { margin-bottom: 0; }
+.edu-card:last-child { border-bottom: none; }
 .edu-card .edu-badge { flex-shrink: 0; width: 60px; height: 60px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; text-align: center; line-height: 1.3; }
 .edu-card .edu-info { flex: 1; }
 .edu-card .edu-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
@@ -143,7 +143,7 @@ nav {
 
 /* ════════════ Qualification grid ════════════ */
 .qual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-.qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; display: flex; gap: 10px; align-items: center; transition: box-shadow 0.25s; }
+.qual-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 0; display: flex; gap: 10px; align-items: center; transition: box-shadow 0.25s; border-bottom: 1px solid var(--border); }
 .qual-card:hover { box-shadow: var(--shadow-md); }
 .qual-card .qual-icon { flex-shrink: 0; width: 44px; height: 44px; background: var(--accent-light); color: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 700; }
 .qual-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
@@ -165,7 +165,7 @@ nav {
 .cat-header .toggle-arrow { margin-left: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.2s; }
 .cat-header:hover .toggle-arrow { background: var(--accent); color: #fff; }
 /* ════════════ Article cards ════════════ */
-.article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 8px; transition: all 0.2s; }
+.article-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; margin-bottom: 6px; transition: all 0.2s; }
 .article-card:hover { box-shadow: var(--shadow-md); }
 .article-card .art-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.5; }
 .article-card .art-date { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; letter-spacing: 0.04em; }
@@ -213,11 +213,11 @@ nav {
 .appt-block > :not(.cat-header):not(.cat-preview) { display: none; }
 
 /* ════════════ Appointment card ════════════ */
-.appt-block { margin-bottom: 4px; }
+.appt-block { margin-bottom: 2px; }
 .appt-block:last-child { margin-bottom: 0; }
-.appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 14px; margin-bottom: 3px; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; }
+.appt-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 0; margin-bottom: 0; transition: box-shadow 0.25s; position: relative; overflow: hidden; display: flex; gap: 14px; align-items: flex-start; border-bottom: 1px solid var(--border); }
 .appt-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); border-radius: 0 2px 2px 0; }
-.appt-card:last-child { margin-bottom: 0; }
+.appt-card:last-child { border-bottom: none; }
 .appt-card:hover { box-shadow: var(--shadow-md); }
 .appt-card .appt-dot { flex-shrink: 0; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; }
 .appt-card .appt-body { flex: 1; }
@@ -238,8 +238,8 @@ nav {
 .pub-list .pub-role { display: inline-block; font-size: 11px; padding: 3px 12px; background: var(--gold-light); color: var(--gold-dark); border-radius: 10px; margin-top: 6px; letter-spacing: 0.04em; font-weight: 600; }
 
 /* ════════════ Awards ════════════ */
-.award-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; margin-bottom: 6px; transition: box-shadow 0.25s; display: flex; gap: 18px; align-items: flex-start; }
-.award-card:last-child { margin-bottom: 0; }
+.award-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 0; margin-bottom: 0; transition: box-shadow 0.25s; display: flex; gap: 18px; align-items: flex-start; border-bottom: 1px solid var(--border); }
+.award-card:last-child { border-bottom: none; }
 .award-card:hover { box-shadow: var(--shadow-md); }
 .award-card .award-icon { flex-shrink: 0; width: 40px; height: 40px; background: linear-gradient(135deg, var(--accent-light), var(--gold-light)); color: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
 .award-card .award-info { flex: 1; }
@@ -281,7 +281,7 @@ footer span { color: var(--accent); }
   .hero .hero-logo { height: 36px; }
   .hero .name { font-size: 32px; }
   .hero .title-line { font-size: 14px; }
-  .card-grid, .qual-grid { grid-template-columns: 1fr !important; }
+  .card-grid, .qual-grid { grid-template-columns: 1fr; }
   .stat-row { gap: 28px; }
   .stat-item .num { font-size: 28px; }
   .section-title { font-size: 22px; }
